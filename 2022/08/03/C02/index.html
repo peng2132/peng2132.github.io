@@ -395,14 +395,12 @@ mjx-container[display="true"] + br {
 
     <div class="post-md">
         
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="一、地址"><a href="#一、地址" class="headerlink" title="一、地址"></a>一、地址</h1><h2 id="1、地址"><a href="#1、地址" class="headerlink" title="1、地址"></a>1、地址</h2><p>计算机存储数据的最基本单位是字节，而计算机表示数据的基本单位是位。地址的概念与字节密切相关，每个字节都被赋予一个唯一的地址。</p>
-<p>为了更清晰地理解这个概念，可以将字节想象成存储数据的小盒子，而地址则是为这些盒子编号的标签。</p>
-<p>整型数据通常占用4字节，当涉及整型数据时，它通常占用4个字节，因此一个整型变量将有四个地址。在这种情况下，所谓的变量地址指的是该整型变量的起始地址，即第一个字节的地址，所以<code>&amp;a = 0x0fd9a0</code>。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="一、地址"><a href="#一、地址" class="headerlink" title="一、地址"></a>一、地址</h1><h2 id="1、地址"><a href="#1、地址" class="headerlink" title="1、地址"></a>1、地址</h2><p>计算机存储数据的最基本单位是字节，而计算机表示数据的基本单位是位。地址的概念与字节密切相关，每个字节都被赋予一个唯一的地址。为了更清晰地理解这个概念，可以将字节想象成存储数据的小盒子，而地址则是为这些盒子编号的标签。<br>整型数据通常占用4字节，当涉及整型数据时，它通常占用4个字节，因此一个整型变量将有四个地址。<br>在这种情况下，所谓的变量地址指的是该整型变量的起始地址，即第一个字节的地址，所以<code>&amp;a = 0x0fd9a0</code>。</p>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240209202326241.png" title="image-20240209202326241" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240209202326241.png" alt="image-20240209202326241"></a></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">()</span>{</span><br><span class="line">    <span class="type">int</span> a = <span class="number">123</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"&amp;a = %p\n"</span>,&amp;a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 
 <p>输出结果：<code>&amp;a = 0x7ffd860370d4 </code></p>
-<h2 id="2、十六进制数字"><a href="#2、十六进制数字" class="headerlink" title="2、十六进制数字"></a>2、十六进制数字</h2><p>符号组成：0<del>9，A</del>F</p>
+<h2 id="2、十六进制数字"><a href="#2、十六进制数字" class="headerlink" title="2、十六进制数字"></a>2、十六进制数字</h2><p>符号组成：0 ~ 9，A ~ F </p>
 <p>前面输出的结果是：<code>&amp;a = 0x7ffd860370d4 </code>，输出的地址中，前面有两个奇怪的数字：0x。在C语言中，以0x开头的数就是16进制的数。</p>
 <p>为什么计算机中相关数字表示用16进制表示呢？</p>
 <ol>
