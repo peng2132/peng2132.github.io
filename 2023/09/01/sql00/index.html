@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="MySQL：安装教程" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">分类</a></li>
+            
+        
+            
+                <li><a href="/about/">关于</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            MySQL：安装教程
+        </div>
+      
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="1-安装准备"><a href="#1-安装准备" class="headerlink" title="1. 安装准备"></a>1. 安装准备</h1><h2 id="1-1-准备MySQL安装包"><a href="#1-1-准备MySQL安装包" class="headerlink" title="1.1 准备MySQL安装包"></a>1.1 准备MySQL安装包</h2><p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166767005-dab6bbcd-8d36-4769-9579-b41796e65087.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166767005-dab6bbcd-8d36-4769-9579-b41796e65087.png"></a><br>MySQL 5.7.27 文件<br><a target="_blank" rel="noopener" href="https://www.yuque.com/attachments/yuque/0/2024/zip/29425690/1704179685798-1a55a872-0127-4e87-a9c8-79b50f186d93.zip">mysql-installer-community-5.7.27.0.zip</a><br>或百度云盘共享<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1P47pmzNu2c03FRYbCE64AQ">安装包下载 密码：x6pl</a><br>下载后解压，按教程完成即可。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166766464-4430d75f-9885-4355-a9db-8db1ae8229b1.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166766464-4430d75f-9885-4355-a9db-8db1ae8229b1.png"></a></p>
+<h2 id="1-2-检查操作系统类型"><a href="#1-2-检查操作系统类型" class="headerlink" title="1.2 检查操作系统类型"></a>1.2 检查操作系统类型</h2><p>检查操作系统类型主要是了解系统是： 32位操作系统(x86) 还是64位操作系统（x64）<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166766582-20d1e205-97a5-42d2-b139-2d0effe9ab22.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166766582-20d1e205-97a5-42d2-b139-2d0effe9ab22.png"></a></p>
+<h2 id="1-3-检查系统是否已安装MySQL"><a href="#1-3-检查系统是否已安装MySQL" class="headerlink" title="1.3 检查系统是否已安装MySQL"></a>1.3 检查系统是否已安装MySQL</h2><p>如果系统中已经安装过MySQL那么建议完全卸载之后重新安装。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166767249-d3914492-487f-4d31-93a4-ddfaf65dd112.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166767249-d3914492-487f-4d31-93a4-ddfaf65dd112.png"></a></p>
+<h1 id="2-开始安装"><a href="#2-开始安装" class="headerlink" title="2. 开始安装"></a>2. 开始安装</h1><h2 id="2-0-Q-A"><a href="#2-0-Q-A" class="headerlink" title="2.0 Q&amp;A"></a>2.0 Q&amp;A</h2><p>安装MySQL之前，这里先列出几个可能会出现的问题。</p>
+<h3 id="问题-1"><a href="#问题-1" class="headerlink" title="问题-1"></a>问题-1</h3><p><strong>问题 ：</strong> 安装程序要求计算机有_.Net Framework 4.5.2_<br><strong>提示信息：</strong><br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166767355-0a5a2075-0e8d-4bb7-abb5-f1fb687700ac.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166767355-0a5a2075-0e8d-4bb7-abb5-f1fb687700ac.png"></a></p>
+<p><strong>解决思路：</strong></p>
+<ul>
+<li>退出安装程序</li>
+<li>微软官方网站下载 <a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-CN/download/details.aspx?id=42642">.Net Framework 4.5.2</a></li>
+</ul>
+<p>安装完成_.Net Framework 4.5.2_，重新执行MySQL安装程序</p>
+<h3 id="问题-2"><a href="#问题-2" class="headerlink" title="问题-2"></a>问题-2</h3><p><strong>问题 ：</strong> MySQL程序要求计算机有_Micrsoft Visual C++ 2015 Redistributable Package (x64)_<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166768568-2527ec3c-e4fa-4923-aa7d-0d2e59bef7ba.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166768568-2527ec3c-e4fa-4923-aa7d-0d2e59bef7ba.png"></a></p>
+<p><strong>解决思路：</strong></p>
+<ul>
+<li>取消安装程序</li>
+<li>微软官方网站下载 <a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-CN/download/details.aspx?id=48145">Micrsoft Visual C++ 2015 Redistributable Package (x64)</a></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166768097-e36482c9-4306-4f08-8505-393899e71ba3.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166768097-e36482c9-4306-4f08-8505-393899e71ba3.png"></a></p>
+<ul>
+<li>安装完成_Micrsoft Visual C++ 2015 Redistributable Package (x64)_，重新执行MySQL安装程序</li>
+</ul>
+<h2 id="2-1-执行安装包"><a href="#2-1-执行安装包" class="headerlink" title="2.1 执行安装包"></a>2.1 执行安装包</h2><p>执行安装包之后，系统会有一些安全阻止提醒，同意即可，接下来同意授权许可，继续下一步。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166768438-482ebaf7-e99e-4e3f-a133-ce5285bfd481.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166768438-482ebaf7-e99e-4e3f-a133-ce5285bfd481.png"></a></p>
+<h2 id="2-2-选择安装类型"><a href="#2-2-选择安装类型" class="headerlink" title="2.2 选择安装类型"></a>2.2 选择安装类型</h2><ul>
+<li>Developer Default : 开发者默认，会安装所有MySQL开发需要的产品，不建议使用</li>
+<li>Server only : 只安装MySQL服务，通常在部署MySQL服务使用</li>
+<li>Client only : 只安装MySQL客户端</li>
+<li>Full : 安装MySQL包含的所有产品和特性</li>
+<li>Custom：用户自定义安装 ，！！！<strong>本文采用用户自定义安装</strong></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166768908-a3891131-0cfc-4aff-914d-979bd97d615b.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166768908-a3891131-0cfc-4aff-914d-979bd97d615b.png"></a></p>
+<h2 id="2-3-选择安装产品和特性"><a href="#2-3-选择安装产品和特性" class="headerlink" title="2.3 选择安装产品和特性"></a>2.3 选择安装产品和特性</h2><p>安装能够满足MySQL开发的基本组件，这里选择MySQL Server，选择x86还是x64根据系统类型决定。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166769121-b3a8f2cb-9792-4ae1-ad9c-21619bb61ffd.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166769121-b3a8f2cb-9792-4ae1-ad9c-21619bb61ffd.png"></a></p>
+<p>选择之后，继续下一步即可。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166769391-065b31c9-6f84-476f-b39f-e8181ed9d871.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166769391-065b31c9-6f84-476f-b39f-e8181ed9d871.png"></a></p>
+<h1 id="3-开始配置"><a href="#3-开始配置" class="headerlink" title="3. 开始配置"></a>3. 开始配置</h1><p>完成上面的MySQL安装步骤之后，需要进一步配置MySQL服务。</p>
+<h2 id="3-1-配置类型和网络"><a href="#3-1-配置类型和网络" class="headerlink" title="3.1 配置类型和网络"></a>3.1 配置类型和网络</h2><p>MySQL安装包给我们默认提供了最佳配置， 此处配置保持默认即可，一路下一步。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166769798-e0f33d78-6abb-4c38-915b-e44190377c9f.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166769798-e0f33d78-6abb-4c38-915b-e44190377c9f.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166770005-7fc8deba-c1f3-4bb8-9370-b437ffb970ed.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166770005-7fc8deba-c1f3-4bb8-9370-b437ffb970ed.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166770373-654e5055-70a4-429a-bf8e-154b78d20ad6.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166770373-654e5055-70a4-429a-bf8e-154b78d20ad6.png"></a></p>
+<h2 id="3-2-配置帐号密码"><a href="#3-2-配置帐号密码" class="headerlink" title="3.2 配置帐号密码"></a>3.2 配置帐号密码</h2><p>MySQL安装完成之后，需要给root用户设置密码，这里密码设置完成之后，务必牢记，后续使用root用户访问MySQL服务时必须使用该密码。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166770475-014bef09-5007-4b27-965e-ca3d284afa3c.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166770475-014bef09-5007-4b27-965e-ca3d284afa3c.png"></a></p>
+<h2 id="3-3-配置MySQL服务"><a href="#3-3-配置MySQL服务" class="headerlink" title="3.3 配置MySQL服务"></a>3.3 配置MySQL服务</h2><p>MySQL作为一个服务程序，将其设置为Windows服务和开启自动启动。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166770654-4d161d49-50ce-4405-9fca-5f63dc4c3b27.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166770654-4d161d49-50ce-4405-9fca-5f63dc4c3b27.png"></a></p>
+<h2 id="3-4-执行配置生效"><a href="#3-4-执行配置生效" class="headerlink" title="3.4 执行配置生效"></a>3.4 执行配置生效</h2><p>上面每一步填写的配置到此并未正真生效，需要执行下面步骤使得配置生效。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166771642-1326377d-f517-4374-8d6c-e313c96526ef.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166771642-1326377d-f517-4374-8d6c-e313c96526ef.png"></a></p>
+<h1 id="4-使用MySQL"><a href="#4-使用MySQL" class="headerlink" title="4. 使用MySQL"></a>4. 使用MySQL</h1><h2 id="4-1-查看Windows下的MySQL服务"><a href="#4-1-查看Windows下的MySQL服务" class="headerlink" title="4.1 查看Windows下的MySQL服务"></a>4.1 查看Windows下的MySQL服务</h2><p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166771206-20d40599-503f-4ffd-bbc5-9a516eab8453.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166771206-20d40599-503f-4ffd-bbc5-9a516eab8453.png"></a></p>
+<h2 id="4-2-通过MySQL-Client连接MySQL服务"><a href="#4-2-通过MySQL-Client连接MySQL服务" class="headerlink" title="4.2 通过MySQL Client连接MySQL服务"></a>4.2 通过MySQL Client连接MySQL服务</h2><p>通过MySQL 命令行客户端连接MySQL服务<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166771571-f3ddbd55-21e4-4e01-a1ac-c89e4c72b67c.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166771571-f3ddbd55-21e4-4e01-a1ac-c89e4c72b67c.png"></a></p>
+<p>执行MySQL命令行客户端会提示输入密码，这里的密码就是在配置过程中设置的root用户密码，输入完成之后，回车之后，成功连接如图所示。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166771953-0379a20a-5673-4995-88ce-03ffc996b0c8.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166771953-0379a20a-5673-4995-88ce-03ffc996b0c8.png"></a></p>
+<h2 id="4-3-注意问题"><a href="#4-3-注意问题" class="headerlink" title="4.3 注意问题"></a>4.3 注意问题</h2><p>1、修改默认配置的编码格式，进入自己的MySQL的安装目录，如果是默认，就在这个路径下：C:\ProgramData\MySQL\MySQL Server 5.7\my.ini  找到ini文件。<br>有同学会说，没有这个ProgramData文件，请在这里进行设置：<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166772292-e1802ed5-7769-4e42-91f4-cdcead2b50c8.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166772292-e1802ed5-7769-4e42-91f4-cdcead2b50c8.png"></a></p>
+<p>2、进入ProgramData文件夹，找到my.ini文件，使用记事本或者notepad++打开，进行修改如下。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166772411-92e485f8-faf6-46f4-9e0a-8258d27109a4.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166772411-92e485f8-faf6-46f4-9e0a-8258d27109a4.png"></a></p>
+<p>3、记住一定要重启MySQL服务，然后重新打开MySQL客户端，才能生效。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166772867-5ad34401-2867-4fca-8ac3-8aee9f74ed3c.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166772867-5ad34401-2867-4fca-8ac3-8aee9f74ed3c.png"></a></p>
+<h1 id="5-扩展"><a href="#5-扩展" class="headerlink" title="5. 扩展"></a>5. 扩展</h1><h2 id="5-1-MySQL命令添加到PATH路径"><a href="#5-1-MySQL命令添加到PATH路径" class="headerlink" title="5.1 MySQL命令添加到PATH路径"></a>5.1 MySQL命令添加到PATH路径</h2><ul>
+<li>在windows平台下找到MySQL的安装路径 (例如：Windows 10 64位系统默认安装在 C:\Program Files\MySQL\MySQL Server 5.7)</li>
+<li>添加步骤 （跟配置Java环境变量类型，Linux下配置PATH类似）</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166773156-cbdd4ee6-3294-406f-8b6b-b9170459761a.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166773156-cbdd4ee6-3294-406f-8b6b-b9170459761a.png"></a></p>
+<h2 id="5-2-直接在命令行窗口使用MySQL命令"><a href="#5-2-直接在命令行窗口使用MySQL命令" class="headerlink" title="5.2 直接在命令行窗口使用MySQL命令"></a>5.2 直接在命令行窗口使用MySQL命令</h2><p>配置MySQL命令到PATH路径之后，访问MySQL的时候就可以在任意命令行窗口上执行 <code>mysql -u root -p</code> 命令连接数据库服务。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166773143-cfce9ac0-d101-43be-b446-7c98c1fe511a.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704166773143-cfce9ac0-d101-43be-b446-7c98c1fe511a.png"></a></p>
+<h1 id="6、dbeaver-安装"><a href="#6、dbeaver-安装" class="headerlink" title="6、dbeaver 安装"></a>6、dbeaver 安装</h1><p>下载地址：<a target="_blank" rel="noopener" href="https://dbeaver.io/download/">https://dbeaver.io/download/</a><br>下载后一直下一步进行安装。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704178991159-e3450a52-189b-47a2-9a5b-01cf81f7af3e.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704178991159-e3450a52-189b-47a2-9a5b-01cf81f7af3e.png" alt="图片.png"></a><br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704179016600-f3de3882-078d-4f3a-9fdd-38a773ac9274.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704179016600-f3de3882-078d-4f3a-9fdd-38a773ac9274.png" alt="图片.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704179026750-f4de0713-4ab0-4481-bc5b-bd968a7597a8.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704179026750-f4de0713-4ab0-4481-bc5b-bd968a7597a8.png" alt="图片.png"></a><br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704179104608-d33f81de-83f7-40e3-9fa4-6e5f2c2e195b.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704179104608-d33f81de-83f7-40e3-9fa4-6e5f2c2e195b.png" alt="图片.png"></a><br><strong>可能出现的连接问题：</strong><br>有些图形界面工具，特别是旧版本的图形界面工具，在连接MySQL8时出现“Authentication plugin ‘caching_sha2_password’ cannot be loaded”错误。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704179180374-b5ad8ef0-d7bd-4bbd-950b-5517837e7f1c.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704179180374-b5ad8ef0-d7bd-4bbd-950b-5517837e7f1c.png" alt="图片.png"></a></p>
+<p>出现这个原因是MySQL8之前的版本中加密规则是mysql_native_password，而在MySQL8之后，加密规则是caching_sha2_password。解决问题方法有两种，第一种是升级图形界面工具版本，第二种是把MySQL8 用户登录密码加密规则还原成mysql_native_password。<br>第二种解决方案如下，用命令行登录MySQL数据库之后，执行如下命令修改用户密码加密规则并更新用户密码，这里修改用户名为“root@localhost”的用户密码规则为“mysql_native_password”，密码值为 “abc123”。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#使用mysql数据库</span><br><span class="line">USE mysql;</span><br><span class="line">#修改&#x27;root&#x27;@&#x27;localhost&#x27;用户的密码规则和密码</span><br><span class="line">ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;abc123&#x27;;</span><br><span class="line">#刷新权限</span><br><span class="line">FLUSH PRIVILEGES;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704179310965-75622dbe-893f-4e0a-9552-53fd7df1ccf8.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704179310965-75622dbe-893f-4e0a-9552-53fd7df1ccf8.png" alt="图片.png"></a></p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-09-01</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/'>
+                            数据库
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="C语言：基础语法（二）" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">分类</a></li>
+            
+        
+            
+                <li><a href="/about/">关于</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            C语言：基础语法（二）
+        </div>
+      
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="一、地址"><a href="#一、地址" class="headerlink" title="一、地址"></a>一、地址</h1><h2 id="1、地址"><a href="#1、地址" class="headerlink" title="1、地址"></a>1、地址</h2><p>计算机存储数据的最基本单位是字节，而计算机表示数据的基本单位是位。地址的概念与字节密切相关，每个字节都被赋予一个唯一的地址。</p>
+<p>为了更清晰地理解这个概念，可以将字节想象成存储数据的小盒子，而地址则是为这些盒子编号的标签。</p>
+<p>整型数据通常占用4字节，当涉及整型数据时，它通常占用4个字节，因此一个整型变量将有四个地址。在这种情况下，所谓的变量地址指的是该整型变量的起始地址，即第一个字节的地址，所以<code>&amp;a = 0x0fd9a0</code>。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240209202326241.png" title="image-20240209202326241" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240209202326241.png" alt="image-20240209202326241"></a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">123</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;a = %p\n&quot;</span>,&amp;a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：<code>&amp;a = 0x7ffd860370d4 </code></p>
+<h2 id="2、十六进制数字"><a href="#2、十六进制数字" class="headerlink" title="2、十六进制数字"></a>2、十六进制数字</h2><p>符号组成：0<del>9，A</del>F</p>
+<p>前面输出的结果是：<code>&amp;a = 0x7ffd860370d4 </code>，输出的地址中，前面有两个奇怪的数字：0x。在C语言中，以0x开头的数就是16进制的数。</p>
+<p>为什么计算机中相关数字表示用16进制表示呢？</p>
+<ol>
+<li>十六进制使用0-9和A-F共16个符号来表示数字，正好是二进制4个位的16倍。因此，一个字节（8个二进制位）可以用两个十六进制数字来表示，非常简洁。例如，十进制数100在二进制中表示为1100100，而十六进制中则表示为64。</li>
+<li>十六进制可以直接反映出数据的二进制表示。例如，十六进制数F表示二进制数1111，十六进制数A表示二进制数1010。这对于程序员调试程序和理解数据结构非常有帮助。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">0x6a</span>; <span class="comment">//十进制应该为:106</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a(10) = %d\n&quot;</span>,a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a(16) = %x\n&quot;</span>,a);</span><br><span class="line">    <span class="type">int</span> b = <span class="number">0x7fffffff</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;MAX_INT = %d\n&quot;</span>,b); <span class="comment">//整型的最大值</span></span><br><span class="line">    <span class="type">int</span> c = <span class="number">0x80000000</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;MIN_INT = %d\n&quot;</span>,c); <span class="comment">//整型的最小值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出结果</span></span><br><span class="line">a(<span class="number">10</span>) = <span class="number">106</span></span><br><span class="line">a(<span class="number">16</span>) = <span class="number">6</span>a</span><br><span class="line">MAX_INT = <span class="number">2147483647</span></span><br><span class="line">MIN_INT = <span class="number">-2147483648</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>【问题】地址是一个几位的二进制数据？</strong></p>
+<p>地址是一个几位的二进制数据，取决于计算机的寻址能力，即CPU可以访问的最大内存容量。寻址能力由CPU的地址总线宽度决定，地址总线宽度为n位，则CPU可以访问$2^n$个存储单元。</p>
+<ul>
+<li>在32位计算机中，地址总线宽度为32位，因此地址占32位，即4个字节。32位计算机可以访问$2^{32}$&#x3D;4GB的内存空间。</li>
+<li>在64位计算机中，地址总线宽度为64位，因此地址占64位，即8个字节。64位计算机可以访问$2^{64}$&#x3D;16EB的内存空间。</li>
+</ul>
+<p>因此，在32位计算机中，地址是一个32位的二进制数据，在64位计算机中，地址是一个64位的二进制数据。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">double</span> b;</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sizeof(int &amp;) = %lu\n&quot;</span>,<span class="keyword">sizeof</span>(&amp;a));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sizeof(double &amp;) = %lu\n&quot;</span>,<span class="keyword">sizeof</span>(&amp;b));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;size_t(char &amp;) = %lu\n&quot;</span>,<span class="keyword">sizeof</span>(&amp;c));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240209210812351.png" title="image-20240209210812351" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240209210812351.png" alt="image-20240209210812351"></a></p>
+<h1 id="二、数组"><a href="#二、数组" class="headerlink" title="二、数组"></a>二、数组</h1><h2 id="1、基本定义"><a href="#1、基本定义" class="headerlink" title="1、基本定义"></a>1、基本定义</h2><p><strong>数组是一组相同类型元素的集合；</strong>从这个概念中我们就可以发现2个信息：</p>
+<ul>
+<li>数组中存放的是1个或者多个数据，但是数组元素个数不能为0。</li>
+<li>数组中存放的多个数据，类型是相同的。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">10</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;a[%d] = %d\n&quot;</span>,i,a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240209212501890.png" title="image-20240209212501890" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240209212501890.png" alt="image-20240209212501890"></a></p>
+<h2 id="2、数组的类型"><a href="#2、数组的类型" class="headerlink" title="2、数组的类型"></a>2、数组的类型</h2><p>数组也是有类型的，数组算是一种自定义类型，去掉数组名留下的就是数组的类型。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> arr1[<span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> arr2[<span class="number">12</span>];</span><br><span class="line"><span class="type">char</span> ch[<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>数组定义</strong></th>
+<th><strong>变量名</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>int arr1[10]</code></td>
+<td><code>arr1</code></td>
+<td><code>int[10]</code></td>
+<td><code>10</code>个<code>int</code>元素</td>
+</tr>
+<tr>
+<td><code>int arr2[12]</code></td>
+<td><code>arr2</code></td>
+<td><code>int[12]</code></td>
+<td><code>12</code>个<code>int</code>元素</td>
+</tr>
+<tr>
+<td><code>char ch[5]</code></td>
+<td><code>ch</code></td>
+<td><code>char[5]</code></td>
+<td><code>5</code>个<code>char</code>元素</td>
+</tr>
+</tbody></table>
+<p>其中，<code>arr1</code>数组的类型是<code>int[10]</code>，<code>arr2</code>数组的类型是<code>int[12]</code>，<code>ch</code> 数组的类型是<code>char[5]</code>。</p>
+<p>数组也是一种类型。以<code>int arr1[10]</code>为例，数组内部保存的其实是<code>int</code>类型定义的一个一个的变量，只不过数组中每一个变量是没有名字的，不同于<code>int a = 10</code>，变量名是<code>a</code>，数组是通过下标方式定位一个变量的。但是无论是变量名，还是下标，都是为了让我们快速的找到这个变量，只是找到变量的方式不同。</p>
+<p>更重要的是，数组类型是由其他类型组合起来形成的，比如<code>int[10]</code>是由<code>10</code>个<code>int</code>组合起来形成的，<code>char[5]</code>是由<code>5</code>个<code>char</code>组合形成的等。既然数组也是一种类型，数组里面可以放置<code>int、char、double、float</code>等类型，那么数组里面可以放置数组类型吗？</p>
+<p>结论：数组既然是一种类型，数组里面可以放置任意类型，当然也可以放置其他数组类型</p>
+<h2 id="3、二维数组"><a href="#3、二维数组" class="headerlink" title="3、二维数组"></a>3、二维数组</h2><p>如果我们把一维数组做为数组的元素，这时候就构成了<strong>二维数组</strong>，把二维数组作为数组元素的数组被称为<strong>三维数组</strong>，依次类推。二维数组以上的数组统称为<strong>多维数组</strong>。<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240209212538507.png" title="image-20240209212538507" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240209212538507.png" alt="image-20240209212538507"></a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">main</span> <span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">// 定义一个3行4列的二维数组</span></span><br><span class="line">    <span class="type">int</span> <span class="built_in">array</span>[<span class="number">3</span>][<span class="number">4</span>];</span><br><span class="line">    <span class="comment">// 初始化二维数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line">        <span class="built_in">array</span>[i][j] = i * <span class="number">4</span> + j;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 遍历二维数组并打印元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line">      	<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, <span class="built_in">array</span>[i][j]);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、数组的存储方式"><a href="#4、数组的存储方式" class="headerlink" title="4、数组的存储方式"></a>4、数组的存储方式</h2><p>待更</p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2022-08-03</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/C%E8%AF%AD%E8%A8%80/'>
+                            C语言
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+
+</html>
