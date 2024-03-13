@@ -283,25 +283,53 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 
     <div class="post-md">
         
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="一、数据库约束"><a href="#一、数据库约束" class="headerlink" title="一、数据库约束"></a>一、数据库约束</h1><h2 id="1、约束类型"><a href="#1、约束类型" class="headerlink" title="1、约束类型"></a>1、约束类型</h2><p><code>not null</code> 非空：指定某列不能存储 null 值<br><code>unique</code> 唯一：保证某列的每行必须有唯一的值<br><code>default</code> 默认： 规定没有给列赋值时的默认值<br><code>primary key</code> 主键： not null 和 unique 的结合，确保某列有唯一标识，有助于更容易更快速的找到表中的一个特定值<br><code>foreign key</code>外键：保证一个表中的数据匹配另一个表中的参照完整性<br><code>check</code>保证列中的值符合指定的条件，对于 MySQL 数据库，堆 check 子句进行分析，但是忽略 check 子句</p>
-<h2 id="2、not-null"><a href="#2、not-null" class="headerlink" title="2、not null"></a>2、<code>not null</code></h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student (id <span class="type">int</span> , name <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、数据库约束</h1>
+<h2 id="1、约束类型">1、约束类型</h2>
+<p><code>not null</code> 非空：指定某列不能存储 null 值<br>
+<code>unique</code> 唯一：保证某列的每行必须有唯一的值<br>
+<code>default</code> 默认： 规定没有给列赋值时的默认值<br>
+<code>primary key</code> 主键： not null 和 unique 的结合，确保某列有唯一标识，有助于更容易更快速的找到表中的一个特定值<br>
+<code>foreign key</code>外键：保证一个表中的数据匹配另一个表中的参照完整性<br>
+<code>check</code>保证列中的值符合指定的条件，对于 MySQL 数据库，堆 check 子句进行分析，但是忽略 check 子句</p>
+<h2 id="2、not-null">2、<code>not null</code></h2>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student (id <span class="type">int</span> , name <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/e9684967e4bc6536aafcce890af1aae3.png" title="38465b87e23e76e9c7a67166e726090.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/e9684967e4bc6536aafcce890af1aae3.png" alt="38465b87e23e76e9c7a67166e726090.png"></a></p>
-<h2 id="3、unique"><a href="#3、unique" class="headerlink" title="3、unique"></a>3、<code>unique</code></h2><p>唯一，此处的限制不允许存在两行数据在指定列上重复。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/61249fc61c92a51b26c1b01ad89975ac.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/61249fc61c92a51b26c1b01ad89975ac.png" alt="图片.png"></a><br>MySQL 咋找到已经有相同的数据了？<br>针对带有 <code>unique</code> 的数据，MySQL 会先进行查询，看是不是已经存在，存在就不插入了。</p>
-<h2 id="4、default"><a href="#4、default" class="headerlink" title="4、default"></a>4、<code>default</code></h2><p>使用指定列插入的时候，未被指定的列就会按照默认值来填充。如果不修改其默认值，默认情况下的默认值就是 NULL。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/8882e8e9e7e403e1555d1e0d66ad25ca.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/8882e8e9e7e403e1555d1e0d66ad25ca.png" alt="图片.png"></a></p>
-<h2 id="5、primary-key"><a href="#5、primary-key" class="headerlink" title="5、primary key"></a>5、<code>primary key</code></h2><p>主键约束：一条数据的身份表示。用于区分两条数据是不是一个数据。通过这个来指定某个列作为主键。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d5f52ed44428b93f913c0fd67959791f.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d5f52ed44428b93f913c0fd67959791f.png" alt="图片.png"></a></p>
+<h2 id="3、unique">3、<code>unique</code></h2>
+<p>唯一，此处的限制不允许存在两行数据在指定列上重复。<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/61249fc61c92a51b26c1b01ad89975ac.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/61249fc61c92a51b26c1b01ad89975ac.png" alt="图片.png"></a><br>
+MySQL 咋找到已经有相同的数据了？<br>
+针对带有 <code>unique</code> 的数据，MySQL 会先进行查询，看是不是已经存在，存在就不插入了。</p>
+<h2 id="4、default">4、<code>default</code></h2>
+<p>使用指定列插入的时候，未被指定的列就会按照默认值来填充。如果不修改其默认值，默认情况下的默认值就是 NULL。<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/8882e8e9e7e403e1555d1e0d66ad25ca.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/8882e8e9e7e403e1555d1e0d66ad25ca.png" alt="图片.png"></a></p>
+<h2 id="5、primary-key">5、<code>primary key</code></h2>
+<p>主键约束：一条数据的身份表示。用于区分两条数据是不是一个数据。通过这个来指定某个列作为主键。<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d5f52ed44428b93f913c0fd67959791f.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d5f52ed44428b93f913c0fd67959791f.png" alt="图片.png"></a></p>
 <p>自增主键：允许客户端在插入的时候，不指定主键的值，交给 MySQL 自己分配。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student (id <span class="type">int</span> <span class="keyword">primary</span> key auto_increment , name <span class="type">varchar</span>(<span class="number">20</span>) );</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/f7e9902abd19372ffd4ef322cc6b43e4.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/f7e9902abd19372ffd4ef322cc6b43e4.png" alt="图片.png"></a><br>自增主键，id 用 null 是让数据库自行分配。自增主键，也是可以手动值的。下一个 分配的 id 就会在之前最大值的基础上继续自增。<br>当然，如果 MySQL 是单机系统，基于上面的策略是没有问题的，但是如果 MySQL 是一个分布式的系统，自增主键就没有办法保证唯一性。为了解决上述问题，也有一些分布式 id 的生成算法。把 id 作为一个字符串，字符串由下面几个部分组成：主机编号&#x2F;机房编号+时间戳+随机因子。</p>
-<h2 id="6、foreign-key"><a href="#6、foreign-key" class="headerlink" title="6、foreign key"></a>6、<code>foreign key</code></h2><p>外键：涉及到两个表之间的约束。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d7463ebac50db93c7ff6002b5a982330.png" title="0a4b6dce944ee4e054f41c7241462ca7.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d7463ebac50db93c7ff6002b5a982330.png" alt="0a4b6dce944ee4e054f41c7241462ca7.png"></a><br>主（父）表用来约束从（子）表的。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/f7e9902abd19372ffd4ef322cc6b43e4.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/f7e9902abd19372ffd4ef322cc6b43e4.png" alt="图片.png"></a><br>
+自增主键，id 用 null 是让数据库自行分配。自增主键，也是可以手动值的。下一个 分配的 id 就会在之前最大值的基础上继续自增。<br>
+当然，如果 MySQL 是单机系统，基于上面的策略是没有问题的，但是如果 MySQL 是一个分布式的系统，自增主键就没有办法保证唯一性。为了解决上述问题，也有一些分布式 id 的生成算法。把 id 作为一个字符串，字符串由下面几个部分组成：主机编号/机房编号+时间戳+随机因子。</p>
+<h2 id="6、foreign-key">6、<code>foreign key</code></h2>
+<p>外键：涉及到两个表之间的约束。<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d7463ebac50db93c7ff6002b5a982330.png" title="0a4b6dce944ee4e054f41c7241462ca7.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d7463ebac50db93c7ff6002b5a982330.png" alt="0a4b6dce944ee4e054f41c7241462ca7.png"></a><br>
+主（父）表用来约束从（子）表的。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> dept(deptno <span class="type">int</span> <span class="keyword">primary</span> key,name <span class="type">varchar</span>(<span class="number">20</span>));</span><br></pre></td></tr></table></figure>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> emp (id <span class="type">int</span> <span class="keyword">primary</span> key auto_increment , name <span class="type">varchar</span>(<span class="number">20</span>) ,</span><br><span class="line">dept_id <span class="type">int</span> ,<span class="keyword">foreign</span> key(dept_id) <span class="keyword">references</span> dept(deptno));</span><br></pre></td></tr></table></figure>
-<p>插入或者修改子表中受约束的这一列的数据，需要保证在父表中存在该数据。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/318966d162230a8329a4790d0e849c6c.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/318966d162230a8329a4790d0e849c6c.png" alt="图片.png"></a><br>删除或者修改父表中的记录，就需要看这个记录是否在子表中被使用了，如果被使用了，则不能进行删除或者修改。</p>
-<h1 id="二、新增"><a href="#二、新增" class="headerlink" title="二、新增"></a>二、新增</h1><p>新增操作：把 <code>insert</code>和 <code>select</code>两个操作合并在一起。</p>
+<p>插入或者修改子表中受约束的这一列的数据，需要保证在父表中存在该数据。<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/318966d162230a8329a4790d0e849c6c.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/318966d162230a8329a4790d0e849c6c.png" alt="图片.png"></a><br>
+删除或者修改父表中的记录，就需要看这个记录是否在子表中被使用了，如果被使用了，则不能进行删除或者修改。</p>
+<h1>二、新增</h1>
+<p>新增操作：把 <code>insert</code>和 <code>select</code>两个操作合并在一起。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名 [(colum [,colum....])] <span class="keyword">select</span> </span><br></pre></td></tr></table></figure>
-
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student2 <span class="keyword">select</span> <span class="operator">*</span><span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/b103318aa281062a419c564901fd109f.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/b103318aa281062a419c564901fd109f.png" alt="图片.png"></a><br>此处的<code>select</code>查询的结构，得到的和你插入的那个表，得能对应（列的数目、类型、约束得匹配）<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/89f5b2db58023e8e84821a719e0e2e8f.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/89f5b2db58023e8e84821a719e0e2e8f.png" alt="图片.png"></a></p>
-<h1 id="三、查询"><a href="#三、查询" class="headerlink" title="三、查询"></a>三、查询</h1><h2 id="1、聚合查询"><a href="#1、聚合查询" class="headerlink" title="1、聚合查询"></a>1、聚合查询</h2><p>查询的时候带表达式，本质上是用在列和列之间进行运算。<br>还有的时候，我们需要在行和行之间进行运算，这时候表达式查询就完全不行了。我们的聚合查询就是为了解决行与行之间的查询。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/b103318aa281062a419c564901fd109f.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/b103318aa281062a419c564901fd109f.png" alt="图片.png"></a><br>
+此处的<code>select</code>查询的结构，得到的和你插入的那个表，得能对应（列的数目、类型、约束得匹配）<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/89f5b2db58023e8e84821a719e0e2e8f.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/89f5b2db58023e8e84821a719e0e2e8f.png" alt="图片.png"></a></p>
+<h1>三、查询</h1>
+<h2 id="1、聚合查询">1、聚合查询</h2>
+<p>查询的时候带表达式，本质上是用在列和列之间进行运算。<br>
+还有的时候，我们需要在行和行之间进行运算，这时候表达式查询就完全不行了。我们的聚合查询就是为了解决行与行之间的查询。</p>
 <table>
 <thead>
 <tr>
@@ -309,7 +337,8 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>count([distinct] expr)</code></td>
 <td>返回查询到的数据的  数量</td>
 </tr>
@@ -329,16 +358,26 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <td><code>min([distinct] expr)</code></td>
 <td>返回查询到的数据的  最小值</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">from</span> student_scores;</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(name) <span class="keyword">from</span> student_scores;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/a1824681deb147e30f50ee8d10713a6e.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/a1824681deb147e30f50ee8d10713a6e.png" alt="图片.png"></a><br>注意：在 sql 中聚合函数和()必须要紧紧的挨在一起。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/a1824681deb147e30f50ee8d10713a6e.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/a1824681deb147e30f50ee8d10713a6e.png" alt="图片.png"></a><br>
+注意：在 sql 中聚合函数和()必须要紧紧的挨在一起。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">sum</span>(math) <span class="keyword">from</span> student_scores;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d08b7068d4715b02f507bc391beabcaa.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d08b7068d4715b02f507bc391beabcaa.png" alt="图片.png"></a><br>sum 是进行求和，会把这一列的若干行强行先转化为 double ，如果是字符类型就会出现问题。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/8153793ccd8218e74f3449cbd54517b2.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/8153793ccd8218e74f3449cbd54517b2.png" alt="图片.png"></a>通过 <code>show warnings</code>可以查看警告信息。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/86481d0d659171baa98e3fad2d43c697.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/86481d0d659171baa98e3fad2d43c697.png" alt="图片.png"></a></p>
-<h2 id="2、分组查询"><a href="#2、分组查询" class="headerlink" title="2、分组查询"></a>2、分组查询</h2><p><code>group by</code> 会指定一个列，按照这一列进行分组。这一列中，数值相同的行会被放到一组。每个分组中，都可以使用聚合函数进行计算。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/29be026ea995e4b1b7cc1afffe04e111.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/29be026ea995e4b1b7cc1afffe04e111.png" alt="image.png"></a><br>查询出每个岗位的平均薪资。此处可以用 role 进行分组，把 role 相同的放到一组。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d08b7068d4715b02f507bc391beabcaa.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d08b7068d4715b02f507bc391beabcaa.png" alt="图片.png"></a><br>
+sum 是进行求和，会把这一列的若干行强行先转化为 double ，如果是字符类型就会出现问题。<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/8153793ccd8218e74f3449cbd54517b2.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/8153793ccd8218e74f3449cbd54517b2.png" alt="图片.png"></a>通过 <code>show warnings</code>可以查看警告信息。<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/86481d0d659171baa98e3fad2d43c697.png" title="图片.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/86481d0d659171baa98e3fad2d43c697.png" alt="图片.png"></a></p>
+<h2 id="2、分组查询">2、分组查询</h2>
+<p><code>group by</code> 会指定一个列，按照这一列进行分组。这一列中，数值相同的行会被放到一组。每个分组中，都可以使用聚合函数进行计算。<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/29be026ea995e4b1b7cc1afffe04e111.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/29be026ea995e4b1b7cc1afffe04e111.png" alt="image.png"></a><br>
+查询出每个岗位的平均薪资。此处可以用 role 进行分组，把 role 相同的放到一组。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> role,<span class="built_in">avg</span>(salary) <span class="keyword">from</span> emp <span class="keyword">group</span> <span class="keyword">by</span> role;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/49e091b71e71e7e6ebd0c8ee7ef66160.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/49e091b71e71e7e6ebd0c8ee7ef66160.png" alt="image.png"></a><br>在分组查询中，select 中指定的列必须是当前 group by 指定的列，如果 select 中想用到其他的列，其他的列必须要放到聚合函数中，否则没有意义。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/49e091b71e71e7e6ebd0c8ee7ef66160.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/49e091b71e71e7e6ebd0c8ee7ef66160.png" alt="image.png"></a><br>
+在分组查询中，select 中指定的列必须是当前 group by 指定的列，如果 select 中想用到其他的列，其他的列必须要放到聚合函数中，否则没有意义。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> role,name,<span class="built_in">avg</span>(salary) <span class="keyword">from</span> emp <span class="keyword">group</span> <span class="keyword">by</span> role;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/2e8a6d9ff627283dc41d7887b085db3b.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/2e8a6d9ff627283dc41d7887b085db3b.png" alt="image.png"></a><br>例如这样，就没有意义。<code>role</code> 其实只有三种情况，但是 <code>name</code> 有 6 个，按照上述的查询，只能现实三个结果，所以没有任何意义。此处现实的三个名字，是每组的第一个名字。没有任何意义。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/2e8a6d9ff627283dc41d7887b085db3b.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/2e8a6d9ff627283dc41d7887b085db3b.png" alt="image.png"></a><br>
+例如这样，就没有意义。<code>role</code> 其实只有三种情况，但是 <code>name</code> 有 6 个，按照上述的查询，只能现实三个结果，所以没有任何意义。此处现实的三个名字，是每组的第一个名字。没有任何意义。</p>
 <p>分组查询也是可以搭配条件来使用的。这里的条件有两种情况</p>
 <ul>
 <li>分组之前的条件：<code>where</code></li>
@@ -351,138 +390,187 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 </ul>
 <p>求每个岗位的平均薪资，除去平均薪资超过 18000 的。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> role ,<span class="built_in">avg</span>(salary) <span class="keyword">from</span> emp <span class="keyword">group</span> <span class="keyword">by</span> role <span class="keyword">having</span> <span class="built_in">avg</span>(salary) <span class="operator">&lt;</span> <span class="number">18000</span>;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d18a207872d501b97b531359eb880759.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d18a207872d501b97b531359eb880759.png" alt="image.png"></a><br>一个 sql 中可以同时包含分组前的条件和分组后的条件。<br>求每个岗位的平均薪资，除去张三和平均薪资超过 18000 的。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d18a207872d501b97b531359eb880759.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d18a207872d501b97b531359eb880759.png" alt="image.png"></a><br>
+一个 sql 中可以同时包含分组前的条件和分组后的条件。<br>
+求每个岗位的平均薪资，除去张三和平均薪资超过 18000 的。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> role ,<span class="built_in">avg</span>(salary) <span class="keyword">from</span> emp <span class="keyword">where</span> name <span class="operator">!=</span><span class="string">&#x27;张三&#x27;</span> <span class="keyword">group</span> <span class="keyword">by</span> role <span class="keyword">having</span> <span class="built_in">avg</span>(salary) <span class="operator">&lt;</span> <span class="number">18000</span>;</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/4a09b15b03f62254b9a80a4b28a4167d.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/4a09b15b03f62254b9a80a4b28a4167d.png" alt="image.png"></a></p>
-<h2 id="3、联合查询"><a href="#3、联合查询" class="headerlink" title="3、联合查询"></a>3、联合查询</h2><p>查询中最复杂的写法。联合查询也叫多表查询，是针对多张表进行查询。<br><strong>【笛卡尔积】数学上的运算，描述了多表查询的基本执行逻辑。</strong></p>
+<h2 id="3、联合查询">3、联合查询</h2>
+<p>查询中最复杂的写法。联合查询也叫多表查询，是针对多张表进行查询。<br>
+<strong>【笛卡尔积】数学上的运算，描述了多表查询的基本执行逻辑。</strong></p>
 <blockquote>
 <p>笛卡尔积，其实就是把两个表里的记录，按照排列组合的方式，构造成了一个更大的表了，笛卡尔积的列数，其实就说原来两个表的列数之和。笛卡尔积的行数，就是原来两个表的行数之积。</p>
 </blockquote>
 <blockquote>
-<p>笛卡尔积是一个非常低效的操作，所以联合查询也是一个非常低效的操作。<br>实际开发中，使用联合查询一定要非常慎重。</p>
+<p>笛卡尔积是一个非常低效的操作，所以联合查询也是一个非常低效的操作。<br>
+实际开发中，使用联合查询一定要非常慎重。</p>
 </blockquote>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建班级表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Classes (</span><br><span class="line">    ClassID <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    ClassName <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    CreateDate <span class="type">DATE</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入班级数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Classes (ClassID, ClassName, CreateDate) <span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>, <span class="string">&#x27;高一1班&#x27;</span>, <span class="string">&#x27;2023-01-01&#x27;</span>),</span><br><span class="line">(<span class="number">2</span>, <span class="string">&#x27;高一2班&#x27;</span>, <span class="string">&#x27;2023-02-01&#x27;</span>),</span><br><span class="line">(<span class="number">3</span>, <span class="string">&#x27;高二1班&#x27;</span>, <span class="string">&#x27;2023-03-01&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建学生表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Students (</span><br><span class="line">    StudentID <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    Name <span class="type">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    ClassID <span class="type">INT</span>,</span><br><span class="line">    EnrollmentDate <span class="type">DATE</span>,</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (ClassID) <span class="keyword">REFERENCES</span> Classes(ClassID)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入学生数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Students (StudentID, Name, ClassID, EnrollmentDate) <span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>, <span class="string">&#x27;王小明&#x27;</span>, <span class="number">1</span>, <span class="string">&#x27;2023-01-15&#x27;</span>),</span><br><span class="line">(<span class="number">2</span>, <span class="string">&#x27;李芳&#x27;</span>, <span class="number">1</span>, <span class="string">&#x27;2023-01-20&#x27;</span>),</span><br><span class="line">(<span class="number">3</span>, <span class="string">&#x27;张强&#x27;</span>, <span class="number">2</span>, <span class="string">&#x27;2023-02-10&#x27;</span>),</span><br><span class="line">(<span class="number">4</span>, <span class="string">&#x27;刘婷&#x27;</span>, <span class="number">3</span>, <span class="string">&#x27;2023-03-05&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建课程表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Courses (</span><br><span class="line">    CourseID <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    CourseName <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入课程数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Courses (CourseID, CourseName) <span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>, <span class="string">&#x27;数学&#x27;</span>),</span><br><span class="line">(<span class="number">2</span>, <span class="string">&#x27;历史&#x27;</span>),</span><br><span class="line">(<span class="number">3</span>, <span class="string">&#x27;物理&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建分数表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Scores (</span><br><span class="line">    StudentID <span class="type">INT</span>,</span><br><span class="line">    CourseID <span class="type">INT</span>,</span><br><span class="line">    Score <span class="type">INT</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (StudentID, CourseID),</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (StudentID) <span class="keyword">REFERENCES</span> Students(StudentID),</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (CourseID) <span class="keyword">REFERENCES</span> Courses(CourseID)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入分数数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Scores (StudentID, CourseID, Score) <span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>, <span class="number">1</span>, <span class="number">85</span>),</span><br><span class="line">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">90</span>),</span><br><span class="line">(<span class="number">2</span>, <span class="number">1</span>, <span class="number">78</span>),</span><br><span class="line">(<span class="number">2</span>, <span class="number">2</span>, <span class="number">88</span>),</span><br><span class="line">(<span class="number">3</span>, <span class="number">2</span>, <span class="number">92</span>),</span><br><span class="line">(<span class="number">4</span>, <span class="number">3</span>, <span class="number">80</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>查看学生表和班级表进行笛卡尔积的结果。</p>
-<h3 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> students,classes;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d358717579f2302d27401359d07a380e.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d358717579f2302d27401359d07a380e.png" alt="image.png"></a><br>如果是单个表，条件中直接写列名即可。如果是多个表进行查询，那么条件中最好是写 <code>表名.列名</code>。<br>进行联合查询的这两个表中，有些列名可能是一样的。如果列名没有重复的，此时直接写列名也不是不行，但是最好是带上表名。</p>
+<h3 id="内连接">内连接</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> students,classes;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d358717579f2302d27401359d07a380e.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/d358717579f2302d27401359d07a380e.png" alt="image.png"></a><br>
+如果是单个表，条件中直接写列名即可。如果是多个表进行查询，那么条件中最好是写 <code>表名.列名</code>。<br>
+进行联合查询的这两个表中，有些列名可能是一样的。如果列名没有重复的，此时直接写列名也不是不行，但是最好是带上表名。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> students,classes <span class="keyword">where</span> students.ClassID <span class="operator">=</span> classes.ClassID;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/58e9b7f5082987dc38408c269f2b372e.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/58e9b7f5082987dc38408c269f2b372e.png" alt="image.png"></a><br>笛卡尔积 + 必要的条件 &#x3D;&gt; 多表联合查询<br><strong>查询王小明同学的成绩：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/58e9b7f5082987dc38408c269f2b372e.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/58e9b7f5082987dc38408c269f2b372e.png" alt="image.png"></a><br>
+笛卡尔积 + 必要的条件 =&gt; 多表联合查询<br>
+<strong>查询王小明同学的成绩：</strong></p>
 <ol>
-<li><p>先计算学生表和成绩表的笛卡尔积。</p>
+<li>先计算学生表和成绩表的笛卡尔积。</li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span><span class="keyword">from</span> students,scores ;</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/6ed04f38b9b151b8952ea52f97612348.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/6ed04f38b9b151b8952ea52f97612348.png" alt="image.png"></a></p>
-</li>
-<li><p>指定连接条件： StudentID 是存在对应关系的，按照 ID 进行筛选。</p>
+<ol start="2">
+<li>指定连接条件： StudentID 是存在对应关系的，按照 ID 进行筛选。</li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span><span class="keyword">from</span> students,scores <span class="keyword">where</span> students.StudentID <span class="operator">=</span> scores.StudentID;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/e4fc091cd9062c1c5eaa2fff948562aa.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/e4fc091cd9062c1c5eaa2fff948562aa.png" alt="image.png"></a><br>当前筛选后的就是每个同学每门课的成绩。</p>
-</li>
-<li><p>根据需求添加条件，按照名字为王小明再进行筛选。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/e4fc091cd9062c1c5eaa2fff948562aa.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/e4fc091cd9062c1c5eaa2fff948562aa.png" alt="image.png"></a><br>
+当前筛选后的就是每个同学每门课的成绩。</p>
+<ol start="3">
+<li>根据需求添加条件，按照名字为王小明再进行筛选。</li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span><span class="keyword">from</span> students,scores <span class="keyword">where</span> students.StudentID <span class="operator">=</span> scores.StudentID <span class="keyword">and</span> students.name <span class="operator">=</span> <span class="string">&#x27;王小明&#x27;</span>;</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/f26909e5aa6a1f94c4f44fc7f5b17940.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/f26909e5aa6a1f94c4f44fc7f5b17940.png" alt="image.png"></a></p>
-</li>
-<li><p>针对查询的结果的列进行精简。</p>
+<ol start="4">
+<li>针对查询的结果的列进行精简。</li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> students.name,scores.score <span class="keyword">from</span> students,scores <span class="keyword">where</span> students.StudentID <span class="operator">=</span> scores.StudentID <span class="keyword">and</span> students.name <span class="operator">=</span> <span class="string">&#x27;王小明&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/f403ad2fabbeb3dd253d27e9704cbe77.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/f403ad2fabbeb3dd253d27e9704cbe77.png" alt="image.png"></a><br><strong>查询所有同学的总成绩：</strong><br>每个同学可以有很多课程，这几门课的成绩是按行来组织的。</p>
-</li>
-<li><p>先计算学生表和成绩表的笛卡尔积。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/f403ad2fabbeb3dd253d27e9704cbe77.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/f403ad2fabbeb3dd253d27e9704cbe77.png" alt="image.png"></a><br>
+<strong>查询所有同学的总成绩：</strong><br>
+每个同学可以有很多课程，这几门课的成绩是按行来组织的。</p>
+<ol>
+<li>先计算学生表和成绩表的笛卡尔积。</li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> students,scores;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>指定连接条件： StudentID 是存在对应关系的，按照 ID 进行筛选。</p>
+<ol start="2">
+<li>指定连接条件： StudentID 是存在对应关系的，按照 ID 进行筛选。</li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span><span class="keyword">from</span> students,scores <span class="keyword">where</span> students.StudentID <span class="operator">=</span> scores.StudentID;</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/f97e656a6c1bdcefb78f1951c4882839.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/f97e656a6c1bdcefb78f1951c4882839.png" alt="image.png"></a></p>
-</li>
-<li><p>根据需求添加条件，按照学生维度进行 group by</p>
+<ol start="3">
+<li>根据需求添加条件，按照学生维度进行 group by</li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span><span class="keyword">from</span> students,scores <span class="keyword">where</span> students.StudentID <span class="operator">=</span> scores.StudentID <span class="keyword">group</span> <span class="keyword">by</span> students.name ;</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/9a86d32fbc64ecd25e27c7b1640386b0.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/9a86d32fbc64ecd25e27c7b1640386b0.png" alt="image.png"></a></p>
-</li>
-<li><p>搭配聚合函数，针对分数进行计算</p>
+<ol start="4">
+<li>搭配聚合函数，针对分数进行计算</li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> name,<span class="built_in">sum</span>(scores.score) <span class="keyword">from</span> students,scores <span class="keyword">where</span> students.StudentID <span class="operator">=</span> scores.StudentID <span class="keyword">group</span> <span class="keyword">by</span> students.</span><br><span class="line">name ;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/22030eba859b564024e1b11c32e67b95.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/22030eba859b564024e1b11c32e67b95.png" alt="image.png"></a><br><strong>查询所有同学的总成绩，及同学的个人信息（列出名字、课程、分数）：</strong></p>
-</li>
-<li><p>先计算学生表和成绩表，课程表的笛卡尔积。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/22030eba859b564024e1b11c32e67b95.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/22030eba859b564024e1b11c32e67b95.png" alt="image.png"></a><br>
+<strong>查询所有同学的总成绩，及同学的个人信息（列出名字、课程、分数）：</strong></p>
+<ol>
+<li>先计算学生表和成绩表，课程表的笛卡尔积。</li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> courses,scores,students;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>指定连接条件： 分数表是学生表和课程表的关联表。此处三个表进行笛卡尔积筛选数据，就需要两个连接条件。</p>
+<ol start="2">
+<li>指定连接条件： 分数表是学生表和课程表的关联表。此处三个表进行笛卡尔积筛选数据，就需要两个连接条件。</li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> courses,scores,students <span class="keyword">where</span> scores.StudentID <span class="operator">=</span> students.StudentID <span class="keyword">and</span> scores.CourseID <span class="operator">=</span> courses.C</span><br><span class="line">ourseID;</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/2d97a747480a975e00bd341f56f0b280.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/2d97a747480a975e00bd341f56f0b280.png" alt="image.png"></a></p>
-</li>
-<li><p>根据需求添加条件</p>
+<ol start="3">
+<li>根据需求添加条件</li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> students.Name,courses.CourseName,scores.Score <span class="keyword">from</span> courses,scores,students <span class="keyword">where</span> scores.StudentID <span class="operator">=</span> studen</span><br><span class="line">ts.StudentID <span class="keyword">and</span> scores.CourseID <span class="operator">=</span> courses.CourseID;</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/3a33927a58403b71b6e117e548def5e6.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/3a33927a58403b71b6e117e548def5e6.png" alt="image.png"></a></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> students.Name <span class="keyword">as</span> <span class="string">&#x27;姓名&#x27;</span>,courses.CourseName <span class="keyword">as</span> <span class="string">&#x27;课程&#x27;</span>,scores.Score <span class="keyword">as</span> <span class="string">&#x27;分数&#x27;</span><span class="keyword">from</span> courses,scores,students wh</span><br><span class="line">ere scores.StudentID <span class="operator">=</span> students.StudentID <span class="keyword">and</span> scores.CourseID <span class="operator">=</span> courses.CourseID;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/c71e5afad0e1fe346a2b5798dd831f1a.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/c71e5afad0e1fe346a2b5798dd831f1a.png" alt="image.png"></a><br>前面的写法都是内连接的写法，内连接除了这种写法外还有一种写法，那就是使用 <code>inner join</code> 其中      <code>inner</code>可以省略。前面使用 <code>,</code>分割，现在使用 <code>join</code>分割，前面的连接方式使用 <code>where</code>，现在使用 <code>on</code>来指定。<br><strong>查询王小明同学的成绩：</strong></p>
-</li>
-<li><p>直接只写 join 没有 on 则是一个完整的笛卡尔积</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">join</span> score;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用 <code>on</code>表示连接条件</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> students <span class="keyword">join</span> scores <span class="keyword">on</span> students.StudentID <span class="operator">=</span> scores.StudentID;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>根据需求添加条件</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> students <span class="keyword">join</span> scores <span class="keyword">on</span> students.StudentID <span class="operator">=</span> scores.StudentID <span class="keyword">and</span> students.name <span class="operator">=</span> <span class="string">&#x27;王小明&#x27;</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>对列进行精简</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> students.name,scores.score <span class="keyword">from</span> students <span class="keyword">join</span> scores <span class="keyword">on</span> students.StudentID <span class="operator">=</span> scores.StudentID <span class="keyword">and</span> students.name <span class="operator">=</span> <span class="string">&#x27;王小明&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h3><p><code>join on</code>还可以用来表示外连接。<br>内连接和外连接有什么区别?内连接（Inner Join）和外连接（Outer Join）是 SQL 中用于联接表格的两种主要方法。它们之间的主要区别在于如何处理未匹配的行。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/c71e5afad0e1fe346a2b5798dd831f1a.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/c71e5afad0e1fe346a2b5798dd831f1a.png" alt="image.png"></a><br>
+前面的写法都是内连接的写法，内连接除了这种写法外还有一种写法，那就是使用 <code>inner join</code> 其中      <code>inner</code>可以省略。前面使用 <code>,</code>分割，现在使用 <code>join</code>分割，前面的连接方式使用 <code>where</code>，现在使用 <code>on</code>来指定。<br>
+<strong>查询王小明同学的成绩：</strong></p>
 <ol>
-<li><p><strong>内连接（Inner Join）：</strong></p>
+<li>直接只写 join 没有 on 则是一个完整的笛卡尔积</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">join</span> score;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>使用 <code>on</code>表示连接条件</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> students <span class="keyword">join</span> scores <span class="keyword">on</span> students.StudentID <span class="operator">=</span> scores.StudentID;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>根据需求添加条件</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> students <span class="keyword">join</span> scores <span class="keyword">on</span> students.StudentID <span class="operator">=</span> scores.StudentID <span class="keyword">and</span> students.name <span class="operator">=</span> <span class="string">&#x27;王小明&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>对列进行精简</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> students.name,scores.score <span class="keyword">from</span> students <span class="keyword">join</span> scores <span class="keyword">on</span> students.StudentID <span class="operator">=</span> scores.StudentID <span class="keyword">and</span> students.name <span class="operator">=</span> <span class="string">&#x27;王小明&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="外连接">外连接</h3>
+<p><code>join on</code>还可以用来表示外连接。<br>
+内连接和外连接有什么区别?内连接（Inner Join）和外连接（Outer Join）是 SQL 中用于联接表格的两种主要方法。它们之间的主要区别在于如何处理未匹配的行。</p>
+<ol>
+<li><strong>内连接（Inner Join）：</strong>
 <ul>
 <li>内连接只返回两个表之间匹配的行，即满足连接条件的行。</li>
 <li>如果在一个表中找不到匹配的行，那么这些行将被忽略，不会出现在结果集中。</li>
 <li>内连接使用 <strong>INNER JOIN</strong> 关键字。</li>
 </ul>
 </li>
-<li><p><strong>示例：</strong></p>
+<li><strong>示例：</strong></li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Students.StudentID, Students.Name, Classes.ClassName</span><br><span class="line"><span class="keyword">FROM</span> Students</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> Classes <span class="keyword">ON</span> Students.ClassID <span class="operator">=</span> Classes.ClassID;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>左外连接（Left Outer Join）：</strong></p>
+<ol start="3">
+<li><strong>左外连接（Left Outer Join）：</strong>
 <ul>
 <li>左外连接返回左边表（即在 <strong>FROM</strong> 关键字之前的表）中的所有行，以及右边表中与左边表匹配的行。</li>
 <li>如果在右边表中找不到匹配的行，那么将在结果中显示 <strong>NULL</strong> 值。</li>
 <li>左外连接使用 <strong>LEFT JOIN</strong> 或 <strong>LEFT OUTER JOIN</strong> 关键字。</li>
 </ul>
 </li>
-<li><p><strong>示例：</strong></p>
+<li><strong>示例：</strong></li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Students.StudentID, Students.Name, Classes.ClassName</span><br><span class="line"><span class="keyword">FROM</span> Students</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> Classes <span class="keyword">ON</span> Students.ClassID <span class="operator">=</span> Classes.ClassID;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>右外连接（Right Outer Join）：</strong></p>
+<ol start="5">
+<li><strong>右外连接（Right Outer Join）：</strong>
 <ul>
 <li>右外连接与左外连接相反，返回右边表中的所有行，以及左边表中与右边表匹配的行。</li>
 <li>如果在左边表中找不到匹配的行，那么将在结果中显示 <strong>NULL</strong> 值。</li>
 <li>右外连接使用 <strong>RIGHT JOIN</strong> 或 <strong>RIGHT OUTER JOIN</strong> 关键字。</li>
 </ul>
 </li>
-<li><p><strong>示例：</strong></p>
+<li><strong>示例：</strong></li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Students.StudentID, Students.Name, Classes.ClassName</span><br><span class="line"><span class="keyword">FROM</span> Students</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> Classes <span class="keyword">ON</span> Students.ClassID <span class="operator">=</span> Classes.ClassID;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>全外连接（Full Outer Join）：</strong></p>
+<ol start="7">
+<li><strong>全外连接（Full Outer Join）：</strong>
 <ul>
 <li>全外连接返回左右两个表中的所有行，如果没有匹配的行，将在结果中显示 <strong>NULL</strong> 值。</li>
 <li>全外连接使用 <strong>FULL JOIN</strong> 或 <strong>FULL OUTER JOIN</strong> 关键字。</li>
 </ul>
 </li>
-<li><p><strong>示例：</strong></p>
+<li><strong>示例：</strong></li>
+</ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Students.StudentID, Students.Name, Classes.ClassName</span><br><span class="line"><span class="keyword">FROM</span> Students</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">JOIN</span> Classes <span class="keyword">ON</span> Students.ClassID <span class="operator">=</span> Classes.ClassID;</span><br></pre></td></tr></table></figure>
-<p>总的来说，内连接只返回匹配的行，而外连接则返回匹配的行以及未匹配的行，用 <strong>NULL</strong> 值表示未匹配的部分。选择使用哪种连接取决于你的需求和数据关系。<br>内连接产生的结果，一定是两个表中都存在的数据（公共部分）<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/8ff65c0f023f83da0399906770831a2c.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/8ff65c0f023f83da0399906770831a2c.png" alt="image.png"></a><br>外连接中，在 MySQL 里面有两种情况。左外连接 <code>left join</code> 和右外连接 <code>right join</code>。<br>左外连接就是以左侧的表为主，左侧表的每一个记录值都会存在于结果中，如果遇到了左侧表存在，但是右侧表不存在的值，此时就会把对应的列变为空值。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/5847e454aefab1c106158f61b3cde8b8.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/5847e454aefab1c106158f61b3cde8b8.png" alt="image.png"></a><br>右外连接，就是以右侧为主。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1058b7797249375672c79c8071e72cda.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1058b7797249375672c79c8071e72cda.png" alt="image.png"></a><br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/67f54f885bcdc1676c767285d7d5f4d4.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/67f54f885bcdc1676c767285d7d5f4d4.png" alt="image.png"></a></p>
+<p>总的来说，内连接只返回匹配的行，而外连接则返回匹配的行以及未匹配的行，用 <strong>NULL</strong> 值表示未匹配的部分。选择使用哪种连接取决于你的需求和数据关系。<br>
+内连接产生的结果，一定是两个表中都存在的数据（公共部分）<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/8ff65c0f023f83da0399906770831a2c.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/8ff65c0f023f83da0399906770831a2c.png" alt="image.png"></a><br>
+外连接中，在 MySQL 里面有两种情况。左外连接 <code>left join</code> 和右外连接 <code>right join</code>。<br>
+左外连接就是以左侧的表为主，左侧表的每一个记录值都会存在于结果中，如果遇到了左侧表存在，但是右侧表不存在的值，此时就会把对应的列变为空值。<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/5847e454aefab1c106158f61b3cde8b8.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/5847e454aefab1c106158f61b3cde8b8.png" alt="image.png"></a><br>
+右外连接，就是以右侧为主。<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1058b7797249375672c79c8071e72cda.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1058b7797249375672c79c8071e72cda.png" alt="image.png"></a><br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/67f54f885bcdc1676c767285d7d5f4d4.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/67f54f885bcdc1676c767285d7d5f4d4.png" alt="image.png"></a></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span><span class="keyword">from</span> s1 <span class="keyword">join</span> c1 <span class="keyword">on</span> s1.id <span class="operator">=</span> c1.id;</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/df749bee5478e6bf8e1927cb4a9363c3.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/df749bee5478e6bf8e1927cb4a9363c3.png" alt="image.png"></a></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span><span class="keyword">from</span> s1 <span class="keyword">left</span> <span class="keyword">join</span> c1 <span class="keyword">on</span> s1.id <span class="operator">=</span> c1.id;</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/ccc22771c92eb84293cb372854de355b.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/ccc22771c92eb84293cb372854de355b.png" alt="image.png"></a></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span><span class="keyword">from</span> s1 <span class="keyword">right</span> <span class="keyword">join</span> c1 <span class="keyword">on</span> s1.id <span class="operator">=</span> c1.id;</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/fd4da73249b8cfdc635c0033238abce8.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/fd4da73249b8cfdc635c0033238abce8.png" alt="image.png"></a></p>
-</li>
-</ol>
-<h3 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h3><p>本质上是自己和自己做笛卡尔积。<br>自连接本质是把行之间的关系，转化为列之间的关系。SQL 中，编写条件，条件都是列和列之间进行比较。但是 SQL 无法直接进行行和行之间的比较。</p>
+<h3 id="自连接">自连接</h3>
+<p>本质上是自己和自己做笛卡尔积。<br>
+自连接本质是把行之间的关系，转化为列之间的关系。SQL 中，编写条件，条件都是列和列之间进行比较。但是 SQL 无法直接进行行和行之间的比较。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span><span class="keyword">from</span> s1 <span class="keyword">as</span> ss , s1 <span class="keyword">as</span> sss;</span><br></pre></td></tr></table></figure>
-<p><code>select</code>多个表的时候，名字不能相同，以此需要取别名进行区分。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/11ca7baa676b88b3cdbb9aea33722ae1.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/11ca7baa676b88b3cdbb9aea33722ae1.png" alt="image.png"></a></p>
+<p><code>select</code>多个表的时候，名字不能相同，以此需要取别名进行区分。<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/11ca7baa676b88b3cdbb9aea33722ae1.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/11ca7baa676b88b3cdbb9aea33722ae1.png" alt="image.png"></a></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span><span class="keyword">from</span> s1 <span class="keyword">as</span> ss , s1 <span class="keyword">as</span> sss <span class="keyword">where</span> ss.id <span class="operator">=</span> sss.id;</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/5f304655120bcad36abb49f5c5e2e684.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/5f304655120bcad36abb49f5c5e2e684.png" alt="image.png"></a></p>
-<h2 id="4、合并查询"><a href="#4、合并查询" class="headerlink" title="4、合并查询"></a>4、合并查询</h2><p>把多个<code>select</code>查询得到的结果集合合并成一个集合。<br>关键字：<code>union</code>和 <code>union all</code></p>
+<h2 id="4、合并查询">4、合并查询</h2>
+<p>把多个<code>select</code>查询得到的结果集合合并成一个集合。<br>
+关键字：<code>union</code>和 <code>union all</code></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> s1 <span class="keyword">union</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> s2;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/9bb72cdef9cb7c8aab2adca778c074be.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/9bb72cdef9cb7c8aab2adca778c074be.png" alt="image.png"></a><br>能合并的前提是这两个查询的结果集是对应的。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/9bb72cdef9cb7c8aab2adca778c074be.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/9bb72cdef9cb7c8aab2adca778c074be.png" alt="image.png"></a><br>
+能合并的前提是这两个查询的结果集是对应的。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> s1 <span class="keyword">union</span> <span class="keyword">all</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> s2;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/35eb97f46ecfc7772da0cd6d8a2c4c4c.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/35eb97f46ecfc7772da0cd6d8a2c4c4c.png" alt="image.png"></a><br><code>union all</code>不会去重，而<code>union</code>会进行去重。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/35eb97f46ecfc7772da0cd6d8a2c4c4c.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/35eb97f46ecfc7772da0cd6d8a2c4c4c.png" alt="image.png"></a><br>
+<code>union all</code>不会去重，而<code>union</code>会进行去重。</p>
 </div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
