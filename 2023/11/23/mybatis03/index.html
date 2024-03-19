@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="MyBatis：查询与连接池" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | 个人Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">分类</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            MyBatis：查询与连接池
+        </div>
+      
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、其它查询</h1>
+<h2 id="1、多表查询">1、多表查询</h2>
+<p>尽量避免使用多表查询，尤其是对性能要求较高的项目。因为多表查询必然会导致性能变低。</p>
+<p>例如：<code>select *from ta</code>运行需要10ms，<code>select *from tb</code> 运行也需要10s。但是，<code>select *from ta left join tb on ta.xx==tb.xx</code> 必然大于10ms，</p>
+<p>并且数据库集群是很多项目一起使用的，当出现慢查询时，会影响整个集群，也就是会影响其他服务的速度。</p>
+<p>在数据库上再建立一个文章表：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS articleinfo;</span><br><span class="line"></span><br><span class="line">CREATE TABLE <span class="title function_">articleinfo</span> <span class="params">(</span></span><br><span class="line"><span class="params">    id INT PRIMARY KEY AUTO_INCREMENT,</span></span><br><span class="line"><span class="params">    title VARCHAR(<span class="number">100</span>)</span> NOT NULL,</span><br><span class="line">    content TEXT NOT NULL,</span><br><span class="line">    uid INT NOT NULL,</span><br><span class="line">    delete_flag <span class="title function_">TINYINT</span><span class="params">(<span class="number">4</span>)</span> DEFAULT <span class="number">0</span> COMMENT <span class="string">&#x27;0-正常, 1-删除&#x27;</span>,</span><br><span class="line">    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,</span><br><span class="line">    update_time DATETIME DEFAULT CURRENT_TIMESTAMP</span><br><span class="line">) <span class="type">DEFAULT</span> <span class="variable">CHARSET</span> <span class="operator">=</span> <span class="string">&#x27;utf8mb4&#x27;</span>;</span><br><span class="line"></span><br><span class="line">INSERT INTO <span class="title function_">articleinfo</span> <span class="params">(title, content, uid)</span> VALUES (<span class="string">&#x27;Java&#x27;</span>, <span class="string">&#x27;Java正文&#x27;</span>, <span class="number">1</span>);</span><br><span class="line">INSERT INTO <span class="title function_">articleinfo</span> <span class="params">(title, content, uid)</span> VALUES (<span class="string">&#x27;Python&#x27;</span>, <span class="string">&#x27;Python正文&#x27;</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>对应Model层的实体类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.mybatisdemo.model;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArticleInfo</span> &#123;</span><br><span class="line">     <span class="keyword">private</span> Integer id;</span><br><span class="line">     <span class="keyword">private</span> String title;</span><br><span class="line">     <span class="keyword">private</span> String content;</span><br><span class="line">     <span class="keyword">private</span> Integer uid;</span><br><span class="line">     <span class="keyword">private</span> Integer deleteFlag;</span><br><span class="line">     <span class="keyword">private</span> Date createTime;</span><br><span class="line">     <span class="keyword">private</span> Date updateTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据uid查询作者的名称等相关信息，进行多表查询的sql语句应该为：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ta.<span class="operator">*</span>, tb.username</span><br><span class="line"><span class="keyword">FROM</span> articleinfo ta</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> userinfo tb <span class="keyword">ON</span> ta.uid <span class="operator">=</span> tb.id</span><br><span class="line"><span class="keyword">WHERE</span> ta.id <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>所以，我们要补充实体类，在刚刚的<code>ArticleInfo</code>类中加入用户相关信息，便于映射：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArticleInfo</span> &#123;</span><br><span class="line">     <span class="keyword">private</span> Integer id;</span><br><span class="line">     <span class="keyword">private</span> String title;</span><br><span class="line">     <span class="keyword">private</span> String content;</span><br><span class="line">     <span class="keyword">private</span> Integer uid;</span><br><span class="line">     <span class="keyword">private</span> Integer deleteFlag;</span><br><span class="line">     <span class="keyword">private</span> Date createTime;</span><br><span class="line">     <span class="keyword">private</span> Date updateTime;</span><br><span class="line">     <span class="comment">//用户相关信息</span></span><br><span class="line">     <span class="keyword">private</span> String username;</span><br><span class="line">     <span class="keyword">private</span> Integer age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对应的<code>ArticlenInfoMapper</code>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ArticlenInfoMapper</span> &#123;</span><br><span class="line">    <span class="comment">//多表查询</span></span><br><span class="line">    <span class="meta">@Select(&quot;select ta.*,tb.username from articleinfo ta &quot; +</span></span><br><span class="line"><span class="meta">            &quot;left join userinfo tb on ta.uid = tb.id &quot; +</span></span><br><span class="line"><span class="meta">            &quot;where ta.id = #&#123;articleId&#125;&quot;)</span></span><br><span class="line">    ArticleInfo <span class="title function_">selectArticlenAndUserByID</span><span class="params">(Integer articleId)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果名称不⼀致的，采⽤ResultMap，或者别名的方式解决, 和单表查询⼀样。Mybatis 不管单表还是多表，主要就是三部分：SQL, 映射关系和实体类通过映射关系，把SQL运⾏结果和实体类关联起来。</p>
+<h2 id="2、-和">2、#{} 和 ${}</h2>
+<h3 id="Ⅰ、区别">Ⅰ、区别</h3>
+<p>#{}和${}都是MyBatis框架中使用的占位符。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;select username, `password`, age, gender, phone from userinfo where username= #&#123;name&#125; &quot;)</span></span><br><span class="line">UserInfo <span class="title function_">selectByName</span><span class="params">(String name)</span>;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240319102440963.png" title="image-20240319102440963" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240319102440963.png" alt="image-20240319102440963"></a></p>
+<p>然后把<code>#&#123;&#125;</code>换成<code>$&#123;&#125;</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;select username, `password`, age, gender, phone from userinfo where username= $&#123;name&#125; &quot;)</span></span><br><span class="line">UserInfo <span class="title function_">selectByName</span><span class="params">(String name)</span>;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240319102604288.png" title="image-20240319102604288" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240319102604288.png" alt="image-20240319102604288"></a></p>
+<p>使用${}时，MyBatis不会自动添加引号。{}用于直接替换SQL语句中的文本，因此在某些情况下，如果替换的值是字符串，则需要手动添加引号。</p>
+<p>#{}利用预编译SQL的方式工作，它通过在SQL语句中使用?占位符来提前编译SQL命令，并在执行时将参数值安全地绑定到这些占位符上。MyBatis会根据参数的类型自动添加必要的引号，例如字符串类型的参数会被加上引号<code>''</code>，以确保SQL语句的正确性和安全性。相反，${}则采用简单的字符串替换机制，它在SQL语句编译之前直接将参数值替换到SQL命令中。这意味着如果参数值是字符串，需要手动添加引号<code>''</code>来确保SQL语句的语法正确性。</p>
+<p><strong>总结：</strong></p>
+<p><code>#&#123;&#125;</code>和<code>$&#123;&#125;</code>在MyBatis中的区别主要体现在以下几个方面：</p>
+<ol>
+<li><strong>预编译处理</strong>：
+<ul>
+<li><code>#&#123;&#125;</code>：使用预编译语句（PreparedStatement），参数会被替换为<code>?</code>，并在SQL执行时绑定参数值。这种方式可以防止SQL注入，因为参数值会被数据库引擎视为数据，而不是SQL命令的一部分。</li>
+<li><code>$&#123;&#125;</code>：不使用预编译语句，参数值会直接替换到SQL语句中。这种方式不会防止SQL注入，因为参数值被视为SQL语句的一部分，如果参数值中包含SQL关键字或特殊字符，可能会改变原SQL语句的结构。</li>
+</ul>
+</li>
+<li><strong>参数替换方式</strong>：
+<ul>
+<li><code>#&#123;&#125;</code>：参数替换后，MyBatis会根据参数的类型自动添加引号，例如字符串类型的参数会被加上引号<code>''</code>。</li>
+<li><code>$&#123;&#125;</code>：参数替换后，不会自动添加引号，如果参数是字符串类型，需要手动添加引号。</li>
+</ul>
+</li>
+<li><strong>使用场景</strong>：
+<ul>
+<li><code>#&#123;&#125;</code>：适用于大部分情况，尤其是处理用户输入或不可信数据时，提供安全保障。</li>
+<li><code>$&#123;&#125;</code>：适用于需要动态指定表名、列名或其他SQL关键字的情况，但使用时需要确保参数值的安全性。</li>
+</ul>
+</li>
+<li><strong>性能影响</strong>：
+<ul>
+<li><code>#&#123;&#125;</code>：通常不会对性能产生负面影响，因为预编译语句可以被数据库缓存和重用。</li>
+<li><code>$&#123;&#125;</code>：如果用于字符串替换，可能会导致数据库无法有效缓存执行计划，从而影响性能。</li>
+</ul>
+</li>
+<li><strong>安全性</strong>：
+<ul>
+<li><code>#&#123;&#125;</code>：提供了更好的安全性，可以防止SQL注入攻击。</li>
+<li><code>$&#123;&#125;</code>：存在SQL注入的风险，应该尽量避免使用，或者在确保参数值安全的情况下谨慎使用。</li>
+</ul>
+</li>
+</ol>
+<h3 id="Ⅱ、SQL注入">Ⅱ、SQL注入</h3>
+<p><code>$&#123;&#125;</code>存在一个非常大的问题，那就是SQL注入。当使用<code>$&#123;&#125;</code>时，MyBatis不会对替换的参数值进行任何转义或预处理。这意味着，如果参数值包含特殊字符或SQL关键字，它们将直接插入到SQL语句中。如果这些值来自于用户的输入，且没有得到适当的验证和清理，攻击者就可以利用这一点来执行恶意SQL代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;select * from userinfo where username like &#x27;$&#123;username&#125;&#x27;&quot;)</span></span><br><span class="line">List&lt;UserInfo&gt; <span class="title function_">selectUserByName</span><span class="params">(String username)</span>;</span><br></pre></td></tr></table></figure>
+<p>测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">selectUserByName</span><span class="params">()</span> &#123;</span><br><span class="line">    log.info(userInfoMap.selectUserByName(<span class="string">&quot;&#x27; or 1 = &#x27;1&quot;</span>).toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240319112222814.png" title="image-20240319112222814" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240319112222814.png" alt="image-20240319112222814"></a></p>
+<p>SQL注⼊代码：<code> ' or 1='1</code>。这里可以看见，结果被正确查询出来了, 其中参数 <code>or</code> 被当做了SQL语句的⼀部分。由于没有对用户输⼊进行充分检查，而SQL⼜是拼接⽽成，在用户输⼊参数时，在参数中添加⼀些SQL关键字，达到改变SQL运行结果的目的，也可以完成恶意攻击。</p>
+<h2 id="3、排序查询">3、排序查询</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;SELECT id, username, age, gender, phone, delete_flag, create_time, update_time &quot; +</span></span><br><span class="line"><span class="meta">        &quot;FROM userinfo &quot; +</span></span><br><span class="line"><span class="meta">        &quot;ORDER BY id $&#123;sort&#125;&quot;)</span></span><br><span class="line">List&lt;UserInfo&gt; <span class="title function_">selectAllUserBySort</span><span class="params">(String sort)</span>;</span><br></pre></td></tr></table></figure>
+<p>这里使用 <code>$&#123;sort&#125;</code> 可以实现排序查询，而使用<code>#&#123;sort&#125;</code> 就不能实现排序查询。因为，此处 sort 参数为String类型，但是SQL语句中，排序规则是不需要加引号 <code>''</code> 的，所以此时的<code>$&#123;sort&#125;</code> 也不加引号。如果此时，使用<code> #&#123;sort&#125;</code> 查询时, sort参数前后会自动给加了引号, 导致出现 sql 错误。</p>
+<h2 id="4、模糊查询">4、模糊查询</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;select id, username, age, gender, phone, delete_flag, create_time, update_time &quot; +</span></span><br><span class="line"><span class="meta">&quot;from userinfo where username like &#x27;%#&#123;key&#125;%&#x27; &quot;)</span></span><br><span class="line">List&lt;UserInfo&gt; <span class="title function_">selectAllUserByLike</span><span class="params">(String key)</span>;</span><br></pre></td></tr></table></figure>
+<p>和前面的排序查询一样，在这个查询中，由于<code>#&#123;&#125;</code>的工作方式，MyBatis会把<code>'%#&#123;key&#125;%'</code>当作一个整体，所以 <code>'%#&#123;key&#125;%'</code> 的预期结果是，参数<code>key</code>被包围在两个<code>%</code>通配符之间。所以，当使用like查询的时候，应该使用<code>$&#123;&#125;</code>，但是这样又会出现SQL注入的安全问题。</p>
+<p>为了解决这个问题，可以使用MySQL 的<code>CONCAT</code>函数来动态地构造<code>like</code>查询的参数，像这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;select id, username, age, gender, phone, delete_flag, create_time, update_time &quot; +</span></span><br><span class="line"><span class="meta">&quot;from userinfo where username like concat(&#x27;%&#x27;,#&#123;key&#125;,&#x27;%&#x27;)&quot;)</span></span><br><span class="line">List&lt;UserInfo&gt; <span class="title function_">selectAllUserByLike</span><span class="params">(String key)</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>CONCAT</code>是MySQL中的一个函数，用于将两个或多个字符串连接在一起。</p>
+<p>基本的语法：<code>CONCAT(string1, string2, ..., string_n)</code></p>
+<p>在<code>like</code>查询中，你可以使用<code>CONCAT</code>函数来动态地构造查询参数。例如，以下查询将查找用户名包含关键词&quot;John&quot;的所有用户：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> username <span class="keyword">LIKE</span> CONCAT(<span class="string">&#x27;%&#x27;</span>, <span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;%&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，<code>CONCAT('%', 'John', '%')</code>将返回字符串&quot;%John%“，这将在任意位置匹配关键词&quot;John”。</p>
+</blockquote>
+<h1>二、数据库连接池</h1>
+<p>数据库连接池负责分配、管理和释放数据库连接，它允许应用程序重复使用⼀个现有的数据库连接，而不是再重新建立⼀个。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240319124043111.png" title="image-20240319124043111" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240319124043111.png" alt="image-20240319124043111"></a></p>
+<p>**没有使用数据库连接池的情况：**每次执行SQL语句，要先创建⼀个新的连接对象，然后执行SQL语句，SQL语句执行完，再关闭连接对象释放资源。这种重复的创建连接，销毁连接比较消耗资源。</p>
+<p>**使用数据库连接池的情况：**程序启动时, 会在数据库连接池中创建⼀定数量的Connection对象, 当客户请求数据库连接池, 会从数据库连接池中获取Connection对象，然后执行SQL， SQL语句执行完，再把Connection归还给连接池。</p>
+<p>目前比较流行的是：Hikari，Druid</p>
+<ol>
+<li>Hikari : SpringBoot默认使用的数据库连接池</li>
+<li>Druid：阿里巴巴开源的数据库连接池</li>
+</ol>
+<p>如果想把默认的数据库连接池从Hikari连接池切换为Druid连接池, 只需要在<code>pom.xml</code>中引入相关依赖即可</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>学习文档：<a target="_blank" rel="noopener" href="https://github.com/alibaba/druid/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题 · alibaba/druid Wiki (github.com)</a></p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-11-23</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/MyBatis/'>
+                            MyBatis
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+
+</html>
