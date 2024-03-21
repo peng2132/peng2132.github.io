@@ -283,7 +283,7 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 
     <div class="post-md">
         
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、其它查询</h1>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、查询</h1>
 <h2 id="1、多表查询">1、多表查询</h2>
 <p>尽量避免使用多表查询，尤其是对性能要求较高的项目。因为多表查询必然会导致性能变低。</p>
 <p>例如：<code>select *from ta</code>运行需要10ms，<code>select *from tb</code> 运行也需要10s。但是，<code>select *from ta left join tb on ta.xx==tb.xx</code> 必然大于10ms，</p>
@@ -368,8 +368,8 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <h1>二、数据库连接池</h1>
 <p>数据库连接池负责分配、管理和释放数据库连接，它允许应用程序重复使用⼀个现有的数据库连接，而不是再重新建立⼀个。</p>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240319124043111.png" title="image-20240319124043111" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240319124043111.png" alt="image-20240319124043111"></a></p>
-<p>**没有使用数据库连接池的情况：**每次执行SQL语句，要先创建⼀个新的连接对象，然后执行SQL语句，SQL语句执行完，再关闭连接对象释放资源。这种重复的创建连接，销毁连接比较消耗资源。</p>
-<p>**使用数据库连接池的情况：**程序启动时, 会在数据库连接池中创建⼀定数量的Connection对象, 当客户请求数据库连接池, 会从数据库连接池中获取Connection对象，然后执行SQL， SQL语句执行完，再把Connection归还给连接池。</p>
+<p><strong>没有使用数据库连接池的情况：</strong> 每次执行SQL语句，要先创建⼀个新的连接对象，然后执行SQL语句，SQL语句执行完，再关闭连接对象释放资源。这种重复的创建连接，销毁连接比较消耗资源。</p>
+<p><strong>使用数据库连接池的情况：</strong> 程序启动时, 会在数据库连接池中创建⼀定数量的Connection对象, 当客户请求数据库连接池, 会从数据库连接池中获取Connection对象，然后执行SQL， SQL语句执行完，再把Connection归还给连接池。</p>
 <p>目前比较流行的是：Hikari，Druid</p>
 <ol>
 <li>Hikari : SpringBoot默认使用的数据库连接池</li>
