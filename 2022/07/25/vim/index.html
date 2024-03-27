@@ -258,7 +258,11 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
             
         
             
-                <li><a href="/tags/">分类</a></li>
+                <li><a href="/tags/">标签</a></li>
+            
+        
+            
+                <li><a href="/categories/">分类</a></li>
             
         
     </ul>
@@ -286,31 +290,27 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><hr>
 <p>操作系统版本：ubuntu 20.04</p>
 <hr>
-<h1 id="一、配置云主机"><a href="#一、配置云主机" class="headerlink" title="一、配置云主机"></a>一、配置云主机</h1><p>执行以下命令，确保自己在root用户下执行命令</p>
+<h1>一、配置云主机</h1>
+<p>执行以下命令，确保自己在root用户下执行命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo -i</span><br><span class="line"><span class="comment">#该命令如果要求你输入密码，直接输入即可，请注意，输入密码时不会显示任何信息，输入完回车即可</span></span><br></pre></td></tr></table></figure>
-
 <p>执行下面的命令，获取环境配置脚本</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt upgrade -y  <span class="comment">#新增命令，视频中没有也需要你正常执行</span></span><br><span class="line">apt autoremove  <span class="comment">#新增命令，视频中没有也需要你正常执行</span></span><br><span class="line">apt install wget -y</span><br><span class="line">wget http://123.57.102.65/data/init_env.sh</span><br></pre></td></tr></table></figure>
-
 <p>执行下面的命令，完成环境配置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash init_env.sh</span><br><span class="line"><span class="comment">#执行该命令的时候，会要求输入新的用户名&#123;&#123;NEW_USERNAME&#125;&#125;和&#123;&#123;NEW_PASSWD&#125;&#125;</span></span><br><span class="line"><span class="comment">#自动化配置过程中，受网络影响，有些安装过程会比较慢，请耐心等待</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="二、优化Vim配置"><a href="#二、优化Vim配置" class="headerlink" title="二、优化Vim配置"></a>二、优化Vim配置</h1><blockquote>
-<p> mac系统，直接执行3，4步骤</p>
+<h1>二、优化Vim配置</h1>
+<blockquote>
+<p>mac系统，直接执行3，4步骤</p>
 </blockquote>
 <p>更新软件源</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-
 <p>下载git和wget</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install wget git -y</span><br></pre></td></tr></table></figure>
-
 <p>下载一键配置脚本</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget 47.93.11.51:88/install_vim.sh</span><br></pre></td></tr></table></figure>
-
 <p>执行一键配置脚本</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash install_vim.sh</span><br></pre></td></tr></table></figure>
-
-<h1 id="三、常用指令"><a href="#三、常用指令" class="headerlink" title="三、常用指令"></a>三、常用指令</h1><table>
+<h1>三、常用指令</h1>
+<table>
 <thead>
 <tr>
 <th>类别</th>
@@ -318,7 +318,8 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <th>作用</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>文件及目录</td>
 <td><code>ls</code></td>
 <td>列出目录下的内容</td>
@@ -388,7 +389,8 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <td><code>man xxx</code></td>
 <td>查看xxx的手册</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 </div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -415,6 +417,15 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
                 </span>
              
              
+                <span>归为分类:
+                    
+                    
+                        <a href='/categories/%E7%8E%AF%E5%A2%83/'>
+                            环境
+                        </a>
+                    
+                </span>
+            
         
         </i>
     </div>

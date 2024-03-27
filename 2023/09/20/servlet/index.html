@@ -258,7 +258,11 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
             
         
             
-                <li><a href="/tags/">分类</a></li>
+                <li><a href="/tags/">标签</a></li>
+            
+        
+            
+                <li><a href="/categories/">分类</a></li>
             
         
     </ul>
@@ -283,14 +287,16 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 
     <div class="post-md">
         
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="一、Tomcat"><a href="#一、Tomcat" class="headerlink" title="一、Tomcat"></a>一、Tomcat</h1><p>tomcat 是一个 webapp 的容器。Servlet 的内容，就是依赖 Tomcat，用Java写网站，绕不开 Tomcat。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、Tomcat</h1>
+<p>tomcat 是一个 webapp 的容器。Servlet 的内容，就是依赖 Tomcat，用Java写网站，绕不开 Tomcat。</p>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240310131000961.png" title="image-20240310131000961" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240310131000961.png" alt="image-20240310131000961"></a></p>
 <p>bin目录包含了一些可执行文件：其中<code>.bat</code>后缀的文件用于在Windows系统上启动Tomcat；<code>.sh</code>后缀的文件用于在Linux系统上启动Tomcat。</p>
 <p>conf目录包含了一些Tomcat的配置文件，这些文件是Tomcat的主要配置文件，其中最重要的是XML文件。</p>
 <p>lib目录存放了Tomcat运行时所需的依赖文件，这些文件包含了Tomcat运行所需的Java类库和其他必要的组件。</p>
 <p>logs目录存放的是Tomcat的日志文件，其中记录了Tomcat运行过程中的各种日志信息，可以用于排查问题和监控系统运行状态。</p>
 <p>webapp目录用于存放网站的相关文件。</p>
-<h1 id="二、Servlet"><a href="#二、Servlet" class="headerlink" title="二、Servlet"></a>二、Servlet</h1><p>为了方便编写后端程序，tomcat 提供了一系列的 api 接口，这些 api 背后已经把一些基础工作做好了，tomcat 把提供的这组 api 成为 servlet</p>
+<h1>二、Servlet</h1>
+<p>为了方便编写后端程序，tomcat 提供了一系列的 api 接口，这些 api 背后已经把一些基础工作做好了，tomcat 把提供的这组 api 成为 servlet</p>
 <p>使用Servlet写一个简单的hello word项目需要下面这七步：</p>
 <ol>
 <li>创建项目</li>
@@ -299,7 +305,6 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <p>当前代码需要使用 Servlet 就行开发，但是 Servlet 不是 Java 标准库自带的，需要 maven 把 Servlet 的依赖获取出来。Servlet 的版本选择 3.1.0，Servlet版本 和 tomcat版本要是对应的。</p>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240310131450505.png" title="image-20240310131450505" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240310131450505.png" alt="image-20240310131450505"></a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--Servlet的依赖--&gt;</span><br><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;javax.servlet&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">3.1</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
-
 <ol start="3">
 <li>手动创建一些必要的目录文件</li>
 </ol>
@@ -307,18 +312,14 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1709633549388-485281d0-0c53-48b1-8e03-f1fd3d80d32a.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1709633549388-485281d0-0c53-48b1-8e03-f1fd3d80d32a.png" alt="image.png"></a></p>
 <p>在 web.xml 文件中还需要写一些内容，这些内容是固定的。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--固定内容--&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">web-app</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>Archetype Created Web Application<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <ol start="4">
 <li>编写代码</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//继承HttpServlet类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="comment">//重写doGet方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        <span class="comment">//super.doGet(req, resp); // req代表这次请求的http请求，resp代表这次请求的http响应</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> <code>doGet</code>这个方法不需要手动调用，<code>doGet</code> 本质上也是一个“回调函数”，把这个方法写好之后，就会交给 Tomcat，Tomcat 在收到一个合适的 GET 请求后，就会自动调用 <code>doGet</code>，调用 <code>doGet</code> 的时候，Tomcat 就会解析这次 Http 请求，生成一个 HttpServletRequest 对象。总而言之，doGet 做的事，就说根据请求计算响应。</p>
+<p><code>doGet</code>这个方法不需要手动调用，<code>doGet</code> 本质上也是一个“回调函数”，把这个方法写好之后，就会交给 Tomcat，Tomcat 在收到一个合适的 GET 请求后，就会自动调用 <code>doGet</code>，调用 <code>doGet</code> 的时候，Tomcat 就会解析这次 Http 请求，生成一个 HttpServletRequest 对象。总而言之，doGet 做的事，就说根据请求计算响应。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="comment">//重写doGet方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        <span class="comment">//服务器日志打印hellp world</span></span><br><span class="line">        System.out.printf(<span class="string">&quot;Hello,World!&quot;</span>);</span><br><span class="line">        <span class="comment">//向客户端响应Hello,World!</span></span><br><span class="line">        resp.getWriter().write(<span class="string">&quot;Hello,World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><code>resp.getWriter().write(&quot;Hello,World!&quot;);</code>这行代码中，<code>resp</code>是一个<code>HttpServletResponse</code>对象，它代表了对客户端的HTTP响应，doGet的目的其实就说为了把这个对象设置好，然后通过<code>getWriter</code>得到resp里面内置的输出流对象，使用writer方法，就可以把一个字符串写入到resp对象中（把数据写入到http响应的body中）。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/hello&quot;)</span>   <span class="comment">//注解，指定访问路径</span></span><br><span class="line"><span class="comment">//继承HttpServlet类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="comment">//重写doGet方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        <span class="comment">//服务器日志打印hellp world</span></span><br><span class="line">        System.out.printf(<span class="string">&quot;Hello,World!&quot;</span>);</span><br><span class="line">        <span class="comment">//向客户端响应Hello,World!</span></span><br><span class="line">        resp.getWriter().write(<span class="string">&quot;Hello,World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><code>@WebServlet(&quot;/hello&quot;)</code>  这个注解是把请求的路径关联起来了，配置了路由。</p>
 <ol start="5">
 <li>打包程序</li>
@@ -328,7 +329,6 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1709635211676-c2cf9d09-e768-4e94-b380-feed65890f15.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1709635211676-c2cf9d09-e768-4e94-b380-feed65890f15.png" alt="image.png"></a></p>
 <p>在 maven 中，默认打包生成的是 jar 包，但是 Tomcat 需要的并不是 jar 包，而是 war 包。在 xml 文件中加入下面代码后重新打包。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1709635538575-541bcbae-4a12-4c85-9b38-304fd6d9509f.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1709635538575-541bcbae-4a12-4c85-9b38-304fd6d9509f.png" alt="image.png"></a></p>
 <ol start="6">
 <li>部署</li>
@@ -343,47 +343,51 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <p>如果需要修改代码，就需要重复 5 6 7 操作，比较麻烦。</p>
 <p>不过也可以简化这个过程，那就是让 idea 和 tomcat 上，达成“一键式打包部署”的过程。那就是给 idea 安装 Smart Tomcat 插件，给 idea 的功能继承下来。</p>
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240310132645851.png" title="image-20240310132645851" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/image-20240310132645851.png" alt="image-20240310132645851"></a></p>
-<h1 id="三、Servlet-API"><a href="#三、Servlet-API" class="headerlink" title="三、Servlet API"></a>三、Servlet API</h1><h2 id="1、HttpServlet"><a href="#1、HttpServlet" class="headerlink" title="1、HttpServlet"></a>1、HttpServlet</h2><p>这是编写 Servlet 代码用到的核心类，通过继承这个类并重写其中的方法，让 tomcat 去调用到这里的逻辑。</p>
+<h1>三、Servlet API</h1>
+<h2 id="1、HttpServlet">1、HttpServlet</h2>
+<p>这是编写 Servlet 代码用到的核心类，通过继承这个类并重写其中的方法，让 tomcat 去调用到这里的逻辑。</p>
 <table>
 <thead>
 <tr>
-<th align="center">方法名称</th>
-<th align="center">调用时机</th>
+<th style="text-align:center">方法名称</th>
+<th style="text-align:center">调用时机</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"><code>init</code></td>
-<td align="center">在 <code>HttpServlet</code> 实例化之后被调用一次</td>
+<tbody>
+<tr>
+<td style="text-align:center"><code>init</code></td>
+<td style="text-align:center">在 <code>HttpServlet</code> 实例化之后被调用一次</td>
 </tr>
 <tr>
-<td align="center"><code>destroy</code></td>
-<td align="center">在 <code>HttpServlet</code> 实例不再使用的时候调用一次</td>
+<td style="text-align:center"><code>destroy</code></td>
+<td style="text-align:center">在 <code>HttpServlet</code> 实例不再使用的时候调用一次</td>
 </tr>
 <tr>
-<td align="center"><code>service</code></td>
-<td align="center">收到 HTTP 请求的时候调用</td>
+<td style="text-align:center"><code>service</code></td>
+<td style="text-align:center">收到 HTTP 请求的时候调用</td>
 </tr>
 <tr>
-<td align="center"><code>doGet</code></td>
-<td align="center">收到 GET 请求的时候调用(由 <code>service</code> 方法调用)</td>
+<td style="text-align:center"><code>doGet</code></td>
+<td style="text-align:center">收到 GET 请求的时候调用(由 <code>service</code> 方法调用)</td>
 </tr>
 <tr>
-<td align="center"><code>doPost</code></td>
-<td align="center">收到 POST 请求的时候调用(由 <code>service</code> 方法调用)</td>
+<td style="text-align:center"><code>doPost</code></td>
+<td style="text-align:center">收到 POST 请求的时候调用(由 <code>service</code> 方法调用)</td>
 </tr>
 <tr>
-<td align="center"><code>doPut</code></td>
-<td align="center">收到 PUT 请求的时候调用(由 <code>service</code> 方法调用)</td>
+<td style="text-align:center"><code>doPut</code></td>
+<td style="text-align:center">收到 PUT 请求的时候调用(由 <code>service</code> 方法调用)</td>
 </tr>
 <tr>
-<td align="center"><code>doDelete</code></td>
-<td align="center">收到 DELETE 请求的时候调用(由 <code>service</code> 方法调用)</td>
+<td style="text-align:center"><code>doDelete</code></td>
+<td style="text-align:center">收到 DELETE 请求的时候调用(由 <code>service</code> 方法调用)</td>
 </tr>
 <tr>
-<td align="center"><code>doOptions</code></td>
-<td align="center">收到 OPTIONS 请求的时候调用(由 <code>service</code> 方法调用)</td>
+<td style="text-align:center"><code>doOptions</code></td>
+<td style="text-align:center">收到 OPTIONS 请求的时候调用(由 <code>service</code> 方法调用)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><code>init</code>是 webapp 被加载的时候执行，<code>destroy</code>是 webapp 在被销毁的时候（tomcat）结束的时候执行，<code>service</code>是在每次收到请求的时候执行</p>
 <p>这三个方法，都是 tomcat 自动调用的。</p>
 <p><code>destroy</code>不一定能调用到，因为tomcat 有两种方法技术：</p>
@@ -392,123 +396,126 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <li>结束进程（执行不到<code>destroy</code>）</li>
 </ol>
 <p>往往使用 doXXX 方法来替代 service 方法。</p>
-<h2 id="2、HttpServletRequest"><a href="#2、HttpServletRequest" class="headerlink" title="2、HttpServletRequest"></a>2、HttpServletRequest</h2><p>当 Tomcat 通过 Socket API 读取 HTTP 请求(字符串), 并且按照 HTTP 协议的格式把字符串解析成 HttpServletRequest 对象。</p>
+<h2 id="2、HttpServletRequest">2、HttpServletRequest</h2>
+<p>当 Tomcat 通过 Socket API 读取 HTTP 请求(字符串), 并且按照 HTTP 协议的格式把字符串解析成 HttpServletRequest 对象。</p>
 <table>
 <thead>
 <tr>
-<th align="center">方法</th>
-<th align="center">描述</th>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">描述</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"><code>String getProtocol()</code></td>
-<td align="center">返回请求协议的名称和版本。</td>
+<tbody>
+<tr>
+<td style="text-align:center"><code>String getProtocol()</code></td>
+<td style="text-align:center">返回请求协议的名称和版本。</td>
 </tr>
 <tr>
-<td align="center"><code>String getMethod()</code></td>
-<td align="center">返回请求的 HTTP 方法的名称，例如，GET、POST 或 PUT。</td>
+<td style="text-align:center"><code>String getMethod()</code></td>
+<td style="text-align:center">返回请求的 HTTP 方法的名称，例如，GET、POST 或 PUT。</td>
 </tr>
 <tr>
-<td align="center"><code>String getRequestURI()</code></td>
-<td align="center">从协议名称直到 HTTP 请求的第一行的查询字符串中，返回该请求的 URL 的一部分。</td>
+<td style="text-align:center"><code>String getRequestURI()</code></td>
+<td style="text-align:center">从协议名称直到 HTTP 请求的第一行的查询字符串中，返回该请求的 URL 的一部分。</td>
 </tr>
 <tr>
-<td align="center"><code>String getContextPath()</code></td>
-<td align="center">返回指示请求上下文的请求 URI 部分。</td>
+<td style="text-align:center"><code>String getContextPath()</code></td>
+<td style="text-align:center">返回指示请求上下文的请求 URI 部分。</td>
 </tr>
 <tr>
-<td align="center"><code>String getQueryString()</code></td>
-<td align="center">返回包含在路径后的请求 URL 中的查询字符串。</td>
+<td style="text-align:center"><code>String getQueryString()</code></td>
+<td style="text-align:center">返回包含在路径后的请求 URL 中的查询字符串。</td>
 </tr>
 <tr>
-<td align="center"><code>Enumeration getParameterNames()</code></td>
-<td align="center">返回一个 String 对象的枚举，包含在该请求中包含的参数的名称。</td>
+<td style="text-align:center"><code>Enumeration getParameterNames()</code></td>
+<td style="text-align:center">返回一个 String 对象的枚举，包含在该请求中包含的参数的名称。</td>
 </tr>
 <tr>
-<td align="center"><code>String getParameter(String name)</code></td>
-<td align="center">以字符串形式返回请求参数的值，或者如果参数不存在则返回 null。</td>
+<td style="text-align:center"><code>String getParameter(String name)</code></td>
+<td style="text-align:center">以字符串形式返回请求参数的值，或者如果参数不存在则返回 null。</td>
 </tr>
 <tr>
-<td align="center"><code>String[] getParameterValues(String name)</code></td>
-<td align="center">返回一个字符串对象的数组，包含所有给定的请求参数的值，如果参数不存在则返回 null。</td>
+<td style="text-align:center"><code>String[] getParameterValues(String name)</code></td>
+<td style="text-align:center">返回一个字符串对象的数组，包含所有给定的请求参数的值，如果参数不存在则返回 null。</td>
 </tr>
 <tr>
-<td align="center"><code>Enumeration getHeaderNames()</code></td>
-<td align="center">返回一个枚举，包含在该请求中包含的所有的头名。</td>
+<td style="text-align:center"><code>Enumeration getHeaderNames()</code></td>
+<td style="text-align:center">返回一个枚举，包含在该请求中包含的所有的头名。</td>
 </tr>
 <tr>
-<td align="center"><code>String getHeader(String name)</code></td>
-<td align="center">以字符串形式返回指定的请求头的值。</td>
+<td style="text-align:center"><code>String getHeader(String name)</code></td>
+<td style="text-align:center">以字符串形式返回指定的请求头的值。</td>
 </tr>
 <tr>
-<td align="center"><code>String getCharacterEncoding()</code></td>
-<td align="center">返回请求主体中使用的字符编码的名称。</td>
+<td style="text-align:center"><code>String getCharacterEncoding()</code></td>
+<td style="text-align:center">返回请求主体中使用的字符编码的名称。</td>
 </tr>
 <tr>
-<td align="center"><code>String getContentType()</code></td>
-<td align="center">返回请求主体的 MIME 类型，如果不知道类型则返回 null。</td>
+<td style="text-align:center"><code>String getContentType()</code></td>
+<td style="text-align:center">返回请求主体的 MIME 类型，如果不知道类型则返回 null。</td>
 </tr>
 <tr>
-<td align="center"><code>int getContentLength()</code></td>
-<td align="center">以字节为单位返回请求主体长度，并提供输入流，或如果长度未知则返回 -1。</td>
+<td style="text-align:center"><code>int getContentLength()</code></td>
+<td style="text-align:center">以字节为单位返回请求主体长度，并提供输入流，或如果长度未知则返回 -1。</td>
 </tr>
 <tr>
-<td align="center"><code>InputStream getInputStream()</code></td>
-<td align="center">用于读取请求的 body 内容。返回一个 InputStream 对象。</td>
+<td style="text-align:center"><code>InputStream getInputStream()</code></td>
+<td style="text-align:center">用于读取请求的 body 内容。返回一个 InputStream 对象。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>举个例子：获取body</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet(&quot;/parameter2&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ParameterServlet2</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="comment">//预期让客户使用post请求，同时使用form表单传递参数 </span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">       <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span>  req.getParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">       <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">       System.out.println(<span class="string">&quot;username: &quot;</span> + username);</span><br><span class="line">       System.out.println(<span class="string">&quot;password: &quot;</span> + password);</span><br><span class="line">       resp.getWriter().write(<span class="string">&quot;ok&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1709783309896-c0f0c89f-3d9c-4bec-a24c-a25fc66f54b5.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1709783309896-c0f0c89f-3d9c-4bec-a24c-a25fc66f54b5.png" alt="image.png"></a></p>
-<h2 id="3、HttpServletResponse"><a href="#3、HttpServletResponse" class="headerlink" title="3、HttpServletResponse"></a>3、HttpServletResponse</h2><table>
+<h2 id="3、HttpServletResponse">3、HttpServletResponse</h2>
+<table>
 <thead>
 <tr>
-<th align="center">方法</th>
-<th align="center">描述</th>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">描述</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"><code>void setStatus(int sc)</code></td>
-<td align="center">为该响应设置状态码。</td>
+<tbody>
+<tr>
+<td style="text-align:center"><code>void setStatus(int sc)</code></td>
+<td style="text-align:center">为该响应设置状态码。</td>
 </tr>
 <tr>
-<td align="center"><code>void setHeader(String name, String value)</code></td>
-<td align="center">设置一个带有给定的名称和值的 header。如果 name 已经存在，则覆盖旧的值。</td>
+<td style="text-align:center"><code>void setHeader(String name, String value)</code></td>
+<td style="text-align:center">设置一个带有给定的名称和值的 header。如果 name 已经存在，则覆盖旧的值。</td>
 </tr>
 <tr>
-<td align="center"><code>void addHeader(String name, String value)</code></td>
-<td align="center">添加一个带有给定的名称和值的 header。如果 name 已经存在，则不覆盖旧的值，并列添加新的键值对。</td>
+<td style="text-align:center"><code>void addHeader(String name, String value)</code></td>
+<td style="text-align:center">添加一个带有给定的名称和值的 header。如果 name 已经存在，则不覆盖旧的值，并列添加新的键值对。</td>
 </tr>
 <tr>
-<td align="center"><code>void setContentType(String type)</code></td>
-<td align="center">设置被发送到客户端的响应的内容类型。</td>
+<td style="text-align:center"><code>void setContentType(String type)</code></td>
+<td style="text-align:center">设置被发送到客户端的响应的内容类型。</td>
 </tr>
 <tr>
-<td align="center"><code>void setCharacterEncoding(String charset)</code></td>
-<td align="center">设置被发送到客户端的响应的字符编码（MIME 字符集），例如 UTF-8。</td>
+<td style="text-align:center"><code>void setCharacterEncoding(String charset)</code></td>
+<td style="text-align:center">设置被发送到客户端的响应的字符编码（MIME 字符集），例如 UTF-8。</td>
 </tr>
 <tr>
-<td align="center"><code>void sendRedirect(String location)</code></td>
-<td align="center">使用指定的重定向位置 URL 发送临时重定向响应到客户端。</td>
+<td style="text-align:center"><code>void sendRedirect(String location)</code></td>
+<td style="text-align:center">使用指定的重定向位置 URL 发送临时重定向响应到客户端。</td>
 </tr>
 <tr>
-<td align="center"><code>PrintWriter getWriter()</code></td>
-<td align="center">用于往响应的 body 中写入文本格式数据。</td>
+<td style="text-align:center"><code>PrintWriter getWriter()</code></td>
+<td style="text-align:center">用于往响应的 body 中写入文本格式数据。</td>
 </tr>
 <tr>
-<td align="center"><code>OutputStream getOutputStream()</code></td>
-<td align="center">用于往响应的 body 中写入二进制格式数据。</td>
+<td style="text-align:center"><code>OutputStream getOutputStream()</code></td>
+<td style="text-align:center">用于往响应的 body 中写入二进制格式数据。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>请求对象（<code>HttpServletRequest</code>）和响应对象（<code>HttpServletResponse</code>）是与 HTTP 请求和响应数据相对应的对象。通过请求对象，我们可以读取请求中的属性和数据，而通过响应对象，我们可以设置响应中的属性和数据。当我们获取到请求对象时，我们可以读取其中的属性和数据，例如请求的协议、方法、URL、参数、头信息等。通过请求对象，我们可以获取客户端发送的数据，并进行相应的处理。</p>
 <p>而响应对象是由 Tomcat 创建的空对象，我们可以在代码中设置该对象的属性和数据，以构建要返回给客户端的响应。通过响应对象，我们可以设置响应的状态码、头信息、内容类型以及响应体的内容等。对于 <code>doXxx</code> 这样的方法来说，它们的主要任务是根据请求计算生成响应。在这些方法中，我们可以通过请求对象获取请求的信息，然后根据业务逻辑进行处理，并最终通过设置响应对象的属性来构建响应数据。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/status&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StatusServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        resp.setStatus(<span class="number">200</span>);</span><br><span class="line">        resp.getWriter().write(<span class="string">&quot;ok&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1709795495803-b089a39d-ae8d-4a07-8a01-c6816bd64bcf.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1709795495803-b089a39d-ae8d-4a07-8a01-c6816bd64bcf.png" alt="image.png"></a></p>
 <p>也可以在返回状态码的同时，给 body 也写入数据，这样就可以得到个性化的页面。可以使用 setHeader 设置任意响应的报头。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/status&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StatusServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        resp.setStatus(<span class="number">302</span>);</span><br><span class="line">        <span class="comment">//重定向，一定要带有Location属性</span></span><br><span class="line">        resp.setHeader(<span class="string">&quot;Location&quot;</span>, <span class="string">&quot;http://www.zxhy.xyz&quot;</span>);</span><br><span class="line">        <span class="comment">//一行代码等于上面两行代码</span></span><br><span class="line">        resp.sendRedirect(<span class="string">&quot;http://www.zxhy.xyz&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 </div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -535,6 +542,15 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
                 </span>
              
              
+                <span>归为分类:
+                    
+                    
+                        <a href='/categories/%E5%90%8E%E7%AB%AF/'>
+                            后端
+                        </a>
+                    
+                </span>
+            
         
         </i>
     </div>

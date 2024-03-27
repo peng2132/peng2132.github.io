@@ -258,7 +258,11 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
             
         
             
-                <li><a href="/tags/">分类</a></li>
+                <li><a href="/tags/">标签</a></li>
+            
+        
+            
+                <li><a href="/categories/">分类</a></li>
             
         
     </ul>
@@ -283,32 +287,42 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 
     <div class="post-md">
         
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="一、题目描述"><a href="#一、题目描述" class="headerlink" title="一、题目描述"></a>一、题目描述</h1><h2 id="1、题目"><a href="#1、题目" class="headerlink" title="1、题目"></a>1、题目</h2><p>题目链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035?tpId=13&tqId=11156&ru=/exam/oj">剑指offer：从尾到头打印链表</a></p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、题目描述</h1>
+<h2 id="1、题目">1、题目</h2>
+<p>题目链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035?tpId=13&amp;tqId=11156&amp;ru=/exam/oj">剑指offer：从尾到头打印链表</a></p>
 <p>输入一个链表的头节点，按链表从尾到头的顺序返回每个节点的值（用数组返回）。</p>
-<p>如输入{1,2,3}的链表如下图：<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/6ec9ac68f1ef463abdaf53f66992ddb6.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/6ec9ac68f1ef463abdaf53f66992ddb6.png" alt="在这里插入图片描述"></a></p>
+<p>如输入{1,2,3}的链表如下图：<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/6ec9ac68f1ef463abdaf53f66992ddb6.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/6ec9ac68f1ef463abdaf53f66992ddb6.png" alt="在这里插入图片描述"></a></p>
 <p>返回一个数组为[3,2,1]</p>
-<p>0 &lt;&#x3D; 链表长度 &lt;&#x3D; 10000</p>
-<h2 id="2、示例"><a href="#2、示例" class="headerlink" title="2、示例"></a>2、示例</h2><p><strong>示例1</strong></p>
+<p>0 &lt;= 链表长度 &lt;= 10000</p>
+<h2 id="2、示例">2、示例</h2>
+<p><strong>示例1</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">返回值：[<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
 <p><strong>示例2</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：&#123;<span class="number">67</span>,<span class="number">0</span>,<span class="number">24</span>,<span class="number">58</span>&#125;</span><br><span class="line">返回值：[<span class="number">58</span>,<span class="number">24</span>,<span class="number">0</span>,<span class="number">67</span>]</span><br></pre></td></tr></table></figure>
-<h1 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h1><h2 id="1、新建数组"><a href="#1、新建数组" class="headerlink" title="1、新建数组"></a>1、新建数组</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">printListFromTailToHead</span><span class="params">(ListNode listNode)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        ListNode cur = listNode;</span><br><span class="line">        <span class="keyword">while</span>(cur!=null)&#123;</span><br><span class="line">            list.<span class="built_in">add</span>(<span class="number">0</span>,cur.val);</span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1>二、题目分析</h1>
+<h2 id="1、新建数组">1、新建数组</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">printListFromTailToHead</span><span class="params">(ListNode listNode)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        ListNode cur = listNode;</span><br><span class="line">        <span class="keyword">while</span>(cur!=null)&#123;</span><br><span class="line">            list.<span class="built_in">add</span>(<span class="number">0</span>,cur.val);</span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>使用<code>ArrayList</code>来存储链表元素，并通过在<code>ArrayList</code>的开头插入节点值的方式，从而实现将链表元素从尾到头打印的效果。</p>
-<h2 id="2、头插法"><a href="#2、头插法" class="headerlink" title="2、头插法"></a>2、头插法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">printListFromTailToHead</span><span class="params">(ListNode listNode)</span> </span>&#123;</span><br><span class="line">        ListNode head=<span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">-1</span>) ;</span><br><span class="line">        <span class="keyword">while</span>(listNode!= null)&#123;</span><br><span class="line">               ListNode temp=listNode.next; </span><br><span class="line">               listNode.next=head.next;</span><br><span class="line">               head.next=listNode;</span><br><span class="line">               listNode=temp;</span><br><span class="line">        &#125;</span><br><span class="line">        ArrayList &lt;Integer&gt; res = <span class="keyword">new</span> <span class="built_in">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line">        head=head.next; </span><br><span class="line">        <span class="keyword">while</span>(head!=null)&#123; </span><br><span class="line">            res.<span class="built_in">add</span>(head.val);</span><br><span class="line">            head=head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、递归"><a href="#3、递归" class="headerlink" title="3、递归"></a>3、递归</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title function_">printListFromTailToHead</span><span class="params">(ListNode listNode)</span> &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">if</span> (listNode != <span class="literal">null</span>) &#123;</span><br><span class="line">            printListFromTailToHead(listNode.next);</span><br><span class="line">            res.add(listNode.val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="2、头插法">2、头插法</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">printListFromTailToHead</span><span class="params">(ListNode listNode)</span> </span>&#123;</span><br><span class="line">        ListNode head=<span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">-1</span>) ;</span><br><span class="line">        <span class="keyword">while</span>(listNode!= null)&#123;</span><br><span class="line">               ListNode temp=listNode.next; </span><br><span class="line">               listNode.next=head.next;</span><br><span class="line">               head.next=listNode;</span><br><span class="line">               listNode=temp;</span><br><span class="line">        &#125;</span><br><span class="line">        ArrayList &lt;Integer&gt; res = <span class="keyword">new</span> <span class="built_in">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line">        head=head.next; </span><br><span class="line">        <span class="keyword">while</span>(head!=null)&#123; </span><br><span class="line">            res.<span class="built_in">add</span>(head.val);</span><br><span class="line">            head=head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3、递归">3、递归</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title function_">printListFromTailToHead</span><span class="params">(ListNode listNode)</span> &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">if</span> (listNode != <span class="literal">null</span>) &#123;</span><br><span class="line">            printListFromTailToHead(listNode.next);</span><br><span class="line">            res.add(listNode.val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol>
-<li><p><code>ArrayList&lt;Integer&gt; res = new ArrayList&lt;Integer&gt;();</code>创建一个ArrayList对象，用于存储链表元素。</p>
+<li>
+<p><code>ArrayList&lt;Integer&gt; res = new ArrayList&lt;Integer&gt;();</code>创建一个ArrayList对象，用于存储链表元素。</p>
 </li>
-<li><p><code>if (listNode != null) </code>进行条件判断，如果当前节点不为null，执行下面的递归和添加操作。这是递归的终止条件。</p>
+<li>
+<p><code>if (listNode != null) </code>进行条件判断，如果当前节点不为null，执行下面的递归和添加操作。这是递归的终止条件。</p>
 </li>
-<li><p><code>printListFromTailToHead(listNode.next);</code>递归调用自身，传入当前节点的下一个节点。这样就实现了从链表的尾部到头部的递归访问。</p>
+<li>
+<p><code>printListFromTailToHead(listNode.next);</code>递归调用自身，传入当前节点的下一个节点。这样就实现了从链表的尾部到头部的递归访问。</p>
 </li>
-<li><p><code>res.add(listNode.val);</code>将当前节点的值添加到ArrayList中。这是在递归的回溯阶段执行的，确保元素的顺序是从尾到头的。</p>
+<li>
+<p><code>res.add(listNode.val);</code>将当前节点的值添加到ArrayList中。这是在递归的回溯阶段执行的，确保元素的顺序是从尾到头的。</p>
 </li>
-<li><p><code>return res;</code>：返回存储了链表元素的ArrayList，其中元素的顺序是从尾到头的。</p>
+<li>
+<p><code>return res;</code>：返回存储了链表元素的ArrayList，其中元素的顺序是从尾到头的。</p>
 </li>
 </ol>
 <p>整个递归的过程是不断地递归访问链表的下一个节点，然后在回溯的过程中将节点的值添加到<code>ArrayList</code>中，最终形成了从尾到头的顺序。递归的终止条件是当前节点为null，即到达链表的尾部。这种递归实现方式是一种比较简洁的方法，但需要注意可能会在处理较长链表时导致栈溢出。</p>
@@ -338,6 +352,15 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
                 </span>
              
              
+                <span>归为分类:
+                    
+                    
+                        <a href='/categories/%E7%AE%97%E6%B3%95/'>
+                            算法
+                        </a>
+                    
+                </span>
+            
         
         </i>
     </div>

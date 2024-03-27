@@ -258,7 +258,11 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
             
         
             
-                <li><a href="/tags/">分类</a></li>
+                <li><a href="/tags/">标签</a></li>
+            
+        
+            
+                <li><a href="/categories/">分类</a></li>
             
         
     </ul>
@@ -283,27 +287,35 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 
     <div class="post-md">
         
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="一、乐观锁-vs-悲观锁"><a href="#一、乐观锁-vs-悲观锁" class="headerlink" title="一、乐观锁 vs 悲观锁"></a>一、乐观锁 vs 悲观锁</h1><p>乐观锁和悲观锁是两种常见的并发控制策略，用于处理多线程环境下的数据一致性和同步问题。它们从不同的角度出发，针对锁冲突的可能性采取不同的预防措施。<code>Synchronized</code> 初始使用乐观锁策略，当发现锁竞争比较频繁的时候，就会自动切换成悲观锁策略。</p>
-<h2 id="1、乐观锁"><a href="#1、乐观锁" class="headerlink" title="1、乐观锁"></a>1、乐观锁</h2><p>乐观锁基于这样一个假设：在大多数情况下，锁冲突是不会发生的。因此，它允许多个线程在没有直接锁定资源的情况下并发访问数据，仅在数据提交更新时检查是否存在冲突。如果发现数据在读取后被其他线程修改，操作会被回滚，要求重试。乐观锁的实现通常依赖于数据版本号或时间戳。这种机制适合读操作频繁而写操作相对较少的场景，可以减少锁的开销，提高系统的并发性能。</p>
-<h2 id="2、悲观锁"><a href="#2、悲观锁" class="headerlink" title="2、悲观锁"></a>2、悲观锁</h2><p>悲观锁则是基于一个相反的假设：认为冲突在多线程访问中是常态，因此在操作数据前，会先尝试锁定资源，确保一次只有一个线程能操作数据。这种策略通过直接避免并发访问来防止冲突，直到当前持有锁的线程完成操作并释放锁后，其他线程才能访问数据。悲观锁适用于写操作频繁的场景，虽然它可能引入更高的等待时间和系统开销，但可以有效保障数据的一致性和完整性。</p>
-<h1 id="二、重量级锁-vs-轻量级锁"><a href="#二、重量级锁-vs-轻量级锁" class="headerlink" title="二、重量级锁 vs 轻量级锁"></a>二、重量级锁 vs 轻量级锁</h1><p>锁的核心特性”原子性“，这样的机制追根溯源是 CPU 这样的硬件设备提供的。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、乐观锁 vs 悲观锁</h1>
+<p>乐观锁和悲观锁是两种常见的并发控制策略，用于处理多线程环境下的数据一致性和同步问题。它们从不同的角度出发，针对锁冲突的可能性采取不同的预防措施。<code>Synchronized</code> 初始使用乐观锁策略，当发现锁竞争比较频繁的时候，就会自动切换成悲观锁策略。</p>
+<h2 id="1、乐观锁">1、乐观锁</h2>
+<p>乐观锁基于这样一个假设：在大多数情况下，锁冲突是不会发生的。因此，它允许多个线程在没有直接锁定资源的情况下并发访问数据，仅在数据提交更新时检查是否存在冲突。如果发现数据在读取后被其他线程修改，操作会被回滚，要求重试。乐观锁的实现通常依赖于数据版本号或时间戳。这种机制适合读操作频繁而写操作相对较少的场景，可以减少锁的开销，提高系统的并发性能。</p>
+<h2 id="2、悲观锁">2、悲观锁</h2>
+<p>悲观锁则是基于一个相反的假设：认为冲突在多线程访问中是常态，因此在操作数据前，会先尝试锁定资源，确保一次只有一个线程能操作数据。这种策略通过直接避免并发访问来防止冲突，直到当前持有锁的线程完成操作并释放锁后，其他线程才能访问数据。悲观锁适用于写操作频繁的场景，虽然它可能引入更高的等待时间和系统开销，但可以有效保障数据的一致性和完整性。</p>
+<h1>二、重量级锁 vs 轻量级锁</h1>
+<p>锁的核心特性”原子性“，这样的机制追根溯源是 CPU 这样的硬件设备提供的。</p>
 <ul>
 <li>CPU 提供了 “原子操作指令”。</li>
 <li>操作系统基于 CPU 的原子指令，实现了 <code>mutex</code> 互斥锁。</li>
 <li>JVM 基于操作系统提供的互斥锁, 实现了 <code>synchronized</code> 和 <code>ReentrantLock</code> 等关键字和类。</li>
 </ul>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/7aa060a78a824cbfa3998ed86adb978b.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/7aa060a78a824cbfa3998ed86adb978b.png" alt="在这里插入图片描述"></a><br>注意, <code>synchronized</code> 并不仅仅是对 <code>mutex</code> 进行封装，在 <code>synchronized</code> 内部还做了很多其他的工作</p>
-<h2 id="1、重量级锁"><a href="#1、重量级锁" class="headerlink" title="1、重量级锁"></a>1、重量级锁</h2><p>重量级锁：加锁机制重度依赖了操作系统提供了<code>mutex</code></p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/7aa060a78a824cbfa3998ed86adb978b.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/7aa060a78a824cbfa3998ed86adb978b.png" alt="在这里插入图片描述"></a><br>
+注意, <code>synchronized</code> 并不仅仅是对 <code>mutex</code> 进行封装，在 <code>synchronized</code> 内部还做了很多其他的工作</p>
+<h2 id="1、重量级锁">1、重量级锁</h2>
+<p>重量级锁：加锁机制重度依赖了操作系统提供了<code>mutex</code></p>
 <ul>
 <li>大量的内核态用户态切换</li>
 <li>很容易引发线程的调度</li>
 </ul>
-<h2 id="2、轻量级锁"><a href="#2、轻量级锁" class="headerlink" title="2、轻量级锁"></a>2、轻量级锁</h2><p>轻量级锁：加锁机制尽可能不使用 <code>mutex</code>，而是尽量在用户态代码完成。实在搞不定了，再使用 <code>mutex</code>。</p>
+<h2 id="2、轻量级锁">2、轻量级锁</h2>
+<p>轻量级锁：加锁机制尽可能不使用 <code>mutex</code>，而是尽量在用户态代码完成。实在搞不定了，再使用 <code>mutex</code>。</p>
 <ul>
-<li>少量的内核态用户态切换 </li>
+<li>少量的内核态用户态切换</li>
 <li>不太容易引发线程调度</li>
 </ul>
-<h2 id="3、理解用户态-vs-内核态"><a href="#3、理解用户态-vs-内核态" class="headerlink" title="3、理解用户态 vs 内核态"></a>3、理解用户态 vs 内核态</h2><p><strong>用户态：</strong></p>
+<h2 id="3、理解用户态-vs-内核态">3、理解用户态 vs 内核态</h2>
+<p><strong>用户态：</strong></p>
 <ul>
 <li>相当于你在银行<strong>窗口外</strong>办理业务，所有操作由你自己完成。</li>
 <li>你需要填写表格、准备材料、排队等候，所有流程和时间成本都在你的掌控之中。</li>
@@ -325,14 +337,17 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <li>如果你在办理业务过程中，频繁地在窗口外和窗口内之间切换，例如需要反复与工作人员沟通、重新排队等，那么效率会<strong>大幅降低</strong>。</li>
 <li>在程序运行中，如果频繁地在用户态和内核态之间切换，也会导致效率降低，因为切换本身需要消耗时间和资源。</li>
 </ul>
-<h1 id="三、自旋锁-vs-挂起等待锁"><a href="#三、自旋锁-vs-挂起等待锁" class="headerlink" title="三、自旋锁 vs 挂起等待锁"></a>三、自旋锁 vs 挂起等待锁</h1><h2 id="1、自旋锁"><a href="#1、自旋锁" class="headerlink" title="1、自旋锁"></a>1、自旋锁</h2><p>按之前的方式，线程在抢锁失败后进入阻塞状态，放弃 CPU，需要过很久才能再次被调度。但实际上，大部分情况下，虽然当前抢锁失败，但过不了很久，锁就会被释放。</p>
+<h1>三、自旋锁 vs 挂起等待锁</h1>
+<h2 id="1、自旋锁">1、自旋锁</h2>
+<p>按之前的方式，线程在抢锁失败后进入阻塞状态，放弃 CPU，需要过很久才能再次被调度。但实际上，大部分情况下，虽然当前抢锁失败，但过不了很久，锁就会被释放。</p>
 <p>没必要就放弃 CPU，这个时候就可以使用自旋锁来处理这样的问题。<code>synchronized</code> 中的轻量级锁策略大概率就是通过自旋锁的方式实现的。</p>
 <p><strong>自旋锁伪代码：</strong><code>while (抢锁(lock) == 失败) &#123;&#125;</code></p>
 <p>如果获取锁失败，立即再尝试获取锁，无限循环，直到获取到锁为止。第一次获取锁失败，第二次的尝试会在极短的时间内到来。一旦锁被其他线程释放，就能第一时间获取到锁。</p>
-<p><strong>自旋锁是一种典型的 轻量级锁 的实现方式：</strong> </p>
-<p><strong>自旋锁的优势：</strong> 没有放弃 CPU，不涉及线程阻塞和调度，一旦锁被释放，就能第一时间获取到锁。 </p>
+<p><strong>自旋锁是一种典型的 轻量级锁 的实现方式：</strong></p>
+<p><strong>自旋锁的优势：</strong> 没有放弃 CPU，不涉及线程阻塞和调度，一旦锁被释放，就能第一时间获取到锁。</p>
 <p><strong>自旋锁的缺点：</strong> 如果锁被其他线程持有的时间比较久，那么就会持续的消耗 CPU 资源。（而挂起等待的时候是不消耗 CPU）</p>
-<h2 id="2、挂起等待锁"><a href="#2、挂起等待锁" class="headerlink" title="2、挂起等待锁"></a>2、挂起等待锁</h2><p>挂起等待锁是一种重量级锁的实现方式，它与自旋锁相比，在锁竞争激烈的情况下，能够更加有效地避免CPU资源浪费，但同时也带来了线程调度的开销。</p>
+<h2 id="2、挂起等待锁">2、挂起等待锁</h2>
+<p>挂起等待锁是一种重量级锁的实现方式，它与自旋锁相比，在锁竞争激烈的情况下，能够更加有效地避免CPU资源浪费，但同时也带来了线程调度的开销。</p>
 <p><strong>工作原理：</strong> 当线程尝试获取锁时，如果锁已经被其他线程持有，则当前线程会进入挂起状态，放弃CPU资源，并等待锁被释放。当锁被释放后，操作系统会唤醒所有处于挂起状态的线程，并重新进行锁竞争。</p>
 <p><strong>挂起等待锁伪代码：</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (抢锁(lock) == 失败) &#123;</span><br><span class="line">    挂起线程；</span><br><span class="line">    等待锁被释放；</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 获取到锁</span></span><br></pre></td></tr></table></figure>
@@ -346,7 +361,8 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <li>涉及线程阻塞和调度，带来了额外的开销。</li>
 <li>在锁竞争不激烈的情况下，性能可能不如自旋锁。</li>
 </ul>
-<h2 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h2><table>
+<h2 id="3、总结">3、总结</h2>
+<table>
 <thead>
 <tr>
 <th>特性</th>
@@ -354,14 +370,15 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <th>挂起等待锁</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>加锁方式</td>
 <td>用户态，自旋循环</td>
 <td>内核态，系统锁机制</td>
 </tr>
 <tr>
 <td>资源消耗</td>
-<td>低 (锁空闲时) &#x2F; 高 (锁竞争激烈时)</td>
+<td>低 (锁空闲时) / 高 (锁竞争激烈时)</td>
 <td>低 (锁竞争激烈时)</td>
 </tr>
 <tr>
@@ -374,8 +391,11 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <td>快速灵动</td>
 <td>稳定可靠</td>
 </tr>
-</tbody></table>
-<h1 id="四、读写锁-vs-互斥锁"><a href="#四、读写锁-vs-互斥锁" class="headerlink" title="四、读写锁 vs 互斥锁"></a>四、读写锁 vs 互斥锁</h1><h2 id="1、读写锁"><a href="#1、读写锁" class="headerlink" title="1、读写锁"></a>1、读写锁</h2><p>读写锁是一种特殊的锁机制，它针对读写操作进行区分，允许多个线程同时进行读操作，但只能有一个线程进行写操作，从而提高并发效率。</p>
+</tbody>
+</table>
+<h1>四、读写锁 vs 互斥锁</h1>
+<h2 id="1、读写锁">1、读写锁</h2>
+<p>读写锁是一种特殊的锁机制，它针对读写操作进行区分，允许多个线程同时进行读操作，但只能有一个线程进行写操作，从而提高并发效率。</p>
 <p>读写锁就是把读操作和写操作区分对待。Java 标准库提供了 <code>ReentrantReadWriteLock</code> 类，实现了读写锁。</p>
 <ul>
 <li><code>ReentrantReadWriteLock.ReadLock</code> 类表示一个读锁。这个对象提供了<code>lock / unlock</code>方法进行加锁解锁。</li>
@@ -398,13 +418,22 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <li>数据库系统：读操作远多于写操作，使用读写锁可以提高数据库的并发能力。</li>
 <li>配置文件：读操作远多于写操作，使用读写锁可以提高配置文件的读取效率。</li>
 </ul>
-<h2 id="2、互斥锁"><a href="#2、互斥锁" class="headerlink" title="2、互斥锁"></a>2、互斥锁</h2><p>互斥锁则是传统的锁机制，它不允许任何线程同时获取锁，无论读写操作。</p>
-<h1 id="五、公平锁-vs-非公平锁"><a href="#五、公平锁-vs-非公平锁" class="headerlink" title="五、公平锁 vs 非公平锁"></a>五、公平锁 vs 非公平锁</h1><p>公平锁和非公平锁也是两种常见的锁机制，它们在锁的分配策略上存在差异，从而影响程序的运行效率和公平性。</p>
-<p>下面以追女神为例：<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/c5fe50b25f5a4228afcf4133d4195fae.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/c5fe50b25f5a4228afcf4133d4195fae.png" alt="在这里插入图片描述"></a></p>
-<h2 id="1、公平锁"><a href="#1、公平锁" class="headerlink" title="1、公平锁"></a>1、公平锁</h2><p>公平锁是线程按照申请锁的顺序获取锁，就像排队一样，先来后到。即使线程在竞争锁时处于休眠状态，也不会影响其获取锁的机会。可以保证每个线程都有平等的机会获取锁，避免线程饥饿问题。</p>
-<p>当女神和前任分手之后，先来追女神的男生上位，这就是公平锁。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/b2538feafbee49fb896adf58c312267b.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/b2538feafbee49fb896adf58c312267b.png" alt="在这里插入图片描述"></a></p>
-<h2 id="2、非公平锁"><a href="#2、非公平锁" class="headerlink" title="2、非公平锁"></a>2、非公平锁</h2><p>如果是女神不按先后顺序挑一个自己看的顺眼的，就是非公平锁。<code>synchronized</code>是非公平锁。<br><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/ff072c6479ff48a9a23a529d032b6dcb.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/ff072c6479ff48a9a23a529d032b6dcb.png" alt="在这里插入图片描述"></a></p>
-<h1 id="六、可重入锁-vs-不可重入锁"><a href="#六、可重入锁-vs-不可重入锁" class="headerlink" title="六、可重入锁 vs 不可重入锁"></a>六、可重入锁 vs 不可重入锁</h1><h2 id="1、可重入锁"><a href="#1、可重入锁" class="headerlink" title="1、可重入锁"></a>1、可重入锁</h2><p>可重入锁的字面意思是“可以重新进入的锁”，即允许同一个线程多次获取同一把锁。</p>
+<h2 id="2、互斥锁">2、互斥锁</h2>
+<p>互斥锁则是传统的锁机制，它不允许任何线程同时获取锁，无论读写操作。</p>
+<h1>五、公平锁 vs 非公平锁</h1>
+<p>公平锁和非公平锁也是两种常见的锁机制，它们在锁的分配策略上存在差异，从而影响程序的运行效率和公平性。</p>
+<p>下面以追女神为例：<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/c5fe50b25f5a4228afcf4133d4195fae.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/c5fe50b25f5a4228afcf4133d4195fae.png" alt="在这里插入图片描述"></a></p>
+<h2 id="1、公平锁">1、公平锁</h2>
+<p>公平锁是线程按照申请锁的顺序获取锁，就像排队一样，先来后到。即使线程在竞争锁时处于休眠状态，也不会影响其获取锁的机会。可以保证每个线程都有平等的机会获取锁，避免线程饥饿问题。</p>
+<p>当女神和前任分手之后，先来追女神的男生上位，这就是公平锁。<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/b2538feafbee49fb896adf58c312267b.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/b2538feafbee49fb896adf58c312267b.png" alt="在这里插入图片描述"></a></p>
+<h2 id="2、非公平锁">2、非公平锁</h2>
+<p>如果是女神不按先后顺序挑一个自己看的顺眼的，就是非公平锁。<code>synchronized</code>是非公平锁。<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/ff072c6479ff48a9a23a529d032b6dcb.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/ff072c6479ff48a9a23a529d032b6dcb.png" alt="在这里插入图片描述"></a></p>
+<h1>六、可重入锁 vs 不可重入锁</h1>
+<h2 id="1、可重入锁">1、可重入锁</h2>
+<p>可重入锁的字面意思是“可以重新进入的锁”，即允许同一个线程多次获取同一把锁。</p>
 <p>可重入锁允许同一个线程在递归调用过程中多次获取锁，而不会发生阻塞。就像一个人拿着自己家的钥匙，可以多次打开自己的房门一样。Java 中的 <code>ReentrantLock</code> 类、<code>synchronized</code> 关键字锁都是可重入锁。</p>
 <p><strong>理解可重入锁：</strong></p>
 <ul>
@@ -419,13 +448,16 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <li>避免了递归调用时死锁的发生。</li>
 <li>提高了代码的简洁性。</li>
 </ul>
-<h2 id="2、不可重入锁"><a href="#2、不可重入锁" class="headerlink" title="2、不可重入锁"></a>2、不可重入锁</h2><p>不可重入锁不允许同一个线程在递归调用过程中再次获取锁，否则会发生阻塞。就像一个人拿着别人的钥匙，只能打开一次门，再次尝试打开门时会因为钥匙不匹配而被阻拦。Linux 系统提供的 <code>mutex</code>锁是不可重入锁。</p>
+<h2 id="2、不可重入锁">2、不可重入锁</h2>
+<p>不可重入锁不允许同一个线程在递归调用过程中再次获取锁，否则会发生阻塞。就像一个人拿着别人的钥匙，只能打开一次门，再次尝试打开门时会因为钥匙不匹配而被阻拦。Linux 系统提供的 <code>mutex</code>锁是不可重入锁。</p>
 <p><strong>理解不可重入锁：</strong></p>
 <ul>
 <li>不可重入锁没有计数器，只记录锁的持有者。</li>
 <li>当线程获取锁后，其他线程无法再次获取锁，直到该线程释放锁。</li>
 </ul>
-<h1 id="七、常见问题"><a href="#七、常见问题" class="headerlink" title="七、常见问题"></a>七、常见问题</h1><h2 id="1、如何理解乐观锁和悲观锁，具体怎么实现呢？"><a href="#1、如何理解乐观锁和悲观锁，具体怎么实现呢？" class="headerlink" title="1、如何理解乐观锁和悲观锁，具体怎么实现呢？"></a>1、如何理解乐观锁和悲观锁，具体怎么实现呢？</h2><table>
+<h1>七、常见问题</h1>
+<h2 id="1、如何理解乐观锁和悲观锁，具体怎么实现呢？">1、如何理解乐观锁和悲观锁，具体怎么实现呢？</h2>
+<table>
 <thead>
 <tr>
 <th>锁类型</th>
@@ -433,7 +465,8 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <th>实现方式</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>悲观锁</td>
 <td>认为多个线程访问同一共享变量冲突概率大，每次都会加锁</td>
 <td>借助操作系统提供的锁机制，如 mutex，获取锁后操作数据</td>
@@ -443,21 +476,28 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <td>认为冲突概率不大，不加锁直接尝试访问数据，识别访问冲突</td>
 <td>引入版本号，通过版本号判断数据访问是否冲突</td>
 </tr>
-</tbody></table>
-<p>悲观锁认为多个线程访问同一个共享变量冲突的概率较大，会在每次访问共享变量之前都去真正加<br>锁；乐观锁认为多个线程访问同一个共享变量冲突的概率不大，并不会真的加锁，而是直接尝试访问数据。在访问的同时识别当前的数据是否出现访问冲突。</p>
+</tbody>
+</table>
+<p>悲观锁认为多个线程访问同一个共享变量冲突的概率较大，会在每次访问共享变量之前都去真正加<br>
+锁；乐观锁认为多个线程访问同一个共享变量冲突的概率不大，并不会真的加锁，而是直接尝试访问数据。在访问的同时识别当前的数据是否出现访问冲突。</p>
 <p>悲观锁的实现就是先加锁(比如借助操作系统提供的 <code>mutex</code>)，获取到锁再操作数据，获取不到锁就等待。乐观锁的实现可以引入一个版本号，借助版本号识别出当前的数据访问是否冲突。</p>
-<h2 id="2、介绍下读写锁"><a href="#2、介绍下读写锁" class="headerlink" title="2、介绍下读写锁"></a>2、介绍下读写锁</h2><p>读写锁就是把读操作和写操作分别进行加锁。</p>
+<h2 id="2、介绍下读写锁">2、介绍下读写锁</h2>
+<p>读写锁就是把读操作和写操作分别进行加锁。</p>
 <ul>
-<li>读锁和读锁之间不互斥。 </li>
+<li>读锁和读锁之间不互斥。</li>
 <li>写锁和写锁之间互斥。</li>
 <li>写锁和读锁之间互斥。</li>
 </ul>
 <p>读写锁最主要用在 “频繁读，不频繁写” 的场景中。</p>
-<h2 id="3、synchronized-是可重入锁么？"><a href="#3、synchronized-是可重入锁么？" class="headerlink" title="3、synchronized 是可重入锁么？"></a>3、<code>synchronized</code> 是可重入锁么？</h2><p>是可重入锁，可重入锁指的就是连续两次加锁不会导致死锁。<br>实现的方式是在锁中记录该锁持有的线程身份，以及一个计数器(记录加锁次数)。如果发现当前加锁<br>的线程就是持有锁的线程，则直接计数自增。</p>
-<h2 id="4、什么是自旋锁，为什么要使用自旋锁策略呢，缺点是什么？"><a href="#4、什么是自旋锁，为什么要使用自旋锁策略呢，缺点是什么？" class="headerlink" title="4、什么是自旋锁，为什么要使用自旋锁策略呢，缺点是什么？"></a>4、什么是自旋锁，为什么要使用自旋锁策略呢，缺点是什么？</h2><p>如果获取锁失败，立即再尝试获取锁，无限循环直到获取到锁为止。第一次获取锁失败，第二次的尝试会在极短的时间内到来。一旦锁被其他线程释放，就能第一时间获取到锁。</p>
-<p>相比于挂起等待锁： </p>
+<h2 id="3、synchronized-是可重入锁么？">3、<code>synchronized</code> 是可重入锁么？</h2>
+<p>是可重入锁，可重入锁指的就是连续两次加锁不会导致死锁。<br>
+实现的方式是在锁中记录该锁持有的线程身份，以及一个计数器(记录加锁次数)。如果发现当前加锁<br>
+的线程就是持有锁的线程，则直接计数自增。</p>
+<h2 id="4、什么是自旋锁，为什么要使用自旋锁策略呢，缺点是什么？">4、什么是自旋锁，为什么要使用自旋锁策略呢，缺点是什么？</h2>
+<p>如果获取锁失败，立即再尝试获取锁，无限循环直到获取到锁为止。第一次获取锁失败，第二次的尝试会在极短的时间内到来。一旦锁被其他线程释放，就能第一时间获取到锁。</p>
+<p>相比于挂起等待锁：</p>
 <ul>
-<li>优点：没有放弃 CPU 资源，一旦锁被释放就能第一时间获取到锁，更高效。在锁持有时间比较短的场景下非常有用。 </li>
+<li>优点：没有放弃 CPU 资源，一旦锁被释放就能第一时间获取到锁，更高效。在锁持有时间比较短的场景下非常有用。</li>
 <li>缺点：如果锁的持有时间较长。就会浪费 CPU 资源。</li>
 </ul>
 </div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
@@ -486,6 +526,15 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
                 </span>
              
              
+                <span>归为分类:
+                    
+                    
+                        <a href='/categories/%E5%90%8E%E7%AB%AF/'>
+                            后端
+                        </a>
+                    
+                </span>
+            
         
         </i>
     </div>
