@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="测试" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | 个人Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+            
+                <li><a href="/categories/">分类</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            测试
+        </div>
+      
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、数据库操作</h1>
+<h2 id="1、创建数据库">1、创建数据库</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database  数据库名;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>create</code>,<code>database</code> 相当于关键字</li>
+<li>SQL 关键字不区分大小写</li>
+<li>数据库名不能重复</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database 数据库名 character set utf8;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建数据库的时候，指定字符集</li>
+</ul>
+<h2 id="2、查看所有数据库">2、查看所有数据库</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+<h2 id="3、选定指定数据库">3、选定指定数据库</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use 数据库名;</span><br></pre></td></tr></table></figure>
+<p>一旦选定某个指定数据库，后续操作，就都是针对该数据库展开。</p>
+<h2 id="4、删除数据库">4、删除数据库</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database 数据库名;</span><br></pre></td></tr></table></figure>
+<p>注意：<code>drop</code>操作是非常危险的，一旦删掉数据库，数据库中的所有数据都没了。</p>
+<h1>二、数据表操作</h1>
+<h2 id="1、创建数据表">1、创建数据表</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(列名 类型 , 列名 类型.....);</span><br></pre></td></tr></table></figure>
+<p>重点了解如下数据类型：</p>
+<p><code>int</code>、<code>bigint</code>、<code>varchar</code>、<code>double</code>、<code>decimal</code>、<code>datetime</code></p>
+<p>创建表的时候，需要把表的类型确定好，后续插入的数据也要遵循当前类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table product(</span><br><span class="line">  name varchar(30),</span><br><span class="line">  price int ,</span><br><span class="line">  inventory int , </span><br><span class="line">  description varchar(30)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="2、查看所有表">2、查看所有表</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show tables;</span><br></pre></td></tr></table></figure>
+<h2 id="3、查看指定表的结构">3、查看指定表的结构</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc 表名;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://cdn.nlark.com/yuque/0/2023/png/29425690/1699101196419-591a2ce3-cccd-4395-b77c-a719e1eb7ae2.png" class="gallery-item" style="box-shadow: none;"> <img src="https://cdn.nlark.com/yuque/0/2023/png/29425690/1699101196419-591a2ce3-cccd-4395-b77c-a719e1eb7ae2.png" alt=""></a></p>
+<p><code>Field</code>：字段。表示一行里面有几列</p>
+<p><code>Type</code>：每一列的类型</p>
+<p><code>NULL</code>：该列是否允许为空，YES 就是允许为空（不填）</p>
+<p><code>Default</code>：不填的时候的默认值</p>
+<p><code>Extra</code>：额外的补充信息</p>
+<h2 id="4、删除表">4、删除表</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table 表名;</span><br></pre></td></tr></table></figure>
+<p>删除表，相当于删除整个表的所有数据。也是一个危险的操作。</p>
+<h1>三、增删改查</h1>
+<h2 id="1、新增">1、新增</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名 values (值，值，值...);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>SQL 中 <code>‘</code> 和 <code>“</code> 都行。</li>
+<li>大多数没有字符类型的编程语言，都是允许单引号和双引号来表示字符串，并且单双引号的效果是等价的。</li>
+<li>注意：要想插入中文，必须在创建数据库的时候，指定 <code>charset utf8</code></li>
+</ul>
+<h3 id="指定列插入">指定列插入</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into book(name) values ('三国演义'); </span><br></pre></td></tr></table></figure>
+<p>使用 <code>()</code>来标识当前要针对那些列进行插入，多个列名之间可以用，来分割。</p>
+<h3 id="插入多个记录">插入多个记录</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into book values (10,'a'),(12,'b')....;</span><br></pre></td></tr></table></figure>
+<h3 id="两者区别">两者区别</h3>
+<p>一次插入三条记录和分三次插入，每次插入一条记录有什么区别？？？</p>
+<p>MySQL 是一个客户端服务器结构的程序。</p>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/202306072142833.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/202306072142833.png" alt=""></a><br>
+<a target="_blank" rel="noopener" href="https://cdn.nlark.com/yuque/0/2023/png/29425690/1699162809413-799df650-b76b-4b7c-a5a2-e911172df686.png" class="gallery-item" style="box-shadow: none;"> <img src="https://cdn.nlark.com/yuque/0/2023/png/29425690/1699162809413-799df650-b76b-4b7c-a5a2-e911172df686.png" alt=""></a></p>
+<p><strong>每次执行SQL都涉及到了客户端和MySQL服务器之间的通信！所以，每一次的网络交互都有成本，所以多行数据插入是优于单行多次插入的！！</strong></p>
+<h2 id="2、查询">2、查询</h2>
+<h3 id="全列查询">全列查询</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select *from 表名;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>*</code> 是通配符，可以代指任意的列。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/202306072200676.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/202306072200676.png" alt=""></a></p>
+<p><code>select *</code> 一个非常危险的操作！</p>
+<p>因为<code>select *</code> 会查询所有的数据。如果查询的数据非常非常多，那么就会导致这个服务器一瞬间，硬盘的带宽和网卡的带宽都被吃满了。</p>
+<h3 id="指定列查询">指定列查询</h3>
+<p>手动指定查询某一列或者某几列。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 列名,列名....from 表名;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name,author from book;</span><br></pre></td></tr></table></figure>
+<h3 id="查询字段为表达式">查询字段为表达式</h3>
+<p>查询的同时，可以进行计算。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name,price-30 from book;</span><br></pre></td></tr></table></figure>
+<p>MySQL是一个客户端 服务器 结构的程序！！我们看到的客户端显示的结果是一个“临时表”，select 操作不管怎么写，都不会影响到数据库服务器硬盘上存储的原始数据。</p>
+<p>查询结构的列名和表达式是一致的，不利于用户阅读。所以，我们在查询的时候，可以给表达式指定别名。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name,price-30 as '价钱-30' from book;</span><br></pre></td></tr></table></figure>
+<h3 id="查询时去重">查询时去重</h3>
+<p>把重复的行去掉，只保留一份。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct 列名 from 表名;</span><br></pre></td></tr></table></figure>
+<h3 id="排序查询">排序查询</h3>
+<p>对查询到的结果进行排序。MySQL是一个客户端 服务器 结构的程序，我们看到的客户端显示的结果是一个“临时表”。对于数据库服务器上的原始的数据没有任何的顺序上的影响。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 升序排序(asc可以不写)</span><br><span class="line">select 列名 from 表名 order by 列名 asc;</span><br><span class="line">-- 降序排序</span><br><span class="line">select 列名 from 表名 order by 列名 desc;</span><br><span class="line">-- 多列排序（多列排序有先后顺序）</span><br><span class="line">-- 先排前面的。前面的一样再排后面的</span><br><span class="line">select 列名 from 表名 order by 列名,列名....asc;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://cdn.nlark.com/yuque/0/2023/png/29425690/1699166511615-da21104f-aada-42f2-a3ee-3148def36513.png" class="gallery-item" style="box-shadow: none;"> <img src="https://cdn.nlark.com/yuque/0/2023/png/29425690/1699166511615-da21104f-aada-42f2-a3ee-3148def36513.png" alt=""></a></p>
+<p>默认为升序排序，如果想要降序排序，就在列名后面加上 <code>desc</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 列名 from 表名 order by 列名 desc;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://cdn.nlark.com/yuque/0/2023/png/29425690/1699166576609-60103697-53b4-4992-8c2a-16b9155eee24.png" class="gallery-item" style="box-shadow: none;"> <img src="https://cdn.nlark.com/yuque/0/2023/png/29425690/1699166576609-60103697-53b4-4992-8c2a-16b9155eee24.png" alt=""></a></p>
+<p>如果SQL中，没有指定 <code>order by</code>，此时我们的代码中就不应该依赖结果临时表的顺序！MySQL并不承诺，这个不带<code>order by</code>的查询结果是带有一定顺序的。</p>
+<h3 id="条件查询">条件查询</h3>
+<p>查询的同时，制定一个筛选条件，把符合条件的结果保留，不符合的就剔除掉。</p>
+<p><strong>比较运算符</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运算符</td>
+<td>解释</td>
+</tr>
+<tr>
+<td>&gt;,&gt;=,&lt;,&lt;=</td>
+<td>大于，大于等于，小于，小于等于</td>
+</tr>
+<tr>
+<td>=</td>
+<td>等于，NULL 不安全，例如 NULL = NULL 的结果是 NULL</td>
+</tr>
+<tr>
+<td>&lt;=&gt;</td>
+<td>等于，NULL 安全，例如 NULL &lt;=&gt; NULL 的结果是 TRUE(1)</td>
+</tr>
+<tr>
+<td>!=,&lt;&gt;</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>between a0 and a1</td>
+<td>范围匹配，[a0, a1]，如果 a0 &lt;= value &lt;= a1，返回 TRUE(1)</td>
+</tr>
+<tr>
+<td>in(option,…)</td>
+<td>如果是 option 中的任意一个，返回 TRUE(1)</td>
+</tr>
+<tr>
+<td>IS NULL</td>
+<td>是NULL</td>
+</tr>
+<tr>
+<td>is not NULL</td>
+<td>不是NULL</td>
+</tr>
+<tr>
+<td>like</td>
+<td>模糊匹配。% 表示任意多个（包括 0 个）任意字符；_ 表示任意一个字</td>
+</tr>
+</tbody>
+</table>
+<p><strong>逻辑运算符</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运算符</td>
+<td>解释</td>
+</tr>
+<tr>
+<td>and</td>
+<td>多个条件必须都为 TRUE(1)，结果才是 TRUE(1)</td>
+</tr>
+<tr>
+<td>or</td>
+<td>任意一个条件为 TRUE(1), 结果为 TRUE(1)</td>
+</tr>
+<tr>
+<td>not</td>
+<td>条件为 TRUE(1)，结果为 FALSE(0)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>有些列可以不填，不填就相当于 <code>NULL</code></li>
+<li><code>where</code> 条件可以使用表达式，但不能使用别名。</li>
+<li><code>and</code> 的优先级高于 <code>or</code>，在同时使用时，需要使用小括号 () 包裹优先执行的部分。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name,price from book where price &lt; 89;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://cdn.nlark.com/yuque/0/2023/png/29425690/1699168312833-723f392d-1d54-4822-8324-c5365f32ce54.png" class="gallery-item" style="box-shadow: none;"> <img src="https://cdn.nlark.com/yuque/0/2023/png/29425690/1699168312833-723f392d-1d54-4822-8324-c5365f32ce54.png" alt=""></a></p>
+<p>理解查询语句执行的过程：</p>
+<ol>
+<li>服务器需要先遍历表中的每一个记录</li>
+<li>针对当前记录，带入条件，看是否成立</li>
+<li>如果条件成立，则将这一结果加入结果集，返回给客户端。否则，跳过该结构。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">-- 查询英语不及格的同学及英语成绩 ( &lt; 60 )</span><br><span class="line">select name, english from exam_result where english &lt; 60;</span><br><span class="line">-- 查询语文成绩好于英语成绩的同学</span><br><span class="line">select name, chinese, english from exam_result where chinese &gt; english;</span><br><span class="line">-- 查询总分在 200 分以下的同学</span><br><span class="line">select name, chinese + math + english as total from exam_result where chinese + math + english &lt; 200;</span><br><span class="line">-- 查询语文成绩大于80分，且英语成绩大于80分的同学</span><br><span class="line">select * from exam_result where chinese &gt; 80 and english &gt; 80;</span><br><span class="line">-- 查询语文成绩大于80分，或英语成绩大于80分的同学</span><br><span class="line">select * from exam_result where chinese &gt; 80 or english &gt; 80;</span><br><span class="line">-- 观察and 和 OR 的优先级：</span><br><span class="line">select * from exam_result where chinese &gt; 80 or math&gt;70 and english &gt; 70;</span><br><span class="line">select * from exam_result where (chinese &gt; 80 or math&gt;70) and english &gt; 70;</span><br><span class="line">-- 查询语文成绩在 [80, 90] 分的同学及语文成绩</span><br><span class="line">select name, chinese from exam_result where chinese between 80 and 90;</span><br><span class="line">-- 使用 and 也可以实现</span><br><span class="line">select name, chinese from exam_result where chinese &gt;= 80 and chinese &lt;= 90;</span><br><span class="line">-- 查询数学成绩是 58 或者 59 或者 98 或者 99 分的同学及数学成绩</span><br><span class="line">select name, math from exam_result where math IN (58, 59, 98, 99);</span><br><span class="line">-- 使用 OR 也可以实现</span><br><span class="line">select name, math from exam_result where math = 58 OR math = 59 OR math = 98 OR math = 99;</span><br><span class="line">-- % 匹配任意多个（包括 0 个）字符</span><br><span class="line">select name from exam_result where name like '孙%';-- 匹配到孙悟空、孙权</span><br><span class="line">-- _ 匹配严格的一个任意字符</span><br><span class="line">select name from exam_result where name like '孙_';-- 匹配到孙权</span><br><span class="line">-- 查询 qq_mail 已知的同学姓名</span><br><span class="line">select name, qq_mail from student where qq_mail is not null;</span><br><span class="line">-- 查询 qq_mail 未知的同学姓名</span><br><span class="line">select name, qq_mail from student where qq_mail IS NULL;</span><br></pre></td></tr></table></figure>
+<h2 id="3、修改">3、修改</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 set 列名 = 值 where 条件;</span><br></pre></td></tr></table></figure>
+<p>进行修改，要明确一些重要的信息。</p>
+<ul>
+<li>改那个表？</li>
+<li>改这个表的那个列？</li>
+<li>改这个表的那写行？</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update book set price = 80 where name = '1984';</span><br><span class="line">-- 把book表中的price列中1984这一行改成80</span><br><span class="line">-- 这里面的 = 和上面的查询不一样，是赋值而不是相等</span><br></pre></td></tr></table></figure>
+<p><code>select</code> 支持的各种条件，对于 <code>update</code> 来说也是同样生效的。</p>
+<p><code>update</code> 可以理解为先查后改。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update book set price = 0;</span><br></pre></td></tr></table></figure>
+<p><code>update</code> 后面不加其他操作会出现上面？？</p>
+<p>会把所有的数据都修改掉！！非常非常非常危险！！</p>
+<p><strong>【注意】</strong></p>
+<ul>
+<li><code>update</code> 是一个非常危险的操作。</li>
+</ul>
+<h3 id="多列修改">多列修改</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 set 列名 = 值 ,列名 = 值  where 条件;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update book set price = 80, class = '西方小说' where name = '1984';</span><br></pre></td></tr></table></figure>
+<h3 id="排序修改">排序修改</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 set 列名 = 列名 + xxx  order by 排序条件 ;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update book set price = price - 20 order by price limit 3;</span><br><span class="line">-- 把price最低是三位再减20</span><br></pre></td></tr></table></figure>
+<h2 id="4、删除">4、删除</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 where 条件;</span><br><span class="line">-- 直接删除符合条件的行</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from book where name = '了不起的盖茨比';</span><br></pre></td></tr></table></figure>
+<p>删除是按行来删除的，无法直接删除某些列。</p>
+<p>要想删除列，可以通过 <code>update</code> 来更新为 <code>null</code></p>
+<p><code>select</code> 支持的各种条件，对于 <code>delete</code> 来说也是同样生效的。</p>
+<p>如果在 <code>delete</code>的时候没有指定条件，就会把所有的都删除。效果和删表差不多了。</p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2022-08-30</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/C%E8%AF%AD%E8%A8%80/'>
+                            C语言
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+
+</html>
