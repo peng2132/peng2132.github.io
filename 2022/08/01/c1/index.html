@@ -12,7 +12,7 @@
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
-    <meta name="description" content="Linux环境下安装Vim编辑器" />
+    <meta name="description" content="C语言：基础语法" />
     <meta name="hexo-theme-A4" content="v1.8.5" />
     <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
     <title>子夜的星 | 个人Blog</title>
@@ -280,7 +280,7 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 
     
         <div class="post-main-title">
-            Linux环境下安装Vim编辑器
+            C语言：基础语法
         </div>
       
     
@@ -309,7 +309,7 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 -2 的二进制：1110<br>
 -3 的二进制：1101<br>
 <strong>负数的补码等于正数的原码取反后再加 1</strong><br>
-**例如：1 的原码是：0001  那么-1 的补码就是：取反（1110）再加 1 --&gt; 1111 **<br>
+<strong>例如：1 的原码是：0001  那么-1 的补码就是：取反（1110）再加 1 --&gt; 1111</strong><br>
 补码表示法的好处：把十进制的减法，变成二进制的加法。</p>
 <blockquote>
 <p>补码让我想到一个成语，否极泰来，泰卦在《易经》中排序第十一，否卦第十二，泰卦之前还有十个卦，从乾、坤开天辟地起，得历尽艰险、排除万难，才营造出泰的局面。而由泰到否，就不必这么麻烦，直接从云端一路狂泻跌入谷底。事物发展交替更换，由开始0到高峰0111（7），一下跌倒低谷1000（-8），当否到极致了（1111），再往前（0000）就开始转运了。</p>
@@ -391,8 +391,8 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <h1>三、基本运算符</h1>
 <h2 id="1、位运算符">1、位运算符</h2>
 <h3 id="按位与-和-按位或">按位与 和 按位或</h3>
-<p>按位与<code>&amp;</code>：<strong>两个位都为 1 结果位才为 1，否则为 0</strong><br>
-按位或<code>|</code>：<strong>只要有一个位置为 1，结果位就为 1</strong></p>
+<p>按位与<code>&amp;</code>：<strong>两个位都为 1 结果位才为 1，否则为 0</strong></p>
+<p>按位或<code>|</code>：<strong>只要有一个位置为 1，结果位就为 1</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数声明</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">printBinary</span><span class="params">(<span class="type">int</span> num)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line">    <span class="type">int</span> b = <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a的二进制: &quot;</span>);</span><br><span class="line">    printBinary(a);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;b的二进制: &quot;</span>);</span><br><span class="line">    printBinary(b);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a &amp; b = %d\n&quot;</span>, a &amp; b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;(a &amp; b)的二进制: &quot;</span>);</span><br><span class="line">    printBinary(a &amp; b);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a | b = %d\n&quot;</span>, a | b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;(a | b)的二进制: &quot;</span>);</span><br><span class="line">    printBinary(a | b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 函数定义，打印整数的二进制表示</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">printBinary</span><span class="params">(<span class="type">int</span> num)</span> &#123;</span><br><span class="line">    <span class="comment">// 32位整数的位数</span></span><br><span class="line">    <span class="type">int</span> bits = <span class="keyword">sizeof</span>(num) * <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从最高位开始，逐位输出</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = bits - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="comment">// 判断第i位是否为1</span></span><br><span class="line">        <span class="type">int</span> bit = (num &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, bit);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 每4位插入一个空格，方便观察</span></span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">4</span> == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="按位异或">按位异或</h3>
 <p>按位异或<code>^</code>：<strong>相应位置不同结果位则为 1，相同结果位为 0</strong><br>
