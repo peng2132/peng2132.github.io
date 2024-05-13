@@ -294,11 +294,9 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <p>计算机<strong>存储数据</strong>的基本单位：字节<br>
 计算机<strong>表示数据</strong>的基本单位：位<br>
 表示数据方式：二进制<br>
-<a href="/img/c/c1.png" title="数据存储" class="gallery-item" style="box-shadow: none;"> <img src="/img/c/c1.png" alt="数据存储"></a><br>
-位权：十进制每高一位，位权是乘 10，二进制每高一位，位权是乘 2<br>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1700640425646-a360dfbd-369e-4265-a88d-3d353ee8e043.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1700640425646-a360dfbd-369e-4265-a88d-3d353ee8e043.png" alt="image.png"></a>位权：十进制每高一位，位权是乘 10，二进制每高一位，位权是乘 2<br>
 整型类型占 4 个字节<br>
-<a href="/img/c/c2.png" title="数据存储" class="gallery-item" style="box-shadow: none;"> <img src="/img/c/c2.png" alt="数据存储"></a><br>
-这四个格子（字节），每个格子（字节）上面都有一串 16 进制的数字，那是这些格子（字节）的地址。并且这四个地址要是连续的。</p>
+<a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1700640831296-30677a33-4b63-4c85-aa2e-aa9fe50e530b.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1700640831296-30677a33-4b63-4c85-aa2e-aa9fe50e530b.png" alt="image.png"></a>这四个格子（字节），每个格子（字节）上面都有一串 16 进制的数字，那是这些格子（字节）的地址。并且这四个地址要是连续的。</p>
 <h2 id="2、补码表示法">2、补码表示法</h2>
 <p>int 类型的数据范围是：$-2^{31}$~$2^{31}-1$<br>
 为什么负数的范围要比正数多 1 呢？<br>
@@ -389,132 +387,6 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <h2 id="5、给输出内容加个小框框">5、给输出内容加个小框框</h2>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">char</span> s[<span class="number">100</span>],t[<span class="number">100</span>];</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%[^\n]&quot;</span>, &amp;s);</span><br><span class="line">	<span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">	n = <span class="built_in">sprintf</span>(t, <span class="string">&quot;| %s |&quot;</span>, s); <span class="comment">//上边沿长度</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;-&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;| %s |\n&quot;</span>, s);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;-&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1>三、基本运算符</h1>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">类别</th>
-<th style="text-align:center">运算符</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>算术运算符</strong></td>
-<td style="text-align:center"><code>+</code></td>
-<td style="text-align:center">加法</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>-</code></td>
-<td style="text-align:center">减法</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>*</code></td>
-<td style="text-align:center">乘法</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>/</code></td>
-<td style="text-align:center">除法（向 0 取整）</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>%</code></td>
-<td style="text-align:center">取余</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>关系运算符</strong></td>
-<td style="text-align:center"><code>==</code></td>
-<td style="text-align:center">等于</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>!=</code></td>
-<td style="text-align:center">不等于</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;</code></td>
-<td style="text-align:center">小于</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&gt;</code></td>
-<td style="text-align:center">大于</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;=</code></td>
-<td style="text-align:center">小于等于</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&gt;=</code></td>
-<td style="text-align:center">大于等于</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>逻辑运算符</strong></td>
-<td style="text-align:center"><code>&amp;&amp;</code></td>
-<td style="text-align:center">逻辑与</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">`</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>!</code></td>
-<td style="text-align:center">逻辑非</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>位运算符</strong></td>
-<td style="text-align:center"><code>&amp;</code></td>
-<td style="text-align:center">按位与</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">`</td>
-<td style="text-align:center">`</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>^</code></td>
-<td style="text-align:center">按位异或</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>~</code></td>
-<td style="text-align:center">按位取反</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&lt;&lt;</code></td>
-<td style="text-align:center">左移位</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>&gt;&gt;</code></td>
-<td style="text-align:center">右移位</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>赋值运算符</strong></td>
-<td style="text-align:center"><code>=</code></td>
-<td style="text-align:center">赋值</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>递增/递减运算符</strong></td>
-<td style="text-align:center"><code>++</code></td>
-<td style="text-align:center">递增</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"><code>--</code></td>
-<td style="text-align:center">递减</td>
-</tr>
-</tbody>
-</table>
 <h2 id="1、位运算符">1、位运算符</h2>
 <h3 id="按位与-和-按位或">按位与 和 按位或</h3>
 <p>按位与<code>&amp;</code>：<strong>两个位都为 1 结果位才为 1，否则为 0</strong><br>
@@ -613,42 +485,42 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <table>
 <thead>
 <tr>
-<th><strong>运算符</strong></th>
-<th><strong>描述</strong></th>
+<th style="text-align:center"><strong>运算符</strong></th>
+<th style="text-align:center"><strong>描述</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>==</code></td>
-<td>相等</td>
+<td style="text-align:center"><code>==</code></td>
+<td style="text-align:center">相等</td>
 </tr>
 <tr>
-<td><code>!</code></td>
-<td>真变假，假变真</td>
+<td style="text-align:center"><code>!</code></td>
+<td style="text-align:center">真变假，假变真</td>
 </tr>
 <tr>
-<td><code>&lt;</code></td>
-<td>小于</td>
+<td style="text-align:center"><code>&lt;</code></td>
+<td style="text-align:center">小于</td>
 </tr>
 <tr>
-<td><code>&gt;</code></td>
-<td>大于</td>
+<td style="text-align:center"><code>&gt;</code></td>
+<td style="text-align:center">大于</td>
 </tr>
 <tr>
-<td><code>&lt;=</code></td>
-<td>小于等于</td>
+<td style="text-align:center"><code>&lt;=</code></td>
+<td style="text-align:center">小于等于</td>
 </tr>
 <tr>
-<td><code>&gt;=</code></td>
-<td>大于等于</td>
+<td style="text-align:center"><code>&gt;=</code></td>
+<td style="text-align:center">大于等于</td>
 </tr>
 <tr>
-<td><code>&amp;&amp;</code></td>
-<td>逻辑与</td>
+<td style="text-align:center"><code>&amp;&amp;</code></td>
+<td style="text-align:center">逻辑与</td>
 </tr>
 <tr>
-<td><code>&amp;#124;&amp;#124;</code></td>
-<td>逻辑或</td>
+<td style="text-align:center"><code>&amp;#124;&amp;#124;</code></td>
+<td style="text-align:center">逻辑或</td>
 </tr>
 </tbody>
 </table>
@@ -896,7 +768,6 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <h2 id="4、递归函数">4、递归函数</h2>
 <p>递归函数：自己调用自己的函数。递归 = 递推 + 回归。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sum</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        <span class="keyword">return</span> n + sum(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, sum(<span class="number">5</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704203305078-45eb2c0c-27df-4630-abe7-bd9d44977ae1.jpeg" title="8c39d1fc6cde62c0f0d696f7a03ef9b7.jpg" class="gallery-item" style="box-shadow: none;"> <img src="https://zydx-520.oss-cn-beijing.aliyuncs.com/img/1704203305078-45eb2c0c-27df-4630-abe7-bd9d44977ae1.jpeg" alt="8c39d1fc6cde62c0f0d696f7a03ef9b7.jpg"></a></p>
 <p><a href="/img/c/c4.png" title="递归描述" class="gallery-item" style="box-shadow: none;"> <img src="/img/c/c4.png" alt="递归描述"></a></p>
 </div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
