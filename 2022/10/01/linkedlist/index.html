@@ -289,7 +289,8 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
         
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、单链表</h1>
 <h2 id="1、定义">1、定义</h2>
-<p>链表是一种链式存取的数据结构，用一组地址任意的存储单元存放线性表中的数据元素。链表中的数据是以结点来表示的，每个结点的构成：元素(数据元素的映象) + 指针(指示后继元素存储位置)，元素就是存储数据的存储单元，指针就是连接每个结点的地址数据。</p>
+<p>链表是一种链式存取的数据结构，用一组地址任意的存储单元存放线性表中的数据元素。<br>
+链表中的数据是以结点来表示的，每个结点的构成：<strong>元素(数据元素的映象) + 指针(指示后继元素存储位置)</strong>，元素就是存储数据的存储单元，指针就是连接每个结点的地址数据。</p>
 <p>由于是分散存储，为了能够体现出数据元素之间的逻辑关系，每个数据元素在存储的同时，要配备一个指针，用于指向它的直接后继元素，即每一个数据元素都指向下一个数据元素（最后一个指向NULL(空)）。<br>
 链表中每个元素本身由两部分组成：</p>
 <ul>
@@ -298,10 +299,10 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 链表的第一个结点被称为：头节点</li>
 </ul>
 <p>正因为如此，我们只需要记住链表中的头节点就行，顺着头节点这个藤，逐渐的可以找到链表中其他所有的节点。而单链表，顾名思义，链表指向的只有一个方向。</p>
-<p><a href="/img/s/s1.png">链表结构</a></p>
+<p><a href="/img/s/s1.png" title="链表结构" class="gallery-item" style="box-shadow: none;"> <img src="/img/s/s1.png" alt="链表结构"></a></p>
 <h2 id="2、实现">2、实现</h2>
 <h3 id="Ⅰ、定义结构">Ⅰ、定义结构</h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LinkNode</span> &#123;</span></span><br><span class="line">		<span class="type">int</span> data;<span class="comment">//数据域</span></span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">LinkNode</span> *<span class="title">next</span>;</span><span class="comment">//指针域</span></span><br><span class="line">&#125;Node;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LinkNode</span> &#123;</span></span><br><span class="line">	<span class="type">int</span> data;<span class="comment">//数据域</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">LinkNode</span> *<span class="title">next</span>;</span><span class="comment">//指针域</span></span><br><span class="line">&#125;Node;</span><br></pre></td></tr></table></figure>
 <h3 id="Ⅱ、新建一个节点">Ⅱ、新建一个节点</h3>
 <pre><code class="language-c">Node *getNewNode(int val) &#123;
     Node *p = (Node *)malloc(sizeof(Node)); //（1）
