@@ -288,8 +288,7 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
     <div class="post-md">
         
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、数据类型与变量</h1>
-<p>来福是只狗。德福是只猫。张三是个人。A 是一个整型变量。<br>
-变量是我们计算机中用来存储数据的具体空间的指代，而类型是这个变量所对应的类型。</p>
+<p>来福是只狗。德福是只猫。张三是个人。A 是一个整型变量。变量是我们计算机中用来存储数据的具体空间的指代，而类型是这个变量所对应的类型。</p>
 <h2 id="1、计算机中的数据存储">1、计算机中的数据存储</h2>
 <p>计算机<strong>存储数据</strong>的基本单位：字节<br>
 计算机<strong>表示数据</strong>的基本单位：位<br>
@@ -595,14 +594,12 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;我是while\n&quot;</span>); <span class="comment">//while后边的条件满足，死循环的打印&quot;我是while&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过运行结果，能看出他们的区别，while语句是可以实现循环打印效果的。关于<code>if</code>我们就不再浪费笔墨了，重点来看看<code>while</code>。</p>
 <p>首先需要说明的是:</p>
-<p><code>while</code>本身就具有判断能力。即<code>while</code>条件为真的时候，<code>while</code>匹配的语句才会执行，这点和<code>if</code>一致</p>
-<p>所以，当<code>while</code>条件不满足条件，<code>while</code>匹配的代码块也就不会执行，比如：</p>
-<p>示例代码</p>
+<p><code>while</code>本身就具有判断能力。即<code>while</code>条件为真的时候，<code>while</code>匹配的语句才会执行，这点和<code>if</code>一致。所以，当<code>while</code>条件不满足条件，<code>while</code>匹配的代码块也就不会执行，比如：</p>
+<p>示例代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">0</span>)    <span class="comment">// 此处，0表示假，while条件不满足</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;我是while\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其次需要说明的是:</p>
 <p><code>while</code>条件满足的时候，执行完匹配的语句之后，要回到<code>while</code>判断中，继续判断。不像<code>if</code>语句，条件满足，执行完匹配的语句之后，会继续向后执行。这点是两者的不同。</p>
-<p>这点我们通过代码演示一下</p>
-<p>示例代码</p>
+<p>示例代码：</p>
 <blockquote>
 <p>在屏幕上打印 1~10 的值</p>
 </blockquote>
@@ -734,7 +731,7 @@ https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;dead loop!\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">while</span> (<span class="number">1</span>);             <span class="comment">// 设置条件永远为真</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行结果</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dead loop!</span><br><span class="line">dead loop!</span><br><span class="line">dead loop!</span><br><span class="line">dead loop!</span><br><span class="line">...          <span class="comment">// 无数个dead loop!</span></span><br></pre></td></tr></table></figure>
-<p>所以，do while的循环三要素也可以省略哦。</p>
+<p>所以，do while的循环三要素也可以省略。</p>
 <h2 id="4、break-和-continue">4、break 和 continue</h2>
 <p><code>break</code>：跳出 switch 语句和最近一层的循环。<br>
 <code>continue</code> ：结束本次循环，继续下一次循环。</p>
