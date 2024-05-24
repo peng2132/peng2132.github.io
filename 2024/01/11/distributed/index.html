@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="浅谈分布式系统" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | 个人Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+            
+                <li><a href="/categories/">分类</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            浅谈分布式系统
+        </div>
+      
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、单机架构</h1>
+<p>单机架构，只有一台服务器，这个服务器负责所有工作。<br>
+<a href="/img/r/r1.png" title="单机架构" class="gallery-item" style="box-shadow: none;"> <img src="/img/r/r1.png" alt="单机架构"></a><br>
+绝大多数公司的产品，都是这种单机架构。现在计算机硬件发展迅速，哪怕只有一台服务器，但是这台服务器性能很好，可以支持非常高的并发，非常大的数据存储。单机架构足以支撑。</p>
+<h1>二、分布式架构</h1>
+<p>一台主机的硬件资源是有上限的，包括不限于：CPU、内存、硬盘、网络…等等。服务器每次收到一个请求，都是需要消耗上述的一些资源的。如果同一时刻，处理的请求多了就可能会导致某个硬件资源不够用了。无论是那个方面不够用了，都可能会导致服务器处理请求的时间变得很长，甚至于处理出错。而一台主机上面能增加的硬件资源是有限的，取决于主板的拓展能力。如果一台主机拓展到了极限还是不够，就只能引入多台主机了。一旦引入了多台主机，系统就可以称作为“分布式系统”。引入分布式，一定是万不得已。</p>
+<h2 id="1、应用服务与数据库分离">1、应用服务与数据库分离</h2>
+<p><a href="/img/r/r2.png" title="分布式架构" class="gallery-item" style="box-shadow: none;"> <img src="/img/r/r2.png" alt="分布式架构"></a><br>
+针对不同的服务配备不同的服务器，例如应用服务器里面可能会包含很多的业务逻辑，会占用大量的CPU资源。而数据库服务器，则需要更大的硬盘空间，更快的数据访问速度，可以配备更大的硬盘服务器。</p>
+<h2 id="2、负载均衡">2、负载均衡</h2>
+<p>假设在上述情况下，应用服务器还是没有抗住，就需要再引入更多的应用服务器来解决上述问题。<br>
+<a href="/img/r/r3.png" title="负载均衡" class="gallery-item" style="box-shadow: none;"> <img src="/img/r/r3.png" alt="负载均衡"></a><br>
+用户的请求，会先到达负载均衡器/网关服务器。假设现在有1w个用户请求，有2个应用服务器，此时按照负载均衡的方式，就可以让每个应用服务器承担5k的访问量。负载均衡器对于请求量的承担能力，是远远超过应用服务器的。负载均衡器是分配工作，不需要执行任务。</p>
+<h2 id="3、数据库读写分离">3、数据库读写分离</h2>
+<p>增加应用服务器，确实能够处理更高的请求量。但是随之存储服务器要承担的请求量也更多了。<br>
+<a href="/img/r/r4.png" title="数据库读写分离" class="gallery-item" style="box-shadow: none;"> <img src="/img/r/r4.png" alt="数据库读写分离"></a><br>
+实际应用场景种，读的频率是远高于写的频率。主服务器一般是一个，从服务器要有很多个（一主多从）。从节点的数据，要从主节点这同步过来，以主节点为主。</p>
+<h2 id="4、引入缓存">4、引入缓存</h2>
+<p>数据库天然就有个问题，那就是响应速度慢。我们可以把数据区分为“冷热”数据，热点数据放到缓存中，缓存的访问速度往往比数据库快很多。<br>
+<a href="/img/r/r5.png" title="引入缓存" class="gallery-item" style="box-shadow: none;"> <img src="/img/r/r5.png" alt="引入缓存"></a><br>
+缓存服务器中会存放一些小部分的热点数据，热点数据是会被频繁访问到的数据。这里的缓存服务器，就可以用Redis，从数据库存储的仍然是全量数据。这时候，缓存服务器就帮数据库服务器缓解了压力。</p>
+<h2 id="5、数据库分库分表">5、数据库分库分表</h2>
+<p>引入分布式系统，不光要能够去应对更高的请求量（并发量），同时也要能应对更大的数据量。一台主句存不下，就需要多台主机来存储。针对数据库进行进一步的拆分，分库分表。引入多个数据库服务器，每个数据库服务器存储一个或者一部分的数据库。<br>
+<a href="/img/r/r6.png" title="数据库分库分表" class="gallery-item" style="box-shadow: none;"> <img src="/img/r/r6.png" alt="数据库分库分表"></a><br>
+具体如何分库分表，要结合实际的业务场景来展开。业务至关重要，技术知识给业务提高支持。业务决定了技术。</p>
+<h2 id="6、引入微服务">6、引入微服务</h2>
+<p>前面的应用服务器通常都是一个服务器程序，其中包含了很多的业务逻辑，这可能导致单个服务器的代码变得越来越复杂。为了便于代码的维护，可以将这样一个复杂的服务器拆分为更多、功能更单一但更小的服务器，这就是所谓的微服务。<br>
+<a href="/img/r/r7.png" title="数据库分库分表" class="gallery-item" style="box-shadow: none;"> <img src="/img/r/r7.png" alt="数据库分库分表"></a><br>
+引入微服务的代价：</p>
+<ol>
+<li>系统的性能会下降：拆除更多的服务，多个功能之间要更依赖网络通信，网络通信的速度可能会比硬盘慢。</li>
+<li>系统复杂程度更高，可用性收到影响：服务器更多了，出问题的概率更大了。<br>
+引入微服务的优势：</li>
+<li>解决了人的管理问题。</li>
+<li>使用微服务，可以更方便于功能的复用。</li>
+<li>给不同的服务进行不同的部署。</li>
+</ol>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2024-01-11</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/%E5%88%86%E5%B8%83%E5%BC%8F/'>
+                            分布式
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+
+</html>
