@@ -17,42 +17,42 @@
     color: var(--font-color-1);
     margin: 12px 0;
 }
-.post-md h1
-{
-    font-size: 2.5rem;
+.post-md h1 {
+    font-size: 2rem; /* 从2.5rem减小到2rem */
     line-height: 1.2;
-    padding: 24px 0;
+    padding: 20px 0; /* 从24px减小到20px */
 }
-.post-md h2
-{
-    font-size: 2rem;
+
+.post-md h2 {
+    font-size: 1.75rem; /* 从2rem减小到1.75rem */
     line-height: 1.2;
-    padding: 20px 0;
+    padding: 18px 0; /* 从20px减小到18px */
 }
-.post-md h3
-{
-    font-size: 1.75rem;
+
+.post-md h3 {
+    font-size: 1.5rem; /* 从1.75rem减小到1.5rem */
     line-height: 1.2;
-    padding: 18px 0;
+    padding: 16px 0; /* 从18px减小到16px */
 }
-.post-md h4
-{
-    font-size: 1.5rem;
+
+.post-md h4 {
+    font-size: 1.25rem; /* 从1.5rem减小到1.25rem */
     line-height: 1.2;
-    padding: 16px 0;
+    padding: 14px 0; /* 从16px减小到14px */
 }
-.post-md h5
-{
-    font-size: 1.25rem;
+
+.post-md h5 {
+    font-size: 1.125rem; /* 从1.25rem减小到1.125rem */
     line-height: 1.2;
-    padding: 14px 0;
+    padding: 12px 0; /* 从14px减小到12px */
 }
-.post-md h6
-{
-    font-size: 1.125rem;
+
+.post-md h6 {
+    font-size: 1rem; /* 从1.125rem减小到1rem */
     line-height: 1.2;
-    padding: 12px 0;
+    padding: 10px 0; /* 从12px减小到10px */
 }
+
 .post-md a
 {
     color: var(--font-color-2);
