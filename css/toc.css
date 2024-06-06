@@ -1,6 +1,4 @@
-
-
-.left-toc-container{ 
+.left-toc-container { 
   top: 206px;
   left: 1px;
   bottom: 110px;
@@ -11,7 +9,7 @@
 }
 
 .left-toc-container::-webkit-scrollbar {
-  width: 10px; /* 设置滚动条宽度 */
+  width: 15px; /* 增加滚动条宽度 */
 }
 
 .left-toc-container::-webkit-scrollbar-thumb {
@@ -46,21 +44,22 @@
   margin: 0;
   padding: 0;
   border: none;
-  line-height: 30px;
+  line-height: 35px; /* 增加行高 */
 }
 
 
 /* Top level header elements */
 
 .tocify-header {
-  text-indent: 10px;
+  text-indent: 15px; /* 增加缩进 */
+  font-size: 18px; /* 增加字体大小 */
 }
 
 
 /* Top level subheader elements.  These are the first nested items underneath a header element. */
 
 .tocify-subheader {
-  text-indent: 20px;
+  text-indent: 25px; /* 增加缩进 */
   display: none;
   border-left-width: 1px !important;
 }
@@ -69,21 +68,21 @@
 /* Makes the font smaller for all subheader elements. */
 
 .tocify-subheader li {
-  font-size: 15px;
+  font-size: 17px; /* 增加字体大小 */
 }
 
 
 /* Further indents second level subheader elements. */
 
 .tocify-subheader .tocify-subheader {
-  text-indent: 30px;
+  text-indent: 35px; /* 增加缩进 */
 }
 
 
 /* Further indents third level subheader elements. You can continue this pattern if you have more nested elements. */
 
 .tocify-subheader .tocify-subheader .tocify-subheader {
-  text-indent: 40px;
+  text-indent: 45px; /* 增加缩进 */
 }
 
 
@@ -98,10 +97,8 @@
 /* Twitter Bootstrap Override Style */
 
 .nav-list > li > a {
-  padding: 5px;
+  padding: 10px; /* 增加内边距 */
 }
-
-
 
 
 
@@ -109,10 +106,10 @@
 
 .bs-docs-sidebar .nav>li>a {
   color: #999;
-  font-size: 16px;
+  font-size: 18px; /* 增加字体大小 */
   font-weight: 400;
   border-left: 4px solid transparent;
-  padding: 4px 20px;
+  padding: 8px 20px; /* 增加内边距 */
 }
 
 
@@ -129,8 +126,8 @@
 .bs-docs-sidebar .nav .nav>li>a {
   padding-top: 1px;
   padding-bottom: 1px;
-  padding-left: 30px;
-  font-size: 15px;
+  padding-left: 40px; /* 增加内边距 */
+  font-size: 17px; /* 增加字体大小 */
 }
 
 
