@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Deeplx 测速测活脚本" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | 个人Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <head>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+    </ul>
+</div> 
+                    
+                    
+                    
+                    
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            Deeplx 测速测活脚本
+        </div>
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p><a target="_blank" rel="noopener" href="https://github.com/OwO-Network/DeepLX">DeepLX 的项目</a> 封装了 DeepL 的免费网页版，然后转换成 API 以便调用。</p>
+<p>我们在沉浸式翻译中，将翻译服务设置为DeepLX，每秒最大请求数设置为10，这样使用起来美滋滋，基本上任意网页都能实现秒翻译。<br>
+<a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/image-20240606203417664.png" title="image-20240606203417664" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/image-20240606203417664.png" alt="image-20240606203417664"></a></p>
+<p>脚本将接受我们输入的一组DeepLX接口，发送测试请求，记录每个接口的响应时间，并按照延迟时间进行排序，最终输出可用的接口列表。这样，可以快速找到响应速度最快且可靠的接口来使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> concurrent.futures</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入接口列表</span></span><br><span class="line">input_urls = <span class="built_in">input</span>(<span class="string">"请输入以逗号分隔的DeepLX接口列表: "</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将输入的字符串拆分成列表</span></span><br><span class="line">deepl_urls = [url.strip() <span class="keyword">for</span> url <span class="keyword">in</span> input_urls.split(<span class="string">","</span>)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试请求参数</span></span><br><span class="line">test_data = {</span><br><span class="line">    <span class="string">"text"</span>: <span class="string">"Hello, world!"</span>,</span><br><span class="line">    <span class="string">"source_lang"</span>: <span class="string">"EN"</span>,</span><br><span class="line">    <span class="string">"target_lang"</span>: <span class="string">"ZH"</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment"># 超时设置</span></span><br><span class="line">timeout = <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用来收集可用接口及其响应时间</span></span><br><span class="line">available_endpoints = []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测每个接口的可用性和延迟的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check_endpoint</span>(<span class="params">url</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        response = requests.post(url, json=test_data, timeout=timeout)</span><br><span class="line">        latency = time.time() - start_time</span><br><span class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span> <span class="keyword">and</span> (<span class="string">'data'</span> <span class="keyword">in</span> response.json() <span class="keyword">and</span> <span class="built_in">len</span>(<span class="built_in">str</span>(response.json().get(<span class="string">"data"</span>))) &gt; <span class="number">0</span>):</span><br><span class="line">            <span class="keyword">return</span> url, latency</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f"❌ (<span class="subst">{response.status_code}</span>) <span class="subst">{url}</span> 响应时间: <span class="subst">{latency:<span class="number">.2</span>f}</span>s"</span>)</span><br><span class="line">    <span class="keyword">except</span> requests.exceptions.RequestException <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f"❌ <span class="subst">{url}</span> 请求失败: <span class="subst">{<span class="built_in">str</span>(e)}</span>"</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用线程池并行处理请求</span></span><br><span class="line">max_workers = <span class="built_in">min</span>(<span class="number">10</span>, <span class="built_in">len</span>(deepl_urls))</span><br><span class="line"><span class="keyword">with</span> concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) <span class="keyword">as</span> executor:</span><br><span class="line">    futures = [executor.submit(check_endpoint, url) <span class="keyword">for</span> url <span class="keyword">in</span> deepl_urls]</span><br><span class="line">    <span class="keyword">for</span> future <span class="keyword">in</span> concurrent.futures.as_completed(futures):</span><br><span class="line">        result = future.result()</span><br><span class="line">        <span class="keyword">if</span> result <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            available_endpoints.append(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据延迟时间排序接口</span></span><br><span class="line">available_endpoints.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印界面美化</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\n带延迟的可用 DeepLX 端点："</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"-"</span> * <span class="number">60</span>)</span><br><span class="line"><span class="keyword">for</span> endpoint, delay <span class="keyword">in</span> available_endpoints:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"🚀 (<span class="subst">{delay:<span class="number">.2</span>f}</span>s) <span class="subst">{endpoint}</span>"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"-"</span> * <span class="number">60</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印所有可用的接口，按延迟排序</span></span><br><span class="line"><span class="keyword">if</span> available_endpoints:</span><br><span class="line">    formatted_endpoints = <span class="string">", "</span>.join([endpoint[<span class="number">0</span>] <span class="keyword">for</span> endpoint <span class="keyword">in</span> available_endpoints])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"\n可用的DeepLX：(<span class="subst">{<span class="built_in">len</span>(available_endpoints)}</span>) <span class="subst">{formatted_endpoints}</span>\n"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"你的接口全都挂了\n"</span>)</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/image-20240606203730012.png" title="image-20240606203730012" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/image-20240606203730012.png" alt="image-20240606203730012"></a></p>
+<hr>
+<p>网上分享的 DeepLX API地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.deeplx.org/translate,http://203.25.119.208:1188/translate,http://103.158.190.203:4321/translate,http://202.81.237.189:1188/translate,http://42.192.93.139:10003/translate,http://1.12.243.147:1188/translate,http://1.12.45.103:1188/translate,http://159.75.240.245:1188/translate,http://110.42.225.114:1988/translate,http://101.35.115.171:1188/translate,http://123.60.157.70:8085/translate,http://122.152.221.70:1188/translate,http://42.192.21.116:1188/translate,http://124.221.198.187:1188/translate,http://8.140.203.210:1188/translate,http://150.158.80.45:6009/translate,http://119.91.23.165:1188/translate,http://120.46.95.125:1188/translate,http://141.11.139.95:1188/translate,http://43.139.218.213:1188/translate,http://116.252.28.28:1188/translate,http://49.235.73.101:1188/translate,http://175.178.237.179:1188/translate,http://43.143.233.18:1188/translate,http://150.158.45.100:1188/translate,http://117.50.162.145:1188/translate,http://101.35.175.93:1188/translate,http://37.123.196.26:1188/translate,http://124.222.168.113:1188/translate,http://81.70.94.105:1188/translate,http://182.150.116.147:1188/translate,http://146.56.165.8:1188/translate,http://117.50.183.46:1188/translate,http://119.91.152.74:1188/translate,http://43.143.240.2:1188/translate,http://101.42.160.235:1188/translate,http://62.106.70.227:1188/translate,http://124.223.85.170:1188/translate,http://176.126.114.231:1188/translate,http://82.156.36.11:1188/translate,http://132.145.80.159:1188/translate,http://118.89.199.180:80/translate,http://101.43.224.133:1188/translate,http://124.220.101.194:1188/translate,http://132.226.232.50:1188/translate,http://120.77.245.55:1188/translate,http://101.43.100.100:1188/translate,http://43.143.198.166:1188/translate,http://139.224.191.20:1188/translate,http://182.42.127.225:1188/translate,http://101.133.234.93:1188/translate,http://124.71.99.68:1188/translate,http://120.78.15.169:1188/translate,http://107.175.28.239:1188/translate,http://45.145.72.29:1188/translate,http://23.94.122.132:1188/translate,http://47.116.37.52:1188/translate,http://16.163.29.52:12294/translate,http://106.14.72.237:1188/translate,http://47.107.100.134:1188/translate,http://47.119.172.46:1188/translate,http://142.171.77.219:1188/translate,http://8.131.60.61:1188/translate,http://120.78.82.181:1188/translate,http://120.79.93.103:1188/translate,http://129.153.73.237:1188/translate,http://139.159.254.35:1188/translate,http://120.76.140.44:1188/translate,http://132.145.93.176:1188/translate,http://39.107.101.134:1188/translate,http://120.76.141.173:1188/translate,http://18.142.80.110:1188/translate,http://104.234.60.178:1188/translate,http://39.101.74.119:1188/translate,http://139.224.225.116:1188/translate,http://8.138.111.57:1188/translate,http://107.150.100.170:8880/translate,http://39.105.60.208:1188/translate,http://47.119.24.34:1188/translate,http://8.130.121.171:1188/translate,http://47.102.106.172:1188/translate,http://209.141.49.210:1188/translate,http://124.71.191.52:1188/translate,http://121.43.134.47:1188/translate,http://59.110.162.193:1188/translate,http://39.105.97.161:1188/translate,http://211.227.72.101:1188/translate,http://47.107.109.131:1188/translate,http://47.103.194.159:1188/translate,http://121.43.36.212:1188/translate,http://101.133.141.24:8188/translate,http://8.142.134.155:1188/translate,http://123.56.13.17:1188/translate,http://146.56.111.178:1188/translate,http://121.41.99.203:1188/translate,http://39.100.95.114:1188/translate,http://38.148.254.10:1188/translate,http://142.171.218.100:1188/translate,http://139.159.242.136:1188/translate,http://8.134.151.104:1188/translate,http://47.109.98.57:1188/translate,http://8.142.90.128:1188/translate,http://45.147.51.155:1188/translate,http://120.55.189.173:1188/translate,http://116.62.112.61:1188/translate,http://106.14.17.223:1188/translate,http://101.201.38.103:1188/translate,http://18.157.122.228:1188/translate,http://146.56.111.132:8180/translate,http://121.43.165.38:1188/translate,http://153.36.242.81:10030/translate,http://120.26.116.45:1188/translate,http://158.247.197.25:1188/translate,http://47.236.22.51:1188/translate,http://148.135.107.108:1188/translate,http://195.154.184.125:1188/translate,http://54.64.224.232:1188/translate,http://123.116.149.203:1188/translate,http://52.194.218.139:1188/translate,http://168.138.34.126:1188/translate,http://95.164.86.107:1188/translate,http://120.55.63.151:1188/translate,http://123.57.16.233:1188/translate,http://168.138.214.221:1188/translate,http://150.230.200.159:1188/translate,http://146.56.97.135:1188/translate</span><br></pre></td></tr></table></figure>
+<hr>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2024-04-10</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/%E5%B7%A5%E5%85%B7%E8%84%9A%E6%9C%AC/'>
+                            工具脚本
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+<!-- 在这里添加 MathJax 配置 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof MathJax !== "undefined") {
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']],
+                    processEscapes: true
+                }
+            });
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+    });
+</script>
+
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+</html>
