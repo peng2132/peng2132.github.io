@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="C语言：数组与指针" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | 个人Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <head>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+    </ul>
+</div> 
+                    
+                    
+                    
+                    
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            C语言：数组与指针
+        </div>
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、地址</h1>
+<h2 id="1、数据存储">1、数据存储</h2>
+<ul>
+<li><strong>计算机中存储数据的基本单位是字节</strong>：存储在计算机中的数据都是以字节为单位进行管理的。一个字节等于8个位。</li>
+<li><strong>计算机中表示数据的基本单位是位</strong>：表示数据时，计算机使用二进制（0和1）表示每一位数据。</li>
+</ul>
+<h2 id="2、地址">2、地址</h2>
+<p>在计算机中，地址指的是存储器中每个字节的唯一标识。每个存储单元都有一个地址，就像每个房子都有一个门牌号一样。地址用于定位存储在内存中的数据。例如，如果我们要访问存储在某个特定位置的数据，我们就需要知道该数据的地址。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/%E5%9C%B0%E5%9D%80.png" title="数据存储" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/%E5%9C%B0%E5%9D%80.png" alt="数据存储"></a></p>
+<p>【问题】地址是一个几位的二进制数据？</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span></span>{</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">char</span> b;</span><br><span class="line">    <span class="type">double</span> c;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"sizeof(int &amp;) = %lu\n"</span>,<span class="built_in">sizeof</span>(&amp;a));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"sizeof(char &amp;) = %lu\n"</span>,<span class="built_in">sizeof</span>(&amp;b));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"sizeof(double &amp;) = %lu\n"</span>,<span class="built_in">sizeof</span>(&amp;c));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>计算机内存地址的二进制位数取决于系统架构：</p>
+<ul>
+<li><strong>32位系统</strong>：地址是32位二进制数。</li>
+<li><strong>64位系统</strong>：地址是64位二进制数。</li>
+</ul>
+<p>地址的二进制位数通常是32位或64位。</p>
+<h1>二、数组</h1>
+<p>在C语言中，数组是一组相同类型的数据的集合，这些数据存储在连续的内存位置中。数组可以包含基本数据类型（如 <code>int</code>, <code>float</code>, <code>char</code>）的元素，也可以包含更复杂的类型（结构体）。数组的每个元素都可以通过数组名和索引来访问和操作。</p>
+<h2 id="1、数组的声明">1、数组的声明</h2>
+<p>声明数组的语法如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type arrayName[arraySize];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>type</code>：数组中元素的数据类型（如 <code>int</code>, <code>float</code>, <code>char</code> 等）。</li>
+<li><code>arrayName</code>：数组的名称。</li>
+<li><code>arraySize</code>：数组的大小（即数组中元素的数量），必须是一个正整数常量。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">()</span>{</span><br><span class="line">    <span class="type">int</span> <span class="built_in">array</span>[<span class="number">10</span>];<span class="comment">//开辟10个数组</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h2 id="2、可变长数组">2、可变长数组</h2>
+<p>在某些情况下，我们可能在编译时无法确定数组的大小，而是在运行时才知道需要多少空间。它允许在运行时确定数组的大小。可变长数组的声明与普通数组类似，但数组的大小在运行时确定，而不是编译时。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> {</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="type">int</span> <span class="built_in">array</span>[n];  <span class="comment">// 声明一个大小为n的可变长数组</span></span><br><span class="line">    <span class="comment">// 初始化数组元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        <span class="built_in">array</span>[i] = i * <span class="number">10</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// 打印数组元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, <span class="built_in">array</span>[i]);</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h2 id="3、多维数组">3、多维数组</h2>
+<p>多维数组中最常见的是二维数组，二维数组类似于一个矩阵，它有行和列。声明二维数组的语法如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type arrayName[rows][columns];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>type</code>：数组中元素的数据类型。</li>
+<li><code>arrayName</code>：数组的名称。</li>
+<li><code>rows</code>：数组的行数。</li>
+<li><code>columns</code>：数组的列数。</li>
+</ul>
+<p>例如：<code>int b[3][4]</code>其实就是开辟如下图的二维矩阵。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/image-removebg-preview%20(1).png" title="二维数组" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/image-removebg-preview%20(1).png" alt="二维数组"></a></p>
+<h2 id="4、字符数组">4、字符数组</h2>
+<p>符数组的声明和初始化与其他数组类似，但常用于存储字符串时需要注意字符串的终止符 <code>\0</code>（空字符）。</p>
+<p>声明一个字符数组的语法如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> arrayName[arraySize];</span><br></pre></td></tr></table></figure>
+<p>处理字符串的函数主要包含在头文件 <code>string.h</code> 中：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>strlen(str)</code></td>
+<td style="text-align:center">计算字符串长度，以 <code>\0</code> 作为结束符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>strcmp(str1, str2)</code></td>
+<td style="text-align:center">字符串比较</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>strcpy(dest, src)</code></td>
+<td style="text-align:center">字符串拷贝</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>strncmp(str1, str2, n)</code></td>
+<td style="text-align:center">安全的字符串比较，最多比较前 <code>n</code> 个字符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>strncpy(str1, str2, n)</code></td>
+<td style="text-align:center">安全的字符串拷贝，最多拷贝前 <code>n</code> 个字符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>memcpy(str1, str2, n)</code></td>
+<td style="text-align:center">内存拷贝，拷贝前 <code>n</code> 个字节</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>memcmp(str1, str2, n)</code></td>
+<td style="text-align:center">内存比较，比较前 <code>n</code> 个字节</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>memset(str1, c, n)</code></td>
+<td style="text-align:center">内存设置，将 <code>str1</code> 的前 <code>n</code> 个字节设置为 <code>c</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Ⅰ、strlen">Ⅰ、<code>strlen</code></h3>
+<p>计算字符串的长度，以 <code>\0</code> 作为结束符。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> {</span><br><span class="line">    <span class="type">char</span> str[] = <span class="string">"Hello, world!"</span>;</span><br><span class="line">    <span class="type">int</span> length = <span class="built_in">strlen</span>(str);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, length);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="Ⅱ、-strcmp">Ⅱ、 <code>strcmp</code></h3>
+<p>比较两个字符串。如果相等，返回0；如果str1大于str2，返回正值；如果str1小于str2，返回负值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> {</span><br><span class="line">    <span class="type">char</span> str1[] = <span class="string">"Hello"</span>;</span><br><span class="line">    <span class="type">char</span> str2[] = <span class="string">"World"</span>;</span><br><span class="line">    <span class="type">int</span> result = <span class="built_in">strcmp</span>(str1, str2);</span><br><span class="line">    <span class="keyword">if</span> (result == <span class="number">0</span>) {</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"相等\n"</span>);</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (result &lt; <span class="number">0</span>) {</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"str1小于str2\n"</span>);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"str1大于str2\n"</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="Ⅲ、strcpy">Ⅲ、<code>strcpy</code></h3>
+<p>将源字符串拷贝到目标字符串。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> {</span><br><span class="line">    <span class="type">char</span> src[] = <span class="string">"Hello"</span>;</span><br><span class="line">    <span class="type">char</span> dest[<span class="number">20</span>];</span><br><span class="line">    <span class="built_in">strcpy</span>(dest, src);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, dest);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="Ⅳ、-strncmp">Ⅳ、 <code>strncmp</code></h3>
+<p>安全的字符串比较，最多比较前 <code>n</code> 个字符。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> {</span><br><span class="line">    <span class="type">char</span> str1[] = <span class="string">"Hello"</span>;</span><br><span class="line">    <span class="type">char</span> str2[] = <span class="string">"Helium"</span>;</span><br><span class="line">    <span class="type">int</span> result = <span class="built_in">strncmp</span>(str1, str2, <span class="number">3</span>);</span><br><span class="line">    <span class="keyword">if</span> (result == <span class="number">0</span>) {</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"前三位相同\n"</span>);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"前三位不同\n"</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="Ⅴ、-strncpy">Ⅴ、 <code>strncpy</code></h3>
+<p>安全的字符串拷贝，最多拷贝前 <code>n</code> 个字符。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> {</span><br><span class="line">    <span class="type">char</span> src[] = <span class="string">"Hello"</span>;</span><br><span class="line">    <span class="type">char</span> dest[<span class="number">10</span>];</span><br><span class="line">    <span class="built_in">strncpy</span>(dest, src, <span class="number">4</span>);</span><br><span class="line">    dest[<span class="number">4</span>] = <span class="string">'\0'</span>;  <span class="comment">// 确保目标字符串以 '\0' 结束</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, dest);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="Ⅵ、-memcpy">Ⅵ、 <code>memcpy</code></h3>
+<p>内存拷贝，拷贝前 <code>n</code> 个字节。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> {</span><br><span class="line">    <span class="type">char</span> src[] = <span class="string">"Hello, world!"</span>;</span><br><span class="line">    <span class="type">char</span> dest[<span class="number">20</span>];</span><br><span class="line">    <span class="built_in">memcpy</span>(dest, src, <span class="built_in">strlen</span>(src) + <span class="number">1</span>);  <span class="comment">// 包括 '\0'</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, dest);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="Ⅶ、-memcmp">Ⅶ、 <code>memcmp</code></h3>
+<p>内存比较，比较前 <code>n</code> 个字节。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> {</span><br><span class="line">    <span class="type">char</span> str1[] = <span class="string">"Hello"</span>;</span><br><span class="line">    <span class="type">char</span> str2[] = <span class="string">"Hello, world!"</span>;</span><br><span class="line">    <span class="type">int</span> result = <span class="built_in">memcmp</span>(str1, str2, <span class="number">5</span>);</span><br><span class="line">    <span class="keyword">if</span> (result == <span class="number">0</span>) {</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"前五个字节相同\n"</span>);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"前五个字节不同\n"</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="Ⅷ、-memset">Ⅷ、 <code>memset</code></h3>
+<p>内存设置，将 <code>str1</code> 的前 <code>n</code> 个字节设置为 <code>c</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> {</span><br><span class="line">    <span class="type">char</span> str[<span class="number">20</span>] = <span class="string">"Hello, world!"</span>;</span><br><span class="line">    <span class="built_in">memset</span>(str, <span class="string">'*'</span>, <span class="number">5</span>);  <span class="comment">// 将前5个字节设置为 '*'</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, str);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h1>三、指针</h1>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2022-08-15</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/C%E8%AF%AD%E8%A8%80/'>
+                            C语言
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+<!-- 在这里添加 MathJax 配置 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof MathJax !== "undefined") {
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']],
+                    processEscapes: true
+                }
+            });
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+    });
+</script>
+
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+</html>
