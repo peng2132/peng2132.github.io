@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="网络爬虫：解析数据" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | 个人Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <head>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+    </ul>
+</div> 
+                    
+                    
+                    
+                    
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            网络爬虫：解析数据
+        </div>
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>解析数据，除了前面的BeautifulSoup库，还有正则表达式和Xpath两种方法。</p>
+<h1>一、正则表达式</h1>
+<p>正则表达式（简称RE）是一种用来描述和匹配字符串模式的工具。</p>
+<p>它广泛应用于文本处理、数据验证、文本搜索和替换等场景。正则表达式使用一种特殊的语法，可以对字符串进行复杂的模式匹配。</p>
+<p>正则表达式测试：<a target="_blank" rel="noopener" href="https://tool.oschina.net/regex">在线正则表达式测试</a></p>
+<h2 id="1、常用元字符">1、常用元字符</h2>
+<p>元字符：具有固定含义的特殊符号。每个元字符，默认只匹配一个字符串，并且不能匹配换行符。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">元字符</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>.</code></td>
+<td style="text-align:center">匹配除换行符以外的任意字符</td>
+<td style="text-align:center"><code>a.b</code> 可以匹配 <code>a1b</code>、<code>acb</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\w</code></td>
+<td style="text-align:center">匹配字母、数字或下划线</td>
+<td style="text-align:center"><code>\w+</code> 匹配 <code>hello</code>、<code>world_123</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\s</code></td>
+<td style="text-align:center">匹配任意的空白字符</td>
+<td style="text-align:center"><code>\s+</code> 匹配空格、制表符等</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\d</code></td>
+<td style="text-align:center">匹配数字</td>
+<td style="text-align:center"><code>\d+</code> 匹配 <code>123</code>、<code>456</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\n</code></td>
+<td style="text-align:center">匹配一个换行符</td>
+<td style="text-align:center"><code>hello\nworld</code> 匹配换行符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\t</code></td>
+<td style="text-align:center">匹配一个制表符</td>
+<td style="text-align:center"><code>hello\tworld</code> 匹配制表符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>^</code></td>
+<td style="text-align:center">匹配字符串的开始</td>
+<td style="text-align:center"><code>^Hello</code> 匹配 <code>Hello</code> 开头的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>$</code></td>
+<td style="text-align:center">匹配字符串的结束</td>
+<td style="text-align:center"><code>World$</code> 匹配 <code>World</code> 结尾的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\W</code></td>
+<td style="text-align:center">匹配非字母、非数字、非下划线的字符</td>
+<td style="text-align:center"><code>\W+</code> 匹配 <code>!@#</code>、<code>$%^</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\D</code></td>
+<td style="text-align:center">匹配非数字字符</td>
+<td style="text-align:center"><code>\D+</code> 匹配 <code>abc</code>、<code>XYZ</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\S</code></td>
+<td style="text-align:center">匹配非空白字符</td>
+<td style="text-align:center"><code>\S+</code> 匹配 <code>hello</code>、<code>world123</code></td>
+</tr>
+<tr>
+<td style="text-align:center">`a</td>
+<td style="text-align:center">b`</td>
+<td style="text-align:center">匹配字符 <code>a</code> 或字符 <code>b</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>(...)</code></td>
+<td style="text-align:center">捕获括号内的表达式，表示一个组</td>
+<td style="text-align:center"><code>(abc)</code> 捕获 <code>abc</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[...]</code></td>
+<td style="text-align:center">匹配方括号中的任意字符</td>
+<td style="text-align:center"><code>[abc]</code> 匹配 <code>a</code>、<code>b</code> 或 <code>c</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>[^...]</code></td>
+<td style="text-align:center">匹配不在方括号中的任意字符</td>
+<td style="text-align:center"><code>[^abc]</code> 匹配除 <code>a</code>、<code>b</code>、<code>c</code> 之外的任意字符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2、量词">2、量词</h2>
+<p>量词：控制前面的元字符出现的次数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">量词</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>*</code></td>
+<td style="text-align:center">重复零次或更多次</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>+</code></td>
+<td style="text-align:center">重复一次或更多次</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>?</code></td>
+<td style="text-align:center">重复零次或一次</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>{n}</code></td>
+<td style="text-align:center">重复n次</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>{n,}</code></td>
+<td style="text-align:center">重复n次或更多次</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>{n,m}</code></td>
+<td style="text-align:center">重复n到m次</td>
+</tr>
+</tbody>
+</table>
+<p>两种匹配模式：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">模式</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>.*</code></td>
+<td style="text-align:center">贪婪匹配</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>.*?</code></td>
+<td style="text-align:center">惰性匹配</td>
+</tr>
+</tbody>
+</table>
+<p>惰性匹配：尽可能少地匹配字符。在重复元字符后加 <code>?</code> 实现惰性匹配。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406081945089.png" title="惰性匹配" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406081945089.png" alt="惰性匹配"></a></p>
+<p>贪婪匹配：尽可能多地匹配字符。默认的重复元字符都是贪婪的。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406081947402.png" title="image-20240608194658055" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406081947402.png" alt="image-20240608194658055"></a></p>
+<h2 id="3、Re模块">3、Re模块</h2>
+<p>在Python中使用处理正则表达式，可以使用 <code>re</code> 模块，这个模块提供了一系列用于搜索、匹配和操作字符串的函数。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>re.search(pattern, string, flags=0)</code></td>
+<td style="text-align:center">搜索字符串，返回第一个匹配的对象；若无匹配返回 <code>None</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>re.match(pattern, string, flags=0)</code></td>
+<td style="text-align:center">从字符串起始位置匹配模式；若匹配成功返回匹配对象，否则 <code>None</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>re.fullmatch(pattern, string, flags=0)</code></td>
+<td style="text-align:center">整个字符串完全匹配模式返回匹配对象，否则返回 <code>None</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>re.findall(pattern, string, flags=0)</code></td>
+<td style="text-align:center">返回字符串中所有非重叠匹配的列表</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>re.finditer(pattern, string, flags=0)</code></td>
+<td style="text-align:center">返回字符串中所有非重叠匹配的迭代器</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>re.sub(pattern, repl, string, count=0, flags=0)</code></td>
+<td style="text-align:center">用替换字符串替换匹配模式的所有部分，返回替换后的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>re.split(pattern, string, maxsplit=0, flags=0)</code></td>
+<td style="text-align:center">根据模式匹配分割字符串，返回分割后的列表</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例文本</span></span><br><span class="line">text = <span class="string">"在2024年，Python是最受欢迎的编程语言之一。Python 3.9版本在2020年发布。"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. re.search() 搜索字符串，返回第一个匹配的对象</span></span><br><span class="line"><span class="comment"># 查找第一个数字序列</span></span><br><span class="line">search_result = re.search(<span class="string">r'\d+'</span>, text)</span><br><span class="line"><span class="keyword">if</span> search_result:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"re.search: 找到的第一个数字是 '<span class="subst">{search_result.group()}</span>'，位置在 <span class="subst">{search_result.start()}</span>"</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. re.match() 从字符串起始位置匹配模式</span></span><br><span class="line"><span class="comment"># 匹配字符串开头是否为 '在'</span></span><br><span class="line">match_result = re.<span class="keyword">match</span>(<span class="string">r'在'</span>, text)</span><br><span class="line"><span class="keyword">if</span> match_result:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"re.match: 匹配的字符串是 '<span class="subst">{match_result.group()}</span>'，位于字符串的开始"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. re.fullmatch() 整个字符串完全匹配模式</span></span><br><span class="line"><span class="comment"># 检查整个字符串是否只包含中文字符</span></span><br><span class="line">fullmatch_result = re.fullmatch(<span class="string">r'[\u4e00-\u9fff]+'</span>, <span class="string">'在编程'</span>)</span><br><span class="line"><span class="keyword">if</span> fullmatch_result:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"re.fullmatch: 整个字符串完全匹配，匹配到的内容是 '<span class="subst">{fullmatch_result.group()}</span>'"</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. re.findall() 返回字符串中所有非重叠匹配的列表</span></span><br><span class="line"><span class="comment"># 查找所有的数字序列</span></span><br><span class="line">findall_result = re.findall(<span class="string">r'\d+'</span>, text)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"re.findall: 找到的所有数字序列是 <span class="subst">{findall_result}</span>"</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. re.finditer() 返回字符串中所有非重叠匹配的迭代器</span></span><br><span class="line"><span class="comment"># 查找所有的数字序列，并逐一输出</span></span><br><span class="line">finditer_result = re.finditer(<span class="string">r'\d+'</span>, text)</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">match</span> <span class="keyword">in</span> finditer_result:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"re.finditer: 找到的数字是 '<span class="subst">{<span class="keyword">match</span>.group()}</span>'，位置在 <span class="subst">{<span class="keyword">match</span>.start()}</span>"</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 6. re.sub() 用替换字符串替换匹配模式的所有部分</span></span><br><span class="line"><span class="comment"># 将所有数字替换为 '#'</span></span><br><span class="line">sub_result = re.sub(<span class="string">r'\d+'</span>, <span class="string">'#'</span>, text)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"re.sub: 替换后的字符串是: <span class="subst">{sub_result}</span>"</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 7. re.split() 根据模式匹配分割字符串</span></span><br><span class="line"><span class="comment"># 按照空白字符或标点分割字符串</span></span><br><span class="line">split_result = re.split(<span class="string">r'[，。 ]+'</span>, text)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"re.split: 分割后的字符串列表是: <span class="subst">{split_result}</span>"</span>) </span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406081958318.png" title="image-20240608195856954" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406081958318.png" alt="image-20240608195856954"></a></p>
+<h2 id="4、爬取豆瓣电影">4、爬取豆瓣电影</h2>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406082005223.png" title="image-20240608200527961" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406082005223.png" alt="image-20240608200527961"></a></p>
+<p>从<code>&lt;li&gt;</code>标签开始，逐步匹配到包含电影名的<code>&lt;span class="title"&gt;</code>标签，使用非贪婪模式（<code>.*?</code>）匹配中间可能存在的任意字符，直到找到下一个明确的标记，用命名捕获组<code>(?P&lt;name&gt;)</code>提取出电影名部分。</p>
+<p>Re表达式写法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;li&gt;.*?&lt;div <span class="keyword">class</span>=<span class="string">"item"</span>&gt;.*?&lt;span <span class="keyword">class</span>=<span class="string">"title"</span>&gt;(?P&lt;name&gt;.*?)&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<p>爬虫dai’ma</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">headers = {</span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0"</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> start_num <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">250</span>, <span class="number">25</span>):</span><br><span class="line">    response = requests.get(<span class="string">f"https://movie.douban.com/top250?start=<span class="subst">{start_num}</span>"</span>, headers=headers)</span><br><span class="line">    <span class="comment"># 拿到页面源代码</span></span><br><span class="line">    html = response.text</span><br><span class="line">    <span class="comment"># 使用re解析数据</span></span><br><span class="line">    obj = re.<span class="built_in">compile</span>(<span class="string">r'&lt;li&gt;.*?&lt;div class="item"&gt;.*?&lt;span class="title"&gt;(?P&lt;name&gt;.*?)&lt;/span&gt;'</span>,re.S)</span><br><span class="line">    <span class="comment"># 开始匹配</span></span><br><span class="line">    result = obj.finditer(html)</span><br><span class="line">    <span class="comment"># 打印结果</span></span><br><span class="line">    <span class="keyword">for</span> it <span class="keyword">in</span> result:</span><br><span class="line">        <span class="built_in">print</span>(it.group(<span class="string">'name'</span>))</span><br></pre></td></tr></table></figure>
+<h1>二、Xpath</h1>
+<p>Xpath是在XML文档中搜索的一门语言，它可以通过路径表达式来选择节点或节点集，HTML是XML的一个子集。</p>
+<p>安装lxml模块： <code>pip install lxml</code></p>
+<h2 id="1、Xpath解析">1、Xpath解析</h2>
+<h3 id="Ⅰ、节点选择">Ⅰ、节点选择</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>/</code></td>
+<td style="text-align:center">从根节点选择。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>//</code></td>
+<td style="text-align:center">从匹配选择的当前节点选择文档中的节点，而不考虑它们的位置。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>.</code></td>
+<td style="text-align:center">选择当前节点。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>..</code></td>
+<td style="text-align:center">选择当前节点的父节点。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>@</code></td>
+<td style="text-align:center">选择属性。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Ⅱ、路径表达式">Ⅱ、路径表达式</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">表达式</th>
+<th style="text-align:center">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>/bookstore/book</code></td>
+<td style="text-align:center">选择bookstore节点下的所有book子节点。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>//book</code></td>
+<td style="text-align:center">选择文档中的所有book节点，不考虑它们的位置。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>bookstore/book[1]</code></td>
+<td style="text-align:center">选择bookstore节点下的第一个book子节点。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>//title[@lang]</code></td>
+<td style="text-align:center">选择所有具有lang属性的title节点。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>//title[@lang='en']</code></td>
+<td style="text-align:center">选择所有lang属性为’en’的title节点。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Ⅲ、常用函数">Ⅲ、常用函数</h3>
+<ul>
+<li><code>text()</code>: 选择元素的文本。</li>
+<li><code>@attr</code>: 选择元素的属性。</li>
+<li><code>contains()</code>: 判断包含关系。</li>
+<li><code>starts-with()</code>: 判断开始部分。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"></span><br><span class="line">html_content = <span class="string">'''</span></span><br><span class="line"><span class="string">&lt;html&gt;</span></span><br><span class="line"><span class="string">  &lt;body&gt;</span></span><br><span class="line"><span class="string">    &lt;div class="movie"&gt;</span></span><br><span class="line"><span class="string">      &lt;span class="title"&gt;肖申克的救赎&lt;/span&gt;</span></span><br><span class="line"><span class="string">      &lt;span class="title"&gt;The Shawshank Redemption&lt;/span&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class="movie"&gt;</span></span><br><span class="line"><span class="string">      &lt;span class="title"&gt;霸王别姬&lt;/span&gt;</span></span><br><span class="line"><span class="string">      &lt;span class="title"&gt;Farewell My Concubine&lt;/span&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解析HTML</span></span><br><span class="line">tree = etree.HTML(html_content)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取电影标题</span></span><br><span class="line">titles_cn = tree.xpath(<span class="string">'//div[@class="movie"]/span[@class="title"][1]/text()'</span>)</span><br><span class="line">titles_en = tree.xpath(<span class="string">'//div[@class="movie"]/span[@class="title"][2]/text()'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印结果</span></span><br><span class="line"><span class="keyword">for</span> cn, en <span class="keyword">in</span> <span class="built_in">zip</span>(titles_cn, titles_en):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f'中文标题: <span class="subst">{cn}</span>, 英文标题: <span class="subst">{en}</span>'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//div[@class="movie"]/span[@class="title"][1]/text()</span><br></pre></td></tr></table></figure>
+<p><code>//div[@class="movie"]</code>：选择所有class为<code>movie</code>的div元素。</p>
+<p><code>/span[@class="title"][1]</code>：选择每个div中class为<code>title</code>的第一个span元素。</p>
+<p><code>/text()</code>：获取span元素的文本内容。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//div[@class="movie"]/span[@class="title"][2]/text()</span><br></pre></td></tr></table></figure>
+<p>类似上述表达式，但选择的是每个div中class为<code>title</code>的第二个span元素。</p>
+<h2 id="2、爬取豆瓣电影">2、爬取豆瓣电影</h2>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406082159185.png" title="豆瓣" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406082159185.png" alt="豆瓣"></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"></span><br><span class="line">headers = {</span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0"</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> start_num <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">250</span>, <span class="number">25</span>):</span><br><span class="line">    response = requests.get(<span class="string">f"https://movie.douban.com/top250?start=<span class="subst">{start_num}</span>"</span>, headers=headers)</span><br><span class="line">    <span class="comment"># 拿到页面源代码</span></span><br><span class="line">    html = response.text</span><br><span class="line">    <span class="comment"># 使用lxml解析页面</span></span><br><span class="line">    html = etree.HTML(html)</span><br><span class="line">    <span class="comment"># 提取电影名字</span></span><br><span class="line">    titles = html.xpath(<span class="string">'//*[@id="content"]/div/div[1]/ol/li/div/div[2]/div[1]/a/span[1]/text()'</span>)</span><br><span class="line">    <span class="comment"># 提取评分</span></span><br><span class="line">    ratings = html.xpath(<span class="string">'//*[@id="content"]/div/div[1]/ol/li/div/div[2]/div[2]/div/span[2]/text()'</span>)</span><br><span class="line">    <span class="comment"># 打印结果</span></span><br><span class="line">    <span class="keyword">for</span> title, rating <span class="keyword">in</span> <span class="built_in">zip</span>(titles, ratings):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f"电影: <span class="subst">{title}</span> 评分: <span class="subst">{rating}</span>"</span>)</span><br></pre></td></tr></table></figure>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2024-05-03</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/'>
+                            网络爬虫
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+<!-- 在这里添加 MathJax 配置 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof MathJax !== "undefined") {
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']],
+                    processEscapes: true
+                }
+            });
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+    });
+</script>
+
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+</html>
