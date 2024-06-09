@@ -468,8 +468,8 @@ mjx-container[display="true"] + br {
 <td style="text-align:center"><code>\S+</code> 匹配 <code>hello</code>、<code>world123</code></td>
 </tr>
 <tr>
-<td style="text-align:center">`a</td>
-<td style="text-align:center">b`</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
 <td style="text-align:center">匹配字符 <code>a</code> 或字符 <code>b</code></td>
 </tr>
 <tr>
@@ -525,29 +525,10 @@ mjx-container[display="true"] + br {
 </tr>
 </tbody>
 </table>
-<p>两种匹配模式：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">模式</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>.*</code></td>
-<td style="text-align:center">贪婪匹配</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>.*?</code></td>
-<td style="text-align:center">惰性匹配</td>
-</tr>
-</tbody>
-</table>
-<p>惰性匹配：尽可能少地匹配字符。在重复元字符后加 <code>?</code> 实现惰性匹配。</p>
+<p>惰性匹配<code>.*?</code>：尽可能少地匹配字符。在重复元字符后加 <code>?</code> 实现惰性匹配。<br>
+贪婪匹配<code>.*</code>：尽可能多地匹配字符。默认的重复元字符都是贪婪的。</p>
 <p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406081945089.png" title="惰性匹配" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406081945089.png" alt="惰性匹配"></a></p>
-<p>贪婪匹配：尽可能多地匹配字符。默认的重复元字符都是贪婪的。</p>
-<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406081947402.png" title="image-20240608194658055" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406081947402.png" alt="image-20240608194658055"></a></p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406081947402.png" title="贪婪匹配" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406081947402.png" alt="贪婪匹配"></a></p>
 <h2 id="3、Re模块">3、Re模块</h2>
 <p>在Python中使用处理正则表达式，可以使用 <code>re</code> 模块，这个模块提供了一系列用于搜索、匹配和操作字符串的函数。</p>
 <table>
@@ -595,7 +576,7 @@ mjx-container[display="true"] + br {
 <p>从<code>&lt;li&gt;</code>标签开始，逐步匹配到包含电影名的<code>&lt;span class="title"&gt;</code>标签，使用非贪婪模式（<code>.*?</code>）匹配中间可能存在的任意字符，直到找到下一个明确的标记，用命名捕获组<code>(?P&lt;name&gt;)</code>提取出电影名部分。</p>
 <p>Re表达式写法：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;li&gt;.*?&lt;div <span class="keyword">class</span>=<span class="string">"item"</span>&gt;.*?&lt;span <span class="keyword">class</span>=<span class="string">"title"</span>&gt;(?P&lt;name&gt;.*?)&lt;/span&gt;</span><br></pre></td></tr></table></figure>
-<p>爬虫dai’ma</p>
+<p>爬虫代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">headers = {</span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0"</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> start_num <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">250</span>, <span class="number">25</span>):</span><br><span class="line">    response = requests.get(<span class="string">f"https://movie.douban.com/top250?start=<span class="subst">{start_num}</span>"</span>, headers=headers)</span><br><span class="line">    <span class="comment"># 拿到页面源代码</span></span><br><span class="line">    html = response.text</span><br><span class="line">    <span class="comment"># 使用re解析数据</span></span><br><span class="line">    obj = re.<span class="built_in">compile</span>(<span class="string">r'&lt;li&gt;.*?&lt;div class="item"&gt;.*?&lt;span class="title"&gt;(?P&lt;name&gt;.*?)&lt;/span&gt;'</span>,re.S)</span><br><span class="line">    <span class="comment"># 开始匹配</span></span><br><span class="line">    result = obj.finditer(html)</span><br><span class="line">    <span class="comment"># 打印结果</span></span><br><span class="line">    <span class="keyword">for</span> it <span class="keyword">in</span> result:</span><br><span class="line">        <span class="built_in">print</span>(it.group(<span class="string">'name'</span>))</span><br></pre></td></tr></table></figure>
 <h1>二、Xpath</h1>
 <p>Xpath是在XML文档中搜索的一门语言，它可以通过路径表达式来选择节点或节点集，HTML是XML的一个子集。</p>
