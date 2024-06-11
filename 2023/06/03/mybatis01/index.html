@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="MyBatis：基础操作" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | 个人Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <head>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+    </ul>
+</div> 
+                    
+                    
+                    
+                    
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            MyBatis：基础操作
+        </div>
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、注解操作</h1>
+<p><a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh_CN/index.html">MyBatis</a>是一个优秀的持久层框架，主要用于简化程序与数据库之间的交互操作。所谓的持久层，通常是指数据访问层（DAO），它负责与数据库进行交互，包括数据的增删改查等操作。<a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh_CN/index.html">MyBatis</a>通过简化这些操作，使得开发者可以更加便捷地实现数据库操作，提高开发效率。简而言之，MyBatis就是一个简化数据库操作和读取的工具，让开发者能够更加轻松地处理数据库相关任务。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111037100.png" title="img" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111037100.png" alt="img"></a></p>
+<p>Mybatis操作数据库的步骤一般为以下四步：</p>
+<ol>
+<li>准备工作(创建springboot⼯程、数据库表准备、实体类)</li>
+<li>引入Mybatis的相关依赖，配置Mybatis(数据库连接信息)</li>
+<li>编写SQL语句(注解/XML)</li>
+<li>测试</li>
+</ol>
+<h2 id="1、创建项目">1、创建项目</h2>
+<p>创建springboot⼯程，并导入mybatis的起步依赖、mysql的驱动包</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111037214.png" title="image-20240318163539170" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111037214.png" alt="image-20240318163539170"></a></p>
+<p>项目创建完成后，会自动在pom.xml文件中，导入Mybatis依赖和MySQL驱动依赖</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111037469.png" title="image-20240318164001202" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111037469.png" alt="image-20240318164001202"></a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--MyBatis--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- MySQL--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2、数据准备">2、数据准备</h2>
+<p>这里以一个简单的用户信息表为例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `userinfo` (</span><br><span class="line">  `id` <span class="type">INT</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `username` <span class="type">VARCHAR</span>(<span class="number">127</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `password` <span class="type">VARCHAR</span>(<span class="number">127</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `age` TINYINT(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `gender` TINYINT(<span class="number">4</span>) <span class="keyword">DEFAULT</span> <span class="string">'0'</span> COMMENT <span class="string">'1-男, 2-女, 0-默认'</span>,</span><br><span class="line">  `phone` <span class="type">VARCHAR</span>(<span class="number">15</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `delete_flag` TINYINT(<span class="number">4</span>) <span class="keyword">DEFAULT</span> <span class="string">'0'</span> COMMENT <span class="string">'0-正常, 1-删除'</span>,</span><br><span class="line">  `create_time` DATETIME <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span>,</span><br><span class="line">  `update_time` DATETIME <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="built_in">CURRENT_TIMESTAMP</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`)</span><br><span class="line">) ENGINE<span class="operator">=</span>INNODB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4;</span><br></pre></td></tr></table></figure>
+<p>根据这个表，创建对应的实体类<code>UserInfo</code>，实体类的属性名与表中的字段名应该是相对应的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserInfo</span> {</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> Integer gender;</span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line">    <span class="keyword">private</span> Integer deleteFlag;</span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line">    <span class="keyword">private</span> Date updateTime;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h2 id="3、配置连接信息">3、配置连接信息</h2>
+<p>Mybatis中要连接数据库，需要数据库相关参数配置：</p>
+<ol>
+<li>MySQL驱动类</li>
+<li>登录名</li>
+<li>密码</li>
+<li>数据库连接字符串</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111037241.png" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111037241.png" alt=""></a></p>
+<p>如果是<code>application.yml</code>文件，则配置如下内容：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/数据库名?characterEncoding=utf8&amp;useSSL=false</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span>   <span class="comment"># 数据库用户名</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">11111</span>  <span class="comment"># 数据库密码</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br></pre></td></tr></table></figure>
+<p>如果是<code>application.properties</code>文件，则配置如下内容：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.datasource.driver-class-name</span>=<span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"><span class="attr">spring.datasource.url</span>=<span class="string">jdbc:mysql://localhost:3306/数据库名?characterEncoding=utf8&amp;useSSL=false</span></span><br><span class="line"><span class="comment"># 数据库名称</span></span><br><span class="line"><span class="attr">spring.datasource.username</span>=<span class="string">root</span></span><br><span class="line"><span class="comment"># 数据库密码</span></span><br><span class="line"><span class="attr">spring.datasource.password</span>=<span class="string">11111</span></span><br></pre></td></tr></table></figure>
+<h2 id="4、编写持久层代码">4、编写持久层代码</h2>
+<p>在项目的mapper层中，创建持久层接口<code>UserInfoMapper</code>：</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111037296.png" title="image-20240318165502658" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111037296.png" alt="image-20240318165502658"></a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.mybatisdemo.mapper;</span><br><span class="line"><span class="keyword">import</span> com.example.mybatisdemo.model.UserInfo;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.*;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserInfoMap</span> {</span><br><span class="line">    <span class="meta">@Select("select * from userinfo")</span></span><br><span class="line">    List&lt;UserInfo&gt; <span class="title function_">selectAll</span><span class="params">()</span>;</span><br><span class="line">    <span class="meta">@Select("select * from userinfo where id = #{id}")</span></span><br><span class="line">    UserInfo <span class="title function_">selectById</span><span class="params">(Integer id)</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><code>@Mapper</code>：这个注解是用来标记接口是一个MyBatis的映射器。当应用程序启动时，MyBatis会处理这个接口，并在运行时为其创建一个实现。这个实现将负责实际的数据库交互。<code>public interface UserInfoMap</code>：这行代码声明了一个名为<code>UserInfoMap</code>的公共接口。在MyBatis中，映射器通常定义为接口，接口中的每个方法都对应一个数据库操作。</p>
+<p><code>@Select("select * from userinfo where id = #{id}")</code>：这个注解用来指定一个SQL查询语句。<code>#{id}</code>占位符是一个参数，将会与方法<code>selectById</code>中的参数<code>id</code>绑定。MyBatis将会用实际传递给<code>selectById</code>方法的值替换这个占位符。</p>
+<h2 id="5、进行单元测试">5、进行单元测试</h2>
+<p>在需要写单元测试的类中，Generate，选择 Test</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111037200.png" title="img" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111037200.png" alt="img"></a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">UserInfoMapTest</span> {</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserInfoMap userInfoMap;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">selectAll</span><span class="params">()</span> {</span><br><span class="line">        List&lt;UserInfo&gt; list = userInfoMap.selectAll();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><code>@SpringBootTest</code>：这个注解是用来标记测试类，它会告诉Spring Boot启动整个应用程序的上下文，包括所有的 beans 和配置。这样，测试就可以在一个接近真实运行环境的环境中执行。</p>
+<p><code>@Autowired</code>：这个注解用于自动注入UserInfoMap类型的bean。Spring会自动查找UserInfoMap接口的实例，并将其注入到userInfoMap字段中。这样，在测试类中就可以直接使用userInfoMap来调用映射器接口中定义的方法。</p>
+<p><code>@Test</code>：这个注解来自JUnit测试框架，用于标记一个方法作为测试方法。当运行测试时，所有标记有@Test的方法都会被执行。在这个例子中，selectAll方法就是一个测试方法。</p>
+<h1>二、基础操作</h1>
+<h2 id="1、参数传递">1、参数传递</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserInfoMap</span> {</span><br><span class="line">    <span class="meta">@Select("select * from userinfo where id = #{id}")</span></span><br><span class="line">    UserInfo <span class="title function_">selectById</span><span class="params">(Integer id)</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>使用 <code>#{}</code>的方式获取方法中的参数，在<code>selectById</code>方法中添加⼀个参数<code>(id)</code>，将方法中的参数，传给SQL语句。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111037802.png" title="image-20240318171021252" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111037802.png" alt="image-20240318171021252"></a></p>
+<h2 id="2、新增">2、新增</h2>
+<p>Insert语句默认返回的是受影响的行数，新增语句写法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserInfoMap</span> {</span><br><span class="line">    <span class="meta">@Insert("insert into userinfo (username,password,age,gender,phone)"+</span></span><br><span class="line"><span class="meta">            "values(#{username},#{password},#{age},#{gender},#{phone})")</span></span><br><span class="line">    Integer <span class="title function_">insert</span><span class="params">(UserInfo userInfo)</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>对应的测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserInfoMap userInfoMap;</span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">insert</span><span class="params">()</span> {</span><br><span class="line">    <span class="type">UserInfo</span> <span class="variable">userInfo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserInfo</span>();</span><br><span class="line">    userInfo.setUsername(<span class="string">"zhangsan"</span>);</span><br><span class="line">    userInfo.setPassword(<span class="string">"123456"</span>);</span><br><span class="line">    userInfo.setAge(<span class="number">20</span>);</span><br><span class="line">    userInfo.setPhone(<span class="string">"12345678901"</span>);</span><br><span class="line">    userInfo.setGender(<span class="number">1</span>);</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">result</span> <span class="operator">=</span> userInfoMap.insert(userInfo);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>如何拿到自增 ID？在Mapper接口的方法上添加⼀个Options的注解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Options(useGeneratedKeys = true,keyProperty = "id")</span></span><br><span class="line"><span class="meta">@Insert("insert into userinfo (username,password,age,gender,phone)"+</span></span><br><span class="line"><span class="meta">        "values(#{username},#{password},#{age},#{gender},#{phone})")</span></span><br><span class="line">Integer <span class="title function_">insert</span><span class="params">(UserInfo userInfo)</span>;</span><br></pre></td></tr></table></figure>
+<p><code>useGeneratedKeys</code> 和 <code>keyProperty</code> 是 MyBatis 中用于处理数据库自动生成的主键的属性。</p>
+<ol>
+<li><code>useGeneratedKeys</code>：这个属性用于通知 MyBatis 在执行插入操作后，是否需要使用 JDBC 的 <code>getGeneratedKeys</code> 方法来获取数据库自动生成的主键值。例如，在 MySQL 和 SQL Server 中，当你有一个自动递增的字段作为主键时，你可以设置这个属性为 <code>true</code>，这样 MyBatis 就会在插入记录后自动获取这个生成的主键值。默认情况下，这个属性的值是 <code>false</code>，也就是说，MyBatis 不会自动获取生成的主键值。</li>
+<li><code>keyProperty</code>：这个属性用于指定哪个实体类属性的 field 将会被自动生成的主键值填充。当你设置了 <code>useGeneratedKeys</code> 为 <code>true</code> 时，你需要通过 <code>keyProperty</code> 告诉 MyBatis 实体类中哪个属性对应于数据库中的主键列。这样，MyBatis 就会在插入记录后，将自动生成的主键值赋给实体类中指定的属性。如果你没有设置 <code>keyProperty</code>，MyBatis 就不会将获取到的主键值赋给任何属性。</li>
+</ol>
+<h2 id="3、删除">3、删除</h2>
+<p>Mapper接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserInfoMap</span> {</span><br><span class="line">    <span class="meta">@Delete("delete from userinfo where id = #{id}")</span></span><br><span class="line">    Integer <span class="title function_">delete</span><span class="params">(Integer id)</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>对应的测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span> UserInfoMap userInfoMap;    </span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line">   <span class="keyword">void</span> <span class="title function_">delete</span><span class="params">()</span> {</span><br><span class="line">       <span class="type">Integer</span> <span class="variable">result</span> <span class="operator">=</span> userInfoMap.delete(<span class="number">10</span>);</span><br><span class="line">   }</span><br></pre></td></tr></table></figure>
+<h2 id="4、更新">4、更新</h2>
+<p>Mapper接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserInfoMap</span> {</span><br><span class="line">    <span class="meta">@Update("update userinfo set age = #{age} where id = #{id}")</span></span><br><span class="line">    Integer <span class="title function_">update</span><span class="params">(UserInfo userInfo)</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>对应的测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span> UserInfoMap userInfoMap;        </span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line">   <span class="keyword">void</span> <span class="title function_">update</span><span class="params">()</span> {</span><br><span class="line">       <span class="type">UserInfo</span> <span class="variable">userInfo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserInfo</span>();</span><br><span class="line">       userInfo.setId(<span class="number">9</span>);</span><br><span class="line">       userInfo.setAge(<span class="number">30</span>);</span><br><span class="line">       <span class="type">Integer</span> <span class="variable">result</span> <span class="operator">=</span> userInfoMap.update(userInfo);</span><br><span class="line">       <span class="keyword">if</span>(result&gt;<span class="number">0</span>){</span><br><span class="line">           log.info(<span class="string">"update:{}"</span>,result);</span><br><span class="line">       }<span class="keyword">else</span>{</span><br><span class="line">           log.info(<span class="string">"update:更新失败"</span>);</span><br><span class="line">       }</span><br><span class="line">   }</span><br></pre></td></tr></table></figure>
+<h2 id="5、查找">5、查找</h2>
+<p>在执行数据库查询操作时，MyBatis 默认情况下会根据 Java 对象的属性名与数据库字段名的对应关系进行自动映射。具体来说，MyBatis 会将查询结果集中每个字段的值赋给与之名称相同的 Java 对象属性。如果 Java 对象的属性名与数据库字段名不完全匹配，那么这些属性在查询结果中可能会显示为 null，因为没有找到与之对应的字段值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select("SELECT id, username, `password`, age, gender, phone, delete_flag, " +</span></span><br><span class="line"><span class="meta">        "create_time, update_time " +</span></span><br><span class="line"><span class="meta">        "FROM userinfo")</span></span><br><span class="line">List&lt;UserInfo&gt; <span class="title function_">selectAllUser</span><span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111038184.png" title="image-20240318172411484" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111038184.png" alt="image-20240318172411484"></a></p>
+<p>尽管 SQL 语句中包含了 delete_flag、create_time 和 update_time 字段的查询，但由于这些字段名与 Java 对象的属性名不完全一致，导致查询结果中没有为这些属性赋值。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111037326.png" title="image-20240318172803679" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111037326.png" alt="image-20240318172803679"></a></p>
+<p>因为数据库字段名和 Java 对象属性名之间存在差异，例如大小写不同、下划线与驼峰命名法的差异等导致字段名与属性名不匹配。</p>
+<h3 id="Ⅰ、结果映射">Ⅰ、结果映射</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select("SELECT id, username, `password`, age, gender, phone, delete_flag, " +</span></span><br><span class="line"><span class="meta">        "create_time, update_time " +</span></span><br><span class="line"><span class="meta">        "FROM userinfo")</span></span><br><span class="line"><span class="meta">@Results({</span></span><br><span class="line"><span class="meta">    @Result(column = "delete_flag", property = "deleteFlag"),</span></span><br><span class="line"><span class="meta">    @Result(column = "create_time", property = "createTime"),</span></span><br><span class="line"><span class="meta">    @Result(column = "update_time", property = "updateTime")</span></span><br><span class="line"><span class="meta">})</span></span><br><span class="line">List&lt;UserInfo&gt; <span class="title function_">selectAllUser</span><span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+<p><code>@Results({ ... })</code>：这个注解用于定义结果集映射，它包含了一个或多个 @Result 注解，每个 @Result 注解指定了一个数据库字段到 Java 对象属性的映射。<code>@Result(column = "delete_flag", property = "deleteFlag")</code>：这个注解用于将查询结果中的 delete_flag 字段映射到 UserInfo 类中的 deleteFlag 属性。</p>
+<p>如果希望其他的 SQL 查询也能复用这个映射关系，可以使用 MyBatis 的 @ResultMap 注解来定义一个结果映射，然后在其他的查询方法中引用这个结果映射。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select("SELECT id, username, `password`, age, gender, phone, delete_flag, " +</span></span><br><span class="line"><span class="meta">        "create_time, update_time " +</span></span><br><span class="line"><span class="meta">        "FROM userinfo")</span></span><br><span class="line"><span class="meta">@Results(id = "resultMap", value = {</span></span><br><span class="line"><span class="meta">    @Result(column = "delete_flag", property = "deleteFlag"),</span></span><br><span class="line"><span class="meta">    @Result(column = "create_time", property = "createTime"),</span></span><br><span class="line"><span class="meta">    @Result(column = "update_time", property = "updateTime")</span></span><br><span class="line"><span class="meta">})</span></span><br><span class="line">List&lt;UserInfo&gt; <span class="title function_">selectAllUser</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Select("SELECT id, username, `password`, age, gender, phone, delete_flag, " +</span></span><br><span class="line"><span class="meta">        "create_time, update_time " +</span></span><br><span class="line"><span class="meta">        "FROM userinfo " +</span></span><br><span class="line"><span class="meta">        "WHERE id = #{userid}")</span></span><br><span class="line"><span class="meta">@ResultMap("resultMap")</span></span><br><span class="line">UserInfo <span class="title function_">selectById</span><span class="params">(Integer id)</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Ⅱ、开启驼峰命名">Ⅱ、开启驼峰命名</h3>
+<p>通常数据库列采用蛇形命名法（即使用下划线分隔各个单词），而Java对象的属性则遵循驼峰命名法（即首字母大写，其余单词首字母小写）。为了在这两种命名方式之间实现自动映射，需要在MyBatis配置中设置<code>mapUnderscoreToCamelCase</code>属性为<code>true</code>。开启之后，表中字段名：abc_xyz 会自动映射成类中属性名：abcXyz</p>
+<p>在<code>application.yml</code>文件中加入下方配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="attr">configuration:</span>  </span><br><span class="line">    <span class="attr">map-underscore-to-camel-case:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h1>三、XML方式</h1>
+<p>使⽤Mybatis的注解⽅式，主要是来完成⼀些简单的增删改查功能。如果需要实现复杂的SQL功能，建议使⽤XML来配置映射语句，也就是将SQL语句写在XML配置⽂件中。MyBatis XML的方式需要以下两步：</p>
+<ol>
+<li>配置数据库连接字符串</li>
+<li>指明XML的路径</li>
+<li>写持久层代码</li>
+</ol>
+<h2 id="1、配置数据库">1、配置数据库</h2>
+<p>和前面配置数据库的方法一样。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111037981.png" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111037981.png" alt=""></a></p>
+<p>如果是<code>application.yml</code>文件，则配置如下内容：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/mybatis_test?useSSL=false&amp;allowPublicKeyRetrieval=true</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span>   <span class="comment"># 数据库用户名</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">11111</span>  <span class="comment"># 数据库密码</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br></pre></td></tr></table></figure>
+<p>如果是<code>application.properties</code>文件，则配置如下内容：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.datasource.driver-class-name</span>=<span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"><span class="attr">spring.datasource.url</span>=<span class="string">jdbc:mysql://localhost:3306/数据库名?characterEncoding=utf8&amp;useSSL=false</span></span><br><span class="line"><span class="comment"># 数据库名称</span></span><br><span class="line"><span class="attr">spring.datasource.username</span>=<span class="string">root</span></span><br><span class="line"><span class="comment"># 数据库密码</span></span><br><span class="line"><span class="attr">spring.datasource.password</span>=<span class="string">11111</span></span><br></pre></td></tr></table></figure>
+<h2 id="2、指明XML路径">2、指明XML路径</h2>
+<p>如果是<code>application.yml</code>⽂件，配置内容如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="attr">mapper-locations:</span> <span class="string">classpath:mapper/**Mapper.xml</span></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111036270.png" title="image-20240318185622773" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111036270.png" alt="image-20240318185622773"></a></p>
+<p>如果是<code>application.properties</code>⽂件，配置内容如下：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置 mybatis xml 的⽂件路径，在 resources/mapper 创建所有表的 xml ⽂件</span></span><br><span class="line"><span class="attr">mybatis.mapper-locations</span>=<span class="string">classpath:mapper/**Mapper.xml</span></span><br></pre></td></tr></table></figure>
+<p>在mapper文件夹内，新建<code>XXXMapper.xml</code>文件</p>
+<p>在该文件内写入MyBatis 的固定 xml 格式：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span> <span class="keyword">PUBLIC</span> <span class="string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta">        <span class="string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.example.demo.mapper.UserInfoXMLMapper"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111036546.png" title="image-20240318190620099" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111036546.png" alt="image-20240318190620099"></a></p>
+<p>这里通常与 Mapper 接口的完全限定名相匹配。这样 MyBatis 就能够将接口中的方法与映射器文件中的 SQL 语句关联起来。</p>
+<h2 id="3、写持久层代码">3、写持久层代码</h2>
+<p>持久层代码分两部分</p>
+<ol>
+<li>⽅法定义 Interface</li>
+<li>⽅法实现: XXXMapper.xml</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111036065.png" title="image-20240318193647807" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111036065.png" alt="image-20240318193647807"></a></p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111036111.png" title="image-20240318193733566" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111036111.png" alt="image-20240318193733566"></a></p>
+<p>新建一个接口：<code>UserInfoXMlMapper</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserInfoXMLMapper</span> {</span><br><span class="line">    List&lt;UserInfo&gt; <span class="title function_">selectAll</span><span class="params">()</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111036789.png" title="image-20240318193841865" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111036789.png" alt="image-20240318193841865"></a></p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111036259.png" title="image-20240318195354575" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111036259.png" alt="image-20240318195354575"></a></p>
+<p>新建<code>UserInfoXMLMapper</code>用于实现该接口的方法。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span> <span class="keyword">PUBLIC</span> <span class="string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta">        <span class="string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.example.mybatisdemo.mapper.UserInfoXMLMapper"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectAll"</span> <span class="attr">resultType</span>=<span class="string">"com.example.mybatisdemo.model.UserInfo"</span>&gt;</span></span><br><span class="line">        select * from userinfo</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><code>&lt;mapper&gt;</code> 标签是 MyBatis 中映射器文件的基础，它定义了一个命名空间，用于隔离不同的 SQL 语句，防止 SQL ID 冲突。</p>
+</li>
+<li>
+<p><code>namespace</code> 属性是必须的，它通常设置为 Mapper 接口的全限定名，这样 MyBatis 可以将接口中的方法与映射器文件中的 SQL 语句关联起来。例如：<code>&lt;mapper namespace="com.example.mybatisdemo.mapper.UserInfoXMLMapper"&gt;</code></p>
+</li>
+<li>
+<p><code>resultType</code> 属性用于指定查询结果的类型，它应该是返回对象的完全限定类名或别名。MyBatis 会将查询结果映射到这个类型的实例中。</p>
+</li>
+</ul>
+<h1>四、基础操作</h1>
+<h2 id="1、新增">1、新增</h2>
+<p><code>UserInfoXMLMapper</code>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserInfoXMLMapper</span> {</span><br><span class="line">    Integer <span class="title function_">insertUser</span><span class="params">(UserInfo userInfo)</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><code>UserInfoXMLMapper.xml</code>进行实现：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUser"</span>&gt;</span></span><br><span class="line">insert into userinfo (username, password, age, gender, phone) </span><br><span class="line">values (#{username}, #{password}, #{age},#{gender},#{phone})</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>对应的单元测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserInfoXMLMapper userInfoXMLMapper;</span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">insertUser</span><span class="params">()</span> {</span><br><span class="line">    <span class="type">UserInfo</span> <span class="variable">userInfo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserInfo</span>();</span><br><span class="line">    userInfo.setUsername(<span class="string">"lisi"</span>);</span><br><span class="line">    userInfo.setPassword(<span class="string">"123456"</span>);</span><br><span class="line">    userInfo.setAge(<span class="number">20</span>);</span><br><span class="line">    userInfo.setPhone(<span class="string">"12345678901"</span>);</span><br><span class="line">    userInfo.setGender(<span class="number">1</span>);</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">result</span> <span class="operator">=</span> userInfoXMLMapper.insertUser(userInfo);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>获取插入数据的自增ID：接口定义不变，<code>Mapper.xml</code> 实现设置useGeneratedKeys 和keyProperty属性：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUser"</span> <span class="attr">useGeneratedKeys</span>=<span class="string">"true"</span> <span class="attr">keyProperty</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">insert into userinfo (username, password, age, gender, phone) </span><br><span class="line">values (#{username}, #{password}, #{age},#{gender},#{phone})</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2、删除">2、删除</h2>
+<p><code>UserInfoXMLMapper</code>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserInfoXMLMapper</span> {</span><br><span class="line">    Integer <span class="title function_">deleteUser</span><span class="params">(Integer id)</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><code>UserInfoXMLMapper.xml</code>进行实现：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteUser"</span>&gt;</span></span><br><span class="line">delete from userinfo where id = #{id}</span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="3、更新">3、更新</h2>
+<p><code>UserInfoXMLMapper</code>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserInfoXMLMapper</span> {</span><br><span class="line">    Integer <span class="title function_">updateUser</span><span class="params">(UserInfo userInfo)</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><code>UserInfoXMLMapper.xml</code>进行实现：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updateUser"</span>&gt;</span></span><br><span class="line">    update userinfo set username=#{username} where id=#{id}</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="4、查找">4、查找</h2>
+<p>同样的, 使⽤XML 的⽅式进⾏查询, 也存在数据封装的问题。解决办法和注解类似：使用结果映射或者开启驼峰命名。</p>
+<h3 id="Ⅰ、开启驼峰命名">Ⅰ、开启驼峰命名</h3>
+<p>和前面一样。在<code>application.yml</code>文件中加入下方配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="attr">configuration:</span>  </span><br><span class="line">    <span class="attr">map-underscore-to-camel-case:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="Ⅱ、结果映射">Ⅱ、结果映射</h3>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"BaseMap"</span> <span class="attr">type</span>=<span class="string">"com.example.demo.model.UserInfo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span>&gt;</span><span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"delete_flag"</span> <span class="attr">property</span>=<span class="string">"deleteFlag"</span>&gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"create_time"</span> <span class="attr">property</span>=<span class="string">"createTime"</span>&gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"update_time"</span> <span class="attr">property</span>=<span class="string">"updateTime"</span>&gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectAllUser"</span> <span class="attr">resultMap</span>=<span class="string">"BaseMap"</span>&gt;</span></span><br><span class="line">    select id, username, `password`, age, gender, phone, delete_flag, </span><br><span class="line">    create_time, update_time from userinfo</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111036586.png" title="image-20240318202001139" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111036586.png" alt="image-20240318202001139"></a></p>
+<p><code>&lt;resultMap&gt;</code> 标签：</p>
+<ul>
+<li><code>&lt;resultMap&gt;</code> 用于定义如何将查询结果映射到 Java 对象上。</li>
+<li><code>id</code> 属性是结果映射的唯一标识符。</li>
+<li><code>type</code> 属性指定了结果映射的 Java 类型，通常是实体类的全限定名。</li>
+</ul>
+<p><code>&lt;id&gt;</code> 标签：</p>
+<ul>
+<li><code>&lt;id&gt;</code> 标签用于指定主键列的映射。</li>
+<li><code>column</code> 属性表示数据库表中的列名。</li>
+<li><code>property</code> 属性表示 Java 对象中的属性名。</li>
+</ul>
+<p><code>&lt;result&gt;</code> 标签：</p>
+<ul>
+<li><code>&lt;result&gt;</code> 标签用于指定非主键列的映射。</li>
+<li><code>column</code> 属性表示数据库表中的列名。</li>
+<li><code>property</code> 属性表示 Java 对象中的属性名。</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-06-03</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/mybatis/'>
+                            mybatis
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+<!-- 在这里添加 MathJax 配置 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof MathJax !== "undefined") {
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']],
+                    processEscapes: true
+                }
+            });
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+    });
+</script>
+
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+</html>

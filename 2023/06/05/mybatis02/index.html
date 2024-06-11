@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="MyBatis：动态SQL" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | 个人Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <head>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+    </ul>
+</div> 
+                    
+                    
+                    
+                    
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            MyBatis：动态SQL
+        </div>
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、查询与连接池</h1>
+<h2 id="1、多表查询">1、多表查询</h2>
+<p>尽量避免使用多表查询，尤其是对性能要求较高的项目。因为多表查询必然会导致性能变低。</p>
+<p>例如：<code>select *from ta</code>运行需要10ms，<code>select *from tb</code> 运行也需要10s。但是，<code>select *from ta left join tb on ta.xx==tb.xx</code> 必然大于10ms，</p>
+<p>并且数据库集群是很多项目一起使用的，当出现慢查询时，会影响整个集群，也就是会影响其他服务的速度。</p>
+<p>在数据库上再建立一个文章表：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS articleinfo;</span><br><span class="line"></span><br><span class="line">CREATE TABLE <span class="title function_">articleinfo</span> <span class="params">(</span></span><br><span class="line"><span class="params">    id INT PRIMARY KEY AUTO_INCREMENT,</span></span><br><span class="line"><span class="params">    title VARCHAR(<span class="number">100</span>)</span> NOT NULL,</span><br><span class="line">    content TEXT NOT NULL,</span><br><span class="line">    uid INT NOT NULL,</span><br><span class="line">    delete_flag <span class="title function_">TINYINT</span><span class="params">(<span class="number">4</span>)</span> DEFAULT <span class="number">0</span> COMMENT <span class="string">'0-正常, 1-删除'</span>,</span><br><span class="line">    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,</span><br><span class="line">    update_time DATETIME DEFAULT CURRENT_TIMESTAMP</span><br><span class="line">) <span class="type">DEFAULT</span> <span class="variable">CHARSET</span> <span class="operator">=</span> <span class="string">'utf8mb4'</span>;</span><br><span class="line"></span><br><span class="line">INSERT INTO <span class="title function_">articleinfo</span> <span class="params">(title, content, uid)</span> VALUES (<span class="string">'Java'</span>, <span class="string">'Java正文'</span>, <span class="number">1</span>);</span><br><span class="line">INSERT INTO <span class="title function_">articleinfo</span> <span class="params">(title, content, uid)</span> VALUES (<span class="string">'Python'</span>, <span class="string">'Python正文'</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>对应Model层的实体类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.mybatisdemo.model;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArticleInfo</span> {</span><br><span class="line">     <span class="keyword">private</span> Integer id;</span><br><span class="line">     <span class="keyword">private</span> String title;</span><br><span class="line">     <span class="keyword">private</span> String content;</span><br><span class="line">     <span class="keyword">private</span> Integer uid;</span><br><span class="line">     <span class="keyword">private</span> Integer deleteFlag;</span><br><span class="line">     <span class="keyword">private</span> Date createTime;</span><br><span class="line">     <span class="keyword">private</span> Date updateTime;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>根据uid查询作者的名称等相关信息，进行多表查询的sql语句应该为：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ta.<span class="operator">*</span>, tb.username</span><br><span class="line"><span class="keyword">FROM</span> articleinfo ta</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> userinfo tb <span class="keyword">ON</span> ta.uid <span class="operator">=</span> tb.id</span><br><span class="line"><span class="keyword">WHERE</span> ta.id <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>所以，我们要补充实体类，在刚刚的<code>ArticleInfo</code>类中加入用户相关信息，便于映射：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArticleInfo</span> {</span><br><span class="line">     <span class="keyword">private</span> Integer id;</span><br><span class="line">     <span class="keyword">private</span> String title;</span><br><span class="line">     <span class="keyword">private</span> String content;</span><br><span class="line">     <span class="keyword">private</span> Integer uid;</span><br><span class="line">     <span class="keyword">private</span> Integer deleteFlag;</span><br><span class="line">     <span class="keyword">private</span> Date createTime;</span><br><span class="line">     <span class="keyword">private</span> Date updateTime;</span><br><span class="line">     <span class="comment">//用户相关信息</span></span><br><span class="line">     <span class="keyword">private</span> String username;</span><br><span class="line">     <span class="keyword">private</span> Integer age;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>对应的<code>ArticlenInfoMapper</code>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ArticlenInfoMapper</span> {</span><br><span class="line">    <span class="comment">//多表查询</span></span><br><span class="line">    <span class="meta">@Select("select ta.*,tb.username from articleinfo ta " +</span></span><br><span class="line"><span class="meta">            "left join userinfo tb on ta.uid = tb.id " +</span></span><br><span class="line"><span class="meta">            "where ta.id = #{articleId}")</span></span><br><span class="line">    ArticleInfo <span class="title function_">selectArticlenAndUserByID</span><span class="params">(Integer articleId)</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>如果名称不⼀致的，采⽤ResultMap，或者别名的方式解决, 和单表查询⼀样。Mybatis 不管单表还是多表，主要就是三部分：SQL, 映射关系和实体类通过映射关系，把SQL运⾏结果和实体类关联起来。</p>
+<h2 id="2、-和">2、#{} 和 ${}</h2>
+<h3 id="Ⅰ、区别">Ⅰ、区别</h3>
+<p>#{}和${}都是MyBatis框架中使用的占位符。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select("select username, `password`, age, gender, phone from userinfo where username= #{name} ")</span></span><br><span class="line">UserInfo <span class="title function_">selectByName</span><span class="params">(String name)</span>;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111038435.png" title="image-20240319102440963" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111038435.png" alt="image-20240319102440963"></a></p>
+<p>然后把<code>#{}</code>换成<code>${}</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select("select username, `password`, age, gender, phone from userinfo where username= ${name} ")</span></span><br><span class="line">UserInfo <span class="title function_">selectByName</span><span class="params">(String name)</span>;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111038167.png" title="image-20240319102604288" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111038167.png" alt="image-20240319102604288"></a></p>
+<p>使用${}时，MyBatis不会自动添加引号。{}用于直接替换SQL语句中的文本，因此在某些情况下，如果替换的值是字符串，则需要手动添加引号。</p>
+<p>#{}利用预编译SQL的方式工作，它通过在SQL语句中使用?占位符来提前编译SQL命令，并在执行时将参数值安全地绑定到这些占位符上。MyBatis会根据参数的类型自动添加必要的引号，例如字符串类型的参数会被加上引号<code>''</code>，以确保SQL语句的正确性和安全性。相反，${}则采用简单的字符串替换机制，它在SQL语句编译之前直接将参数值替换到SQL命令中。这意味着如果参数值是字符串，需要手动添加引号<code>''</code>来确保SQL语句的语法正确性。</p>
+<p><strong>总结：</strong></p>
+<p><code>#{}</code>和<code>${}</code>在MyBatis中的区别主要体现在以下几个方面：</p>
+<ol>
+<li><strong>预编译处理</strong>：
+<ul>
+<li><code>#{}</code>：使用预编译语句（PreparedStatement），参数会被替换为<code>?</code>，并在SQL执行时绑定参数值。这种方式可以防止SQL注入，因为参数值会被数据库引擎视为数据，而不是SQL命令的一部分。</li>
+<li><code>${}</code>：不使用预编译语句，参数值会直接替换到SQL语句中。这种方式不会防止SQL注入，因为参数值被视为SQL语句的一部分，如果参数值中包含SQL关键字或特殊字符，可能会改变原SQL语句的结构。</li>
+</ul>
+</li>
+<li><strong>参数替换方式</strong>：
+<ul>
+<li><code>#{}</code>：参数替换后，MyBatis会根据参数的类型自动添加引号，例如字符串类型的参数会被加上引号<code>''</code>。</li>
+<li><code>${}</code>：参数替换后，不会自动添加引号，如果参数是字符串类型，需要手动添加引号。</li>
+</ul>
+</li>
+<li><strong>使用场景</strong>：
+<ul>
+<li><code>#{}</code>：适用于大部分情况，尤其是处理用户输入或不可信数据时，提供安全保障。</li>
+<li><code>${}</code>：适用于需要动态指定表名、列名或其他SQL关键字的情况，但使用时需要确保参数值的安全性。</li>
+</ul>
+</li>
+<li><strong>性能影响</strong>：
+<ul>
+<li><code>#{}</code>：通常不会对性能产生负面影响，因为预编译语句可以被数据库缓存和重用。</li>
+<li><code>${}</code>：如果用于字符串替换，可能会导致数据库无法有效缓存执行计划，从而影响性能。</li>
+</ul>
+</li>
+<li><strong>安全性</strong>：
+<ul>
+<li><code>#{}</code>：提供了更好的安全性，可以防止SQL注入攻击。</li>
+<li><code>${}</code>：存在SQL注入的风险，应该尽量避免使用，或者在确保参数值安全的情况下谨慎使用。</li>
+</ul>
+</li>
+</ol>
+<h3 id="Ⅱ、SQL注入">Ⅱ、SQL注入</h3>
+<p><code>${}</code>存在一个非常大的问题，那就是SQL注入。当使用<code>${}</code>时，MyBatis不会对替换的参数值进行任何转义或预处理。这意味着，如果参数值包含特殊字符或SQL关键字，它们将直接插入到SQL语句中。如果这些值来自于用户的输入，且没有得到适当的验证和清理，攻击者就可以利用这一点来执行恶意SQL代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select("select * from userinfo where username like '${username}'")</span></span><br><span class="line">List&lt;UserInfo&gt; <span class="title function_">selectUserByName</span><span class="params">(String username)</span>;</span><br></pre></td></tr></table></figure>
+<p>测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">selectUserByName</span><span class="params">()</span> {</span><br><span class="line">    log.info(userInfoMap.selectUserByName(<span class="string">"' or 1 = '1"</span>).toString());</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111036615.png" title="image-20240319112222814" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111036615.png" alt="image-20240319112222814"></a></p>
+<p>SQL注⼊代码：<code> ' or 1='1</code>。这里可以看见，结果被正确查询出来了, 其中参数 <code>or</code> 被当做了SQL语句的⼀部分。由于没有对用户输⼊进行充分检查，而SQL⼜是拼接⽽成，在用户输⼊参数时，在参数中添加⼀些SQL关键字，达到改变SQL运行结果的目的，也可以完成恶意攻击。</p>
+<h2 id="3、排序查询">3、排序查询</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select("SELECT id, username, age, gender, phone, delete_flag, create_time, update_time " +</span></span><br><span class="line"><span class="meta">        "FROM userinfo " +</span></span><br><span class="line"><span class="meta">        "ORDER BY id ${sort}")</span></span><br><span class="line">List&lt;UserInfo&gt; <span class="title function_">selectAllUserBySort</span><span class="params">(String sort)</span>;</span><br></pre></td></tr></table></figure>
+<p>这里使用 <code>${sort}</code> 可以实现排序查询，而使用<code>#{sort}</code> 就不能实现排序查询。因为，此处 sort 参数为String类型，但是SQL语句中，排序规则是不需要加引号 <code>''</code> 的，所以此时的<code>${sort}</code> 也不加引号。如果此时，使用<code> #{sort}</code> 查询时, sort参数前后会自动给加了引号, 导致出现 sql 错误。</p>
+<h2 id="4、模糊查询">4、模糊查询</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select("select id, username, age, gender, phone, delete_flag, create_time, update_time " +</span></span><br><span class="line"><span class="meta">"from userinfo where username like '%#{key}%' ")</span></span><br><span class="line">List&lt;UserInfo&gt; <span class="title function_">selectAllUserByLike</span><span class="params">(String key)</span>;</span><br></pre></td></tr></table></figure>
+<p>和前面的排序查询一样，在这个查询中，由于<code>#{}</code>的工作方式，MyBatis会把<code>'%#{key}%'</code>当作一个整体，所以 <code>'%#{key}%'</code> 的预期结果是，参数<code>key</code>被包围在两个<code>%</code>通配符之间。所以，当使用like查询的时候，应该使用<code>${}</code>，但是这样又会出现SQL注入的安全问题。</p>
+<p>为了解决这个问题，可以使用MySQL 的<code>CONCAT</code>函数来动态地构造<code>like</code>查询的参数，像这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select("select id, username, age, gender, phone, delete_flag, create_time, update_time " +</span></span><br><span class="line"><span class="meta">"from userinfo where username like concat('%',#{key},'%')")</span></span><br><span class="line">List&lt;UserInfo&gt; <span class="title function_">selectAllUserByLike</span><span class="params">(String key)</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>CONCAT</code>是MySQL中的一个函数，用于将两个或多个字符串连接在一起。</p>
+<p>基本的语法：<code>CONCAT(string1, string2, ..., string_n)</code></p>
+<p>在<code>like</code>查询中，你可以使用<code>CONCAT</code>函数来动态地构造查询参数。例如，以下查询将查找用户名包含关键词"John"的所有用户：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> username <span class="keyword">LIKE</span> CONCAT(<span class="string">'%'</span>, <span class="string">'John'</span>, <span class="string">'%'</span>);</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，<code>CONCAT('%', 'John', '%')</code>将返回字符串"%John%“，这将在任意位置匹配关键词"John”。</p>
+</blockquote>
+<h2 id="5、数据库连接池">5、数据库连接池</h2>
+<p>数据库连接池负责分配、管理和释放数据库连接，它允许应用程序重复使用⼀个现有的数据库连接，而不是再重新建立⼀个。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406111036637.png" title="image-20240319124043111" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406111036637.png" alt="image-20240319124043111"></a></p>
+<p><strong>没有使用数据库连接池的情况：</strong> 每次执行SQL语句，要先创建⼀个新的连接对象，然后执行SQL语句，SQL语句执行完，再关闭连接对象释放资源。这种重复的创建连接，销毁连接比较消耗资源。</p>
+<p><strong>使用数据库连接池的情况：</strong> 程序启动时, 会在数据库连接池中创建⼀定数量的Connection对象, 当客户请求数据库连接池, 会从数据库连接池中获取Connection对象，然后执行SQL， SQL语句执行完，再把Connection归还给连接池。</p>
+<p>目前比较流行的是：Hikari，Druid</p>
+<ol>
+<li>Hikari : SpringBoot默认使用的数据库连接池</li>
+<li>Druid：阿里巴巴开源的数据库连接池</li>
+</ol>
+<p>如果想把默认的数据库连接池从Hikari连接池切换为Druid连接池, 只需要在<code>pom.xml</code>中引入相关依赖即可</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>学习文档：<a target="_blank" rel="noopener" href="https://github.com/alibaba/druid/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题 · alibaba/druid Wiki (github.com)</a></p>
+<h1>二、动态SQL</h1>
+<h2 id="1、-if-标签">1、<code>&lt;if&gt;</code> 标签</h2>
+<p>在 MyBatis 中，<code>&lt;if&gt;</code> 标签是用来构建动态 SQL 语句的一种重要工具。它可以根据某个条件来决定是否包含某段 SQL 语句。</p>
+<p><code>&lt;if&gt;</code> 标签的基本语法如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"condition"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- SQL 语句 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中，<code>condition</code> 是一个表达式，它会被评估为一个布尔值。如果 <code>condition</code> 为 <code>true</code>，那么包含在 <code>&lt;if&gt;</code> 标签中的 SQL 语句将被包含在最终的 SQL 查询中。</p>
+<p>在这个 <code>@Insert</code> 注解中，如果要使用使用动态 SQL，需要使用 <code>&lt;script&gt;</code> 标签包裹整个 SQL 语句。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserInfoMapper</span> {</span><br><span class="line">    <span class="meta">@Insert("&lt;script&gt;insert into userinfo (username,password,age," +</span></span><br><span class="line"><span class="meta">            "&lt;if test = 'gender != null'&gt;gender,&lt;/if&gt;" +</span></span><br><span class="line"><span class="meta">            "phone)"+</span></span><br><span class="line"><span class="meta">            "values(#{username},#{password},#{age}," +</span></span><br><span class="line"><span class="meta">            "&lt;if test = 'gender != null'&gt;#{gender},&lt;/if&gt;" +</span></span><br><span class="line"><span class="meta">            "#{phone})&lt;/script&gt;")</span></span><br><span class="line">    Integer <span class="title function_">insert</span><span class="params">(UserInfo userInfo)</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>单元测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">UserInfoMapperTest</span> {</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserInfoMapper userInfoMapper;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">insert</span><span class="params">()</span> {</span><br><span class="line">        <span class="type">UserInfo</span> <span class="variable">userInfo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserInfo</span>();</span><br><span class="line">        userInfo.setUsername(<span class="string">"ww"</span>);</span><br><span class="line">        userInfo.setPassword(<span class="string">"123456"</span>);</span><br><span class="line">        userInfo.setAge(<span class="number">20</span>);</span><br><span class="line">        userInfo.setPhone(<span class="string">"12345678901"</span>);</span><br><span class="line">        userInfo2Mapper.insert(userInfo);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>上面是注解的写法，但是注解的写法比较麻烦，还是推荐使用XML方法。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertByXML"</span>&gt;</span></span><br><span class="line">        insert into userinfo (username, password,age,</span><br><span class="line">                              <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"gender != null"</span>&gt;</span>gender,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                              phone)</span><br><span class="line">        value (#{username},#{password},#{age},</span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"gender != null"</span>&gt;</span>#{gender},<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            #{phone})</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2、-trim-标签">2、<code>&lt;trim&gt;</code>标签</h2>
+<p><code>&lt;trim&gt;</code>标签的作用是帮我们去除多余的字符。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">&lt;</span><span class="keyword">insert</span> id<span class="operator">=</span>"insertByXML"<span class="operator">&gt;</span></span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span> userinfo (</span><br><span class="line">        <span class="operator">&lt;</span>if test<span class="operator">=</span>"username != null"<span class="operator">&gt;</span></span><br><span class="line">            username,</span><br><span class="line">        <span class="operator">&lt;</span><span class="operator">/</span>if<span class="operator">&gt;</span></span><br><span class="line">        <span class="operator">&lt;</span>if test<span class="operator">=</span>"password != null"<span class="operator">&gt;</span></span><br><span class="line">            password,</span><br><span class="line">        <span class="operator">&lt;</span><span class="operator">/</span>if<span class="operator">&gt;</span></span><br><span class="line">        <span class="operator">&lt;</span>if test<span class="operator">=</span>"age != null"<span class="operator">&gt;</span></span><br><span class="line">            age,</span><br><span class="line">        <span class="operator">&lt;</span><span class="operator">/</span>if<span class="operator">&gt;</span></span><br><span class="line">        <span class="operator">&lt;</span>if test<span class="operator">=</span>"gender != null"<span class="operator">&gt;</span></span><br><span class="line">            gender,</span><br><span class="line">        <span class="operator">&lt;</span><span class="operator">/</span>if<span class="operator">&gt;</span></span><br><span class="line">        <span class="operator">&lt;</span>if test<span class="operator">=</span>"phone != null"<span class="operator">&gt;</span></span><br><span class="line">            phone,</span><br><span class="line">        <span class="operator">&lt;</span><span class="operator">/</span>if<span class="operator">&gt;</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">values</span> (</span><br><span class="line">        <span class="operator">&lt;</span>if test<span class="operator">=</span>"username != null"<span class="operator">&gt;</span></span><br><span class="line">            #{username},</span><br><span class="line">        <span class="operator">&lt;</span><span class="operator">/</span>if<span class="operator">&gt;</span></span><br><span class="line">        <span class="operator">&lt;</span>if test<span class="operator">=</span>"password != null"<span class="operator">&gt;</span></span><br><span class="line">            #{password},</span><br><span class="line">        <span class="operator">&lt;</span><span class="operator">/</span>if<span class="operator">&gt;</span></span><br><span class="line">        <span class="operator">&lt;</span>if test<span class="operator">=</span>"age != null"<span class="operator">&gt;</span></span><br><span class="line">            #{age},</span><br><span class="line">        <span class="operator">&lt;</span><span class="operator">/</span>if<span class="operator">&gt;</span></span><br><span class="line">        <span class="operator">&lt;</span>if test<span class="operator">=</span>"gender != null"<span class="operator">&gt;</span></span><br><span class="line">            #{gender},</span><br><span class="line">        <span class="operator">&lt;</span><span class="operator">/</span>if<span class="operator">&gt;</span></span><br><span class="line">        <span class="operator">&lt;</span>if test<span class="operator">=</span>"phone != null"<span class="operator">&gt;</span></span><br><span class="line">            #{phone}</span><br><span class="line">        <span class="operator">&lt;</span><span class="operator">/</span>if<span class="operator">&gt;</span></span><br><span class="line">    )</span><br><span class="line"><span class="operator">&lt;</span><span class="operator">/</span><span class="keyword">insert</span><span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果像这样，每个属性都会检查是否为 <code>null</code>，因为每个 <code>&lt;if&gt;</code> 标签后面都添加了一个逗号，所以很有可能会导致生成的 SQL 语句最后多出一个逗号。</p>
+<p>为了解决这个问题，可以使用 <code>&lt;trim&gt;</code> 标签来移除这个额外的逗号，标签中有如下属性：</p>
+<ul>
+<li>
+<p><code>prefix</code>：整个语句块，以prefix的值作为前缀</p>
+</li>
+<li>
+<p><code>suffix</code>：整个语句块，以suffix的值作为后缀</p>
+</li>
+<li>
+<p><code>prefixOverrides</code>：整个语句块要去除掉的前缀</p>
+</li>
+<li>
+<p><code>suffixOverrides</code>：整个语句块要去除掉的后缀</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUserByXML"</span>&gt;</span></span><br><span class="line">	insert into userinfo </span><br><span class="line">        <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">"("</span> <span class="attr">suffix</span>=<span class="string">")"</span> <span class="attr">suffixOverrides</span>=<span class="string">","</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username !=null"</span>&gt;</span>username,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"password !=null"</span>&gt;</span>`password`,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"age != null"</span>&gt;</span>age,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"gender != null"</span>&gt;</span>gender,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"phone != null"</span>&gt;</span>phone,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">	values</span><br><span class="line">        <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">"("</span> <span class="attr">suffix</span>=<span class="string">")"</span> <span class="attr">suffixOverrides</span>=<span class="string">","</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username !=null"</span>&gt;</span>#{username},<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"password !=null"</span>&gt;</span>#{password},<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"age != null"</span>&gt;</span>#{age},<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"gender != null"</span>&gt;</span>#{gender},<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"phone != null"</span>&gt;</span>#{phone}<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="3、-where-标签">3、<code>&lt;where&gt;</code>标签</h2>
+<p>在 MyBatis 中，<code>&lt;where&gt;</code> 标签用于构建动态的 “WHERE” 子句。</p>
+<p>它的主要特性是：只有当至少有一个子元素的内容被包含时，才会插入 “WHERE” 关键字，并且会自动去除子句开头的 “AND” 或 “OR”。这对于避免在动态生成的 “WHERE” 子句中出现语法错误非常有用。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectByCondition"</span> <span class="attr">resultType</span>=<span class="string">"com.example.mybatisdemo.model.UserInfo"</span>&gt;</span></span><br><span class="line">    SELECT * FROM userinfo</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username != null"</span>&gt;</span>AND username = #{username}<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"age != null"</span>&gt;</span>AND age = #{age}<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"gender != null"</span>&gt;</span>AND gender = #{gender}<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当然，上面这个需求使用 <code>&lt;trim&gt;</code> 标签也能写：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectByCondition"</span> <span class="attr">resultType</span>=<span class="string">"com.example.mybatisdemo.model.UserInfo"</span>&gt;</span></span><br><span class="line">    SELECT * FROM userinfo</span><br><span class="line">    WHERE</span><br><span class="line">    <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefixOverrides</span>=<span class="string">"AND"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username != null"</span>&gt;</span>AND username = #{username}<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"age != null"</span>&gt;</span>AND age = #{age}<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"gender != null"</span>&gt;</span>AND gender = #{gender}<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在 MyBatis 中，<code>&lt;where&gt;</code> 和 <code>&lt;trim&gt;</code> 标签都可以用于构建动态 SQL，它们的行为有些许差异。</p>
+<ol>
+<li>
+<p><code>&lt;where&gt;</code> 标签：只有当它的子元素有内容时，才会插入 “WHERE” 子句。此外，它还会自动去除子句开头的 “AND” 或 “OR”。这意味着，如果所有的 <code>&lt;if&gt;</code> 测试都为 <code>false</code>，则不会生成 “WHERE” 子句。</p>
+</li>
+<li>
+<p><code>&lt;trim&gt;</code> 标签：可以通过 <code>prefix</code> 属性来添加前缀，例如 “WHERE”，并通过 <code>prefixOverrides</code> 属性来移除子句开头的 “AND” 或 “OR”。然而，与 <code>&lt;where&gt;</code> 标签不同，即使 <code>&lt;trim&gt;</code> 标签的所有子元素都没有内容，它的 <code>prefix</code> 属性指定的内容也会被保留。也就是说，如果所有的 <code>&lt;if&gt;</code> 测试都为 <code>false</code>，则会生成一个空的 “WHERE” 子句。</p>
+</li>
+</ol>
+<h2 id="4、-set-标签">4、<code>&lt;set&gt;</code>标签</h2>
+<p>在 MyBatis 中，<code>&lt;set&gt;</code> 标签主要用于生成动态的 “SET” 子句，这在 “UPDATE” SQL 语句中非常有用。<code>&lt;set&gt;</code> 标签能够确保只在至少有一个子元素的内容被包含时才插入 “SET” 关键字，并且会自动去除掉多余的逗号。这对于避免在动态生成的 “UPDATE” 语句中出现语法错误非常有用。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updateUser"</span> <span class="attr">parameterType</span>=<span class="string">"com.example.mybatisdemo.model.UserInfo"</span>&gt;</span></span><br><span class="line">    UPDATE userinfo</span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username != null"</span>&gt;</span>username = #{username},<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"age != null"</span>&gt;</span>age = #{age},<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"gender != null"</span>&gt;</span>gender = #{gender},<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    WHERE id = #{id}</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在这个例子中，<code>&lt;set&gt;</code> 标签包含了三个 <code>&lt;if&gt;</code> 标签，每个 <code>&lt;if&gt;</code> 标签都会检查一个特定的属性是否为 <code>null</code>。如果属性不为 <code>null</code>，那么对应的 “SET” 子句就会被包含在生成的 SQL 语句中，否则就会被忽略。这样，我们可以根据传入的参数动态地更新不同的字段，而不必为每一种可能的组合都写一个单独的 “UPDATE” 语句。注意，每个条件后面都有一个逗号。在生成的 SQL 语句中，<code>&lt;set&gt;</code> 标签会自动移除最后一个逗号，从而避免了语法错误。这就是 <code>&lt;set&gt;</code> 标签的一个重要特性。</p>
+<h2 id="5、-foreach-标签">5、<code>&lt;foreach&gt;</code>标签</h2>
+<p>在 MyBatis 中，<code>&lt;foreach&gt;</code> 标签允许你在 SQL 语句中使用集合，并将集合中的每个元素都作为一个独立的参数处理。</p>
+<p>以下是 <code>&lt;foreach&gt;</code> 标签的一个例子，用于处理 <code>in</code> 条件查询：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"batchDelete"</span>&gt;</span></span><br><span class="line">delete from userinfo</span><br><span class="line">where id in</span><br><span class="line"><span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"ids"</span> <span class="attr">item</span>=<span class="string">"id"</span> <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></span><br><span class="line">    #{id}</span><br><span class="line"><span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>&lt;foreach&gt;</code> 标签的主要属性包括：</p>
+<ul>
+<li><code>item</code>：集合中每个元素的别名。</li>
+<li><code>index</code>：如果集合是 List，它是元素的索引；如果集合是 Map，它是键值。</li>
+<li><code>collection</code>：要迭代的集合的变量名。</li>
+<li><code>open</code> 和 <code>close</code>：在表达式开始和结束时插入的字符串。</li>
+<li><code>separator</code>：用于分隔每个元素的字符串。</li>
+</ul>
+<p>另一个 <code>&lt;foreach&gt;</code> 标签的常见用法是批量插入：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUsers"</span>&gt;</span></span><br><span class="line">    INSERT INTO userinfo (username, age, gender)</span><br><span class="line">    VALUES</span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">item</span>=<span class="string">"user"</span> <span class="attr">collection</span>=<span class="string">"userList"</span> <span class="attr">separator</span>=<span class="string">","</span>&gt;</span></span><br><span class="line">        (#{user.username}, #{user.age}, #{user.gender})</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个例子中，<code>&lt;foreach&gt;</code> 标签用于处理一个名为 “userList” 的参数，这个参数是一个用户对象的列表。对于列表中的每个用户对象，都会生成一个包含三个参数占位符的元组，这些元组被逗号分隔。这样就可以一次性插入多个用户，而不必为每个用户都写一个单独的 “INSERT” 语句。</p>
+<h2 id="6、-include-标签">6、<code>&lt;include&gt;</code>标签</h2>
+<p>在 MyBatis 中，<code>&lt;include&gt;</code> 标签用于引用在同一命名空间中定义的 <code>&lt;sql&gt;</code> 标签。这样就可以复用 SQL 代码，避免重复编写相同的 SQL 片段。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">"allColumn"</span>&gt;</span></span><br><span class="line">	id, username, age, gender, phone, delete_flag, create_time, update_time</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"queryById"</span> <span class="attr">resultType</span>=<span class="string">"com.example.demo.model.UserInfo"</span>&gt;</span></span><br><span class="line"> select</span><br><span class="line"><span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">"allColumn"</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line"> from userinfo where id= #{id}</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们可以对重复的代码片段进行抽取，将其通过 <code>&lt;sql&gt;</code> 标签封装到⼀个SQL片段，然后再通过<code>&lt;include&gt;</code> 标签进行引用。</p>
+<p>• <code>&lt;sql&gt;</code> ：定义可重用的 SQL片段</p>
+<p>• <code>&lt;include&gt;</code> ：通过属性refid，指定包含的SQL片段</p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-06-05</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/mybatis/'>
+                            mybatis
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+<!-- 在这里添加 MathJax 配置 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof MathJax !== "undefined") {
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']],
+                    processEscapes: true
+                }
+            });
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+    });
+</script>
+
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+</html>
