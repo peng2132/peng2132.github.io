@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Redis：基础命令" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | 个人Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <head>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+    </ul>
+</div> 
+                    
+                    
+                    
+                    
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            Redis：基础命令
+        </div>
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、常用命令</h1>
+<h2 id="1、set和get">1、set和get</h2>
+<p>Redis 是按照键值对的方式存储数据的，<code>get</code>是根据 <code>key</code>来取 value，<code>set</code>是把 <code>key</code>和 value 存储进去。</p>
+<p>set 使用命令：<code>set key value</code></p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406112148256.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406112148256.png" alt="image.png"></a></p>
+<p>get 使用命令：<code>get key</code></p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406112148406.png" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406112148406.png" alt=""></a></p>
+<p>对于 Redis 命令，不区分大小写。如果 get 的 key 不存在，就会返回 nil，nil 表示为空。</p>
+<h2 id="2、keys">2、keys</h2>
+<p>用来查询当前服务器上匹配的 key，通过一些通配符来描述一个 key 的模样，匹配上述模样的 key。</p>
+<p>语法结构：<code>keys pattern</code></p>
+<p><code>pattern</code>可以包括一些通配符：<code>*</code>（匹配任意数量的字符）、<code>?</code>（匹配任何单个字符）和 <code>[]</code>（匹配括号内的任何一个字符）<code>[^]</code>表示排除某个字符。</p>
+<p>虽然<code>keys</code>命令很实用，keys 的时间复杂度为<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.844ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2141 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1752,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container>，所以在生产环境中，尤其是在包含大量键的大型数据库中，一般都禁止使用 keys，尤其是 <code>keys *</code>。这是因为<code>keys</code>命令会遍历整个键空间以查找与指定模式匹配的键，这可能会阻塞其他命令的执行，从而影响数据库的响应时间。</p>
+<h2 id="3、exists">3、exists</h2>
+<p>语法结构：<code>exists key</code></p>
+<p><code>exists</code>指令用于检查给定键是否存在于数据库中。它的语法很简单，只需要提供要检查的键名即可。如果键存在，则返回个数，如果键不存在，则返回整数0。</p>
+<h2 id="4、del">4、del</h2>
+<p>语法结构：<code>del key</code></p>
+<p><code>del</code> 命令用于从Redis数据库中删除指定的键。它可以接受一个或多个键作为参数，并删除这些键及与之关联的任何数据。</p>
+<h2 id="5、expire">5、expire</h2>
+<p><code>expire</code> 命令用于为Redis中的键设置生存时间。</p>
+<p>语法结构：<code>expire  key seconds</code></p>
+<ul>
+<li><code>key</code>：你要设置生存时间的键。</li>
+<li><code>seconds</code>：键的生存时间，以秒为单位。</li>
+</ul>
+<p>当键的生存时间到期后，Redis会自动删除该键。这个功能主要实现缓存、会话管理等功能。基于 Redis 实现分布式锁，为了避免出现不能正确解锁的情况，通常都会在加锁的时候设置一下过期的时间。如果想用毫秒，就使用 pexpire 命令</p>
+<h2 id="6、ttl">6、ttl</h2>
+<p><code>ttl</code> 命令用于查询Redis中指定键的剩余生存时间，以秒为单位。这个命令非常有用，特别是在需要了解某个键的过期时间或调试缓存策略时。当使用 <code>ttl</code>命令时，它会返回以下几种情况之一：</p>
+<ul>
+<li>
+<p>正整数：表示键的剩余生存时间，以秒为单位。</p>
+</li>
+<li>
+<p>-1：表示键存在但没有设置生存时间。</p>
+</li>
+<li>
+<p>-2：表示键不存在。</p>
+</li>
+</ul>
+<h2 id="7、type">7、type</h2>
+<p>语法结构：<code>type key</code></p>
+<p><code>type</code>命令用于检查Redis中指定键的存储数据类型。</p>
+<h2 id="8、渐进式遍历">8、渐进式遍历</h2>
+<p><code>scan</code> 是一种用于遍历数据库中所有键的命令。与传统的 <code>keys</code> 命令不同，<code>scan</code> 命令在遍历大数据集时更为高效，因为它可以在不阻塞服务器的情况下逐步返回结果。<code>scan</code> 命令非常适合处理大型数据集和避免阻塞的场景。</p>
+<p>语法结构：<code>scan cursor [MATCH pattern] [COUNT count]</code></p>
+<ul>
+<li>
+<p>cursor：游标，初始值为<code>0</code>，表示遍历的起点。之后的每次调用都使用前一次调用返回的新游标，用户可以使用该值继续扫描。游标值为 <code>0</code> 表示扫描完成。</p>
+</li>
+<li>
+<p>MATCH pattern：匹配模式，可选参数，用于过滤键。使用glob-style模式，例如 <code>user:*</code> 匹配所有以 <code>user:</code> 开头的键。</p>
+</li>
+<li>
+<p>COUNT count：数量，可选参数，提供一个提示，表示每次迭代应返回的键数。这只是一个提示，实际返回的键数可能会少于这个数量。</p>
+</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; SCAN 0 COUNT 3</span><br><span class="line">1) "5"</span><br><span class="line">2) 1) "keyx"</span><br><span class="line">   2) "key"</span><br><span class="line">   3) "mylist"</span><br></pre></td></tr></table></figure>
+<p><strong>命令解释</strong>：这个命令从游标 <code>0</code> 开始扫描数据库中的键，并建议（提示）每次返回最多 <code>3</code> 个键。</p>
+<p><strong>输出解释</strong>：</p>
+<ol>
+<li><code>"5"</code>：这是返回的新的游标值，表示下一次扫描的起点。这个游标值不是 <code>0</code>，说明扫描尚未完成，可以继续用新的游标值进行下一次扫描。</li>
+<li>键数组：<code>["keyx", "key", "mylist"]</code>。这是本次扫描返回的键，数量可能少于或等于 <code>COUNT</code> 提示的数量（在此例中为 <code>3</code>）。</li>
+</ol>
+<h1>二、常用数据类型</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数据结构</th>
+<th style="text-align:center">内部编码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">字符串</td>
+<td style="text-align:center">int、embstr、raw</td>
+</tr>
+<tr>
+<td style="text-align:center">哈希</td>
+<td style="text-align:center">ziplist、hashtable</td>
+</tr>
+<tr>
+<td style="text-align:center">列表</td>
+<td style="text-align:center">ziplist、linkedlist、quicklist</td>
+</tr>
+<tr>
+<td style="text-align:center">集合</td>
+<td style="text-align:center">intset、hashtable</td>
+</tr>
+<tr>
+<td style="text-align:center">有序集合</td>
+<td style="text-align:center">ziplist、skiplist</td>
+</tr>
+<tr>
+<td style="text-align:center">Stream</td>
+<td style="text-align:center">listpack、radix tree</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p><strong>字符串</strong></p>
+<ul>
+<li>
+<p><code>int</code>: 当字符串值是整数时使用</p>
+</li>
+<li>
+<p><code>embstr</code>: 针对短字符串的特殊优化</p>
+</li>
+<li>
+<p><code>raw</code>: 最基本的字符串</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>哈希</strong></p>
+</li>
+<li>
+<p><code>ziplist</code>: 当哈希表中的键值对数量较少且每个键值对都很小的时候使用。</p>
+</li>
+<li>
+<p><code>hashtable</code>: 当哈希表中的键值对数量较多或其中某个键值对很大的时候使用。</p>
+</li>
+<li>
+<p><strong>列表</strong></p>
+</li>
+<li>
+<p><code>ziplist</code>: 当列表元素数量较少且每个元素都很小的时候使用。</p>
+</li>
+<li>
+<p><code>linkedlist</code>: 早期版本中使用的双向链表（已被 <code>quicklist</code> 取代）。</p>
+</li>
+<li>
+<p><code>quicklist</code>: 现代 Redis 版本中默认使用的编码方式，它是 <code>ziplist</code> 和 <code>linkedlist</code> 的结合体，既节省空间又能高效操作。</p>
+</li>
+<li>
+<p><strong>集合</strong></p>
+</li>
+<li>
+<p><code>intset</code>: 当集合中的所有元素都是整数且数量较少时使用。</p>
+</li>
+<li>
+<p><code>hashtable</code>: 当集合中包含非整数元素或元素数量较多时使用。</p>
+</li>
+<li>
+<p><strong>有序集合</strong></p>
+</li>
+<li>
+<p><code>ziplist</code>: 当有序集合中的元素数量较少且每个元素都很小的时候使用。</p>
+</li>
+<li>
+<p><code>skiplist</code>: 当有序集合中的元素数量较多或某个元素很大的时候使用。</p>
+</li>
+<li>
+<p><strong>Stream</strong></p>
+</li>
+<li>
+<p><code>listpack</code>: 用于存储小范围的压缩列表。</p>
+</li>
+<li>
+<p><code>radix tree</code>: 用于高效地管理和访问流中的数据。</p>
+</li>
+</ul>
+<h2 id="1、String">1、String</h2>
+<p>在 Redis 中的字符串，直接就是按照二进制数据的方式存储的，不会做任何编码转换，存的是啥，取出来的就是啥。</p>
+<h3 id="Ⅰ、常用指令">Ⅰ、常用指令</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>命令</strong></th>
+<th style="text-align:center"><strong>执行效果</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>set key value</code></td>
+<td style="text-align:center">设置 key 的值是 value</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>get key</code></td>
+<td style="text-align:center">获取 key 的值</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>del key [key ...]</code></td>
+<td style="text-align:center">删除指定的 key</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>mset key value [key value ...]</code></td>
+<td style="text-align:center">批量设置指定的 key 和 value</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>mget key [key ...]</code></td>
+<td style="text-align:center">批量获取 key 的值</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>incr key</code></td>
+<td style="text-align:center">指定的 key 的值 +1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>decr key</code></td>
+<td style="text-align:center">指定的 key 的值 -1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>incrby key n</code></td>
+<td style="text-align:center">指定的 key 的值 +n</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>decrby key n</code></td>
+<td style="text-align:center">指定的 key 的值 -n</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>incrbyfloat key n</code></td>
+<td style="text-align:center">指定的 key 的值 +n (浮点数)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>append key value</code></td>
+<td style="text-align:center">将 value 追加到 key 的原值之后</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>getrange key start end</code></td>
+<td style="text-align:center">获取 key 的子字符串</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>setrange key offset value</code></td>
+<td style="text-align:center">从指定位置开始用 value 覆盖 key</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>strlen key</code></td>
+<td style="text-align:center">获取 key 值的长度</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>setnx key value</code></td>
+<td style="text-align:center">仅当 key 不存在时设置其值为 value</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>setex key seconds value</code></td>
+<td style="text-align:center">设置 key 的值并指定过期时间 (秒)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>psetex key milliseconds value</code></td>
+<td style="text-align:center">设置 key 的值并指定过期时间 (毫秒)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2、Hash">2、Hash</h2>
+<p>Redis 自身已是键值对结构了，Redis 自身的键值对就说通过 Hash 来组织的。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406112158885.png" title="Hash" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406112158885.png" alt="Hash"></a></p>
+<p>哈希类型种的映射关系通常称为 field-vaule，用于区分 Redis 整体键值对，这里的 value 是指 field 对应的值，不是键对应的值。</p>
+<h3 id="Ⅰ、常用指令-2">Ⅰ、常用指令</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>命令</strong></th>
+<th style="text-align:center"><strong>执行效果</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>hset key field value</code></td>
+<td style="text-align:center">设置值</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>hget key field</code></td>
+<td style="text-align:center">获取值</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>hdel key field [field ...]</code></td>
+<td style="text-align:center">删除 field</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>hlen key</code></td>
+<td style="text-align:center">计算 field 个数</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>hgetall key</code></td>
+<td style="text-align:center">获取所有的 field-value</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>hmget key field [field ...]</code></td>
+<td style="text-align:center">批量获取 field-value</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>hexists key field</code></td>
+<td style="text-align:center">判断 field 是否存在</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>hkeys key</code></td>
+<td style="text-align:center">获取所有的 field</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>hvals key</code></td>
+<td style="text-align:center">获取所有的 value</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>hsetnx key field value</code></td>
+<td style="text-align:center">设置值，但必须在 field 不存在时才能设置成功</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>hincrby key field n</code></td>
+<td style="text-align:center">对应 field-value +n</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>hincrbyfloat key field n</code></td>
+<td style="text-align:center">对应 field-value +n</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>hstrlen key field</code></td>
+<td style="text-align:center">计算 value 的字符串长度</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3、List">3、List</h2>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406112200062.png" title="List" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406112200062.png" alt="List"></a></p>
+<p>约定最左侧元素下标为 0，redis 的下标支持负数下标。list 内部的编码方式并非是一个简单的数组，而是更接近于“双端队列”。list 中的元素是允许重复的，像 hash 这样的类型，field 是不能重复的。</p>
+<h3 id="Ⅰ、常用指令-3">Ⅰ、常用指令</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">操作类型</th>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">执行效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">添加</td>
+<td style="text-align:center"><code>rpush key value </code></td>
+<td style="text-align:center">在列表的右侧（尾部）插入一个或多个值，返回列表的长度</td>
+</tr>
+<tr>
+<td style="text-align:center">添加</td>
+<td style="text-align:center"><code>lpush key value</code></td>
+<td style="text-align:center">在列表的左侧（头部）插入一个或多个值，返回列表的长度</td>
+</tr>
+<tr>
+<td style="text-align:center">添加</td>
+<td style="text-align:center">`linsert key before</td>
+<td style="text-align:center">after pivot value`</td>
+</tr>
+<tr>
+<td style="text-align:center">查找</td>
+<td style="text-align:center"><code>lrange key start end</code></td>
+<td style="text-align:center">返回列表中指定范围内的元素</td>
+</tr>
+<tr>
+<td style="text-align:center">查找</td>
+<td style="text-align:center"><code>lindex key index</code></td>
+<td style="text-align:center">返回列表中指定索引位置的元素</td>
+</tr>
+<tr>
+<td style="text-align:center">查找</td>
+<td style="text-align:center"><code>llen key</code></td>
+<td style="text-align:center">返回列表的长度</td>
+</tr>
+<tr>
+<td style="text-align:center">删除</td>
+<td style="text-align:center"><code>lpop key</code></td>
+<td style="text-align:center">移除并返回列表的第一个元素</td>
+</tr>
+<tr>
+<td style="text-align:center">删除</td>
+<td style="text-align:center"><code>rpop key</code></td>
+<td style="text-align:center">移除并返回列表的最后一个元素</td>
+</tr>
+<tr>
+<td style="text-align:center">删除</td>
+<td style="text-align:center"><code>lrem key count value</code></td>
+<td style="text-align:center">移除列表中与 value 相等的元素，移除的数量由 count 参数指定</td>
+</tr>
+<tr>
+<td style="text-align:center">删除</td>
+<td style="text-align:center"><code>ltrim key start end</code></td>
+<td style="text-align:center">对一个列表进行修剪，只保留指定范围内的元素</td>
+</tr>
+<tr>
+<td style="text-align:center">修改</td>
+<td style="text-align:center"><code>lset key index value</code></td>
+<td style="text-align:center">将列表中指定索引位置的元素设置为新的值</td>
+</tr>
+<tr>
+<td style="text-align:center">阻塞操作</td>
+<td style="text-align:center"><code>blpop key  timeout</code></td>
+<td style="text-align:center">移出并获取列表的第一个元素，如果列表为空则阻塞，直到等待超时或有一个元素可以弹出</td>
+</tr>
+<tr>
+<td style="text-align:center">阻塞操作</td>
+<td style="text-align:center"><code>brpop key timeout</code></td>
+<td style="text-align:center">移出并获取列表的最后一个元素，如果列表为空则阻塞，直到等待超时或有一个元素可以弹出</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4、Set">4、Set</h2>
+<p>集合就是把一些有关联的数据放到一起，集合中的元素是无序的、唯一的。</p>
+<p>对于集合来说set:[1,2,3]和set:[3,2,1]是同一个集合，但是对于list来说list[1,2,3]和list:[3,2,1]是两个不同的list。</p>
+<h3 id="Ⅰ、常用指令-4">Ⅰ、常用指令</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>命令</strong></th>
+<th style="text-align:center"><strong>执行效果</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>sadd key value</code></td>
+<td style="text-align:center">添加值</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>smembers &lt;key&gt;</code></td>
+<td style="text-align:center">取出该集合的所有值。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>sismember &lt;key&gt; &lt;value&gt;</code></td>
+<td style="text-align:center">判断集合 <code>&lt;key&gt;</code> 是否含有该 <code>&lt;value&gt;</code> 值，有 1，没有 0</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>scard &lt;key&gt;</code></td>
+<td style="text-align:center">返回该集合的元素个数。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>srem &lt;key&gt; &lt;value1&gt; &lt;value2&gt; </code></td>
+<td style="text-align:center">删除集合中的某个元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spop &lt;key&gt;</code></td>
+<td style="text-align:center">随机从该集合中吐出一个值。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>srandmember &lt;key&gt; &lt;n&gt;</code></td>
+<td style="text-align:center">随机从该集合中取出 n 个值。不从集合中删除。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>smove &lt;source&gt; &lt;destination&gt; &lt;value&gt;</code></td>
+<td style="text-align:center">把集合中的一个值从一个集合移动到另一个集合</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>sinter &lt;key1&gt; &lt;key2&gt;</code></td>
+<td style="text-align:center">返回两个集合的交集元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>sunion &lt;key1&gt; &lt;key2&gt;</code></td>
+<td style="text-align:center">返回两个集合的并集元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>sdiff &lt;key1&gt; &lt;key2&gt;</code></td>
+<td style="text-align:center">返回两个集合的差集元素 (key1 中的，不包含 key2 中的)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Ⅱ、编码方式">Ⅱ、编码方式</h3>
+<p>集合类型的内部编码有两种：</p>
+<ul>
+<li>intset（整数集合）：当集合中的元素都是整数并且元素的个数小于<code>set-max-intset-entries</code>配置时，Redis会选用intset来作为集合的内部实现，从而减少内存的使用。</li>
+<li>hashtable（哈希表）：当集合元素类型无法满足intset的条件时，Redis会选择hashtable来作为集合的内部实现类。</li>
+</ul>
+<h2 id="5、Zset">5、Zset</h2>
+<p>有序集合，存储的是唯一的字符串元素，同时每个元素会关联一个浮点数类型的分值。有序集合提供了获取指定分数和元素范围查找、计算成员排名等功能。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406121321045.png" title="image-20240612132126159" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406121321045.png" alt="image-20240612132126159"></a></p>
+<h3 id="Ⅰ、常用指令-5">Ⅰ、常用指令</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>命令</strong></th>
+<th style="text-align:center"><strong>执行效果</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>zadd key score member</code></td>
+<td style="text-align:center">添加一个成员到有序集合中，或更新已存在成员的分数</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zscore key member</code></td>
+<td style="text-align:center">返回有序集中，成员的分数值</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zincrby key increment member</code></td>
+<td style="text-align:center">对有序集合中成员的分数加上增量 increment</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zcard key</code></td>
+<td style="text-align:center">获取有序集合的成员数量</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zcount key min max</code></td>
+<td style="text-align:center">计算在有序集合中指定分数区间内的成员数量</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zrange key start stop [withscores]</code></td>
+<td style="text-align:center">返回有序集中，指定区间内的成员</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zrevrange key start stop [withscores]</code></td>
+<td style="text-align:center">返回有序集中，指定区间内的成员，按分数从高到低排序</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zrangebyscore key min max [withscores] [limit offset count]</code></td>
+<td style="text-align:center">返回有序集合中指定分数区间内的成员</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zrevrangebyscore key max min [withscores] [limit offset count]</code></td>
+<td style="text-align:center">返回有序集合中指定分数区间内的成员，按分数从高到低排序</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zrank key member</code></td>
+<td style="text-align:center">返回有序集合中指定成员的排名（从 0 开始）（按分数从低到高）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zrevrank key member</code></td>
+<td style="text-align:center">返回有序集合中指定成员的排名（按分数从高到低）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zrem key member [member ...]</code></td>
+<td style="text-align:center">从有序集合中移除一个或多个成员</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zremrangebyrank key start stop</code></td>
+<td style="text-align:center">移除有序集中，指定排名区间内的所有成员</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zremrangebyscore key min max</code></td>
+<td style="text-align:center">移除有序集中，指定分数区间内的所有成员</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zrangebylex key min max [limit offset count]</code></td>
+<td style="text-align:center">返回有序集合中指定成员字典区间内的成员</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zlexcount key min max</code></td>
+<td style="text-align:center">返回有序集合中指定成员字典区间内的成员数量</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zremrangebylex key min max</code></td>
+<td style="text-align:center">移除有序集合中指定成员字典区间内的成员</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zscan key cursor [match pattern] [count count]</code></td>
+<td style="text-align:center">迭代有序集合中的元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zunionstore dest numkeys key [key ...]</code></td>
+<td style="text-align:center">计算给定的一个或多个有序集的并集，并存储在新的 dest 集合中</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>zinterstore dest numkeys key [key ...]</code></td>
+<td style="text-align:center">计算给定的一个或多个有序集的交集，并存储在新的 dest 集合中</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Ⅱ、编码方式-2">Ⅱ、编码方式</h3>
+<p>有序集合（zset）的内部编码有两种：</p>
+<ul>
+<li>
+<p>ziplist（压缩列表）：当有序集合的元素个数小于 <code>zset-max-ziplist-entries</code> 配置（默认128个），且每个元素的值都小于 <code>zset-max-ziplist-value</code> 配置（默认64字节）时，Redis 会使用 ziplist 来实现有序集合。这可以有效减少内存的使用。</p>
+</li>
+<li>
+<p>skiplist（跳表）：当不满足 ziplist 条件时，有序集合会使用 skiplist 作为内部实现，因为在这种情况下 ziplist 的操作效率会下降。</p>
+</li>
+</ul>
+<h1>三、Redis 客户端</h1>
+<p>导入jedis依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="1、端口转发">1、端口转发</h2>
+<p>Redis端口直接开放，是很危险的。可以使用SSH的22端口，来传递其他端口的数据。使用SSH进行端口映射，将服务器的6379映射到本地的8888。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406121604739.png" title="image-20240612160413835" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406121604739.png" alt="image-20240612160413835"></a></p>
+<p>只有当SSH连接上了服务器，端口转发才生效。把SSH连接断开，端口转发就会失效。连接完成后，可以使用netstat命令看看本地的8888端口有没有被绑定。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr 8888</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406121606965.png" title="image-20240612160602907" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406121606965.png" alt="image-20240612160602907"></a></p>
+<p>后续代码中，通过127.0.0.1:8888就可以访问到云服务器的Redis了，外面的客户端无法直接访问云服务器的6379</p>
+<h2 id="2、连接服务器">2、连接服务器</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisDemo</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        <span class="comment">// 连接Redis服务器</span></span><br><span class="line">        <span class="type">JedisPool</span> <span class="variable">jedisPool</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JedisPool</span>(<span class="string">"tcp://127.0.0.1:8888"</span>);</span><br><span class="line">        <span class="comment">// 从Redis连接池中取一个出来</span></span><br><span class="line">        <span class="keyword">try</span>(<span class="type">Jedis</span> <span class="variable">jedis</span> <span class="operator">=</span> jedisPool.getResource()) {</span><br><span class="line">            <span class="comment">// 使用redis的各种命令，都对应到jedis对象的各种方法</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">pong</span> <span class="operator">=</span> jedis.ping();</span><br><span class="line">            System.out.println(pong);</span><br><span class="line">        } </span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h2 id="3、使用示例">3、使用示例</h2>
+<p>使用Java的Jedis库操作Redis时，与直接在Redis CLI（命令行界面）中操作有一些不同，在Java中需要使用连接池来管理连接，避免频繁的连接创建和销毁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPool;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisDemo</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">test1</span><span class="params">(Jedis jedis)</span> {</span><br><span class="line">        System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line">        jedis.flushDB(); <span class="comment">// 清空数据库</span></span><br><span class="line">        jedis.set(<span class="string">"name"</span>, <span class="string">"张三"</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> jedis.get(<span class="string">"name"</span>);</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">test2</span><span class="params">(Jedis jedis)</span>{</span><br><span class="line">        System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line">        jedis.flushDB(); <span class="comment">// 清空数据库</span></span><br><span class="line">        jedis.mset(<span class="string">"name"</span>, <span class="string">"张三"</span>, <span class="string">"age"</span>, <span class="string">"20"</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> jedis.get(<span class="string">"name"</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">age</span> <span class="operator">=</span> jedis.get(<span class="string">"age"</span>);</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(age);</span><br><span class="line">        System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">test3</span><span class="params">(Jedis jedis)</span> {</span><br><span class="line">        System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line"></span><br><span class="line">        jedis.flushDB(); <span class="comment">// 清空数据库</span></span><br><span class="line">        jedis.hset(<span class="string">"user"</span>, <span class="string">"name"</span>, <span class="string">"张三"</span>);</span><br><span class="line">        jedis.hset(<span class="string">"user"</span>, <span class="string">"age"</span>, <span class="string">"20"</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> jedis.hget(<span class="string">"user"</span>, <span class="string">"name"</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">age</span> <span class="operator">=</span> jedis.hget(<span class="string">"user"</span>, <span class="string">"age"</span>);</span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(age);</span><br><span class="line">        System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">test4</span><span class="params">(Jedis jedis)</span> {</span><br><span class="line">        System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line"></span><br><span class="line">        jedis.flushDB(); <span class="comment">// 清空数据库</span></span><br><span class="line">        jedis.lpush(<span class="string">"list"</span>, <span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> jedis.lpop(<span class="string">"list"</span>);</span><br><span class="line">        System.out.println(value);</span><br><span class="line">        System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        <span class="comment">// 连接Redis服务器</span></span><br><span class="line">        <span class="type">JedisPool</span> <span class="variable">jedisPool</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JedisPool</span>(<span class="string">"tcp://127.0.0.1:8888"</span>);</span><br><span class="line">        <span class="keyword">try</span>(<span class="type">Jedis</span> <span class="variable">jedis</span> <span class="operator">=</span> jedisPool.getResource()) {</span><br><span class="line">            test1(jedis);</span><br><span class="line">            test2(jedis);</span><br><span class="line">            test3(jedis);</span><br><span class="line">            test4(jedis);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-09-17</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/Redis/'>
+                            Redis
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+<!-- 在这里添加 MathJax 配置 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof MathJax !== "undefined") {
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']],
+                    processEscapes: true
+                }
+            });
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+    });
+</script>
+
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+</html>
