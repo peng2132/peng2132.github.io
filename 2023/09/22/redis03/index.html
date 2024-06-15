@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Redis：持久化" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | 个人Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <head>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+    </ul>
+</div> 
+                    
+                    
+                    
+                    
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            Redis：持久化
+        </div>
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、持久化</h1>
+<p>Redis的主要优势在于快速的读写速度。但是，内存数据的易失性使得在断电或系统故障时可能丢失数据。为了保证数据的持久性，就需要让Redis把数据存储到硬盘上。Redis 提供了两种持久化策略：</p>
+<ol>
+<li>RDB（Redis DataBase）</li>
+<li>AOF（Append Only File）</li>
+</ol>
+<h1>二、RDB</h1>
+<p>RDB 是一种将 Redis 数据定期保存到磁盘上的快照方式。它会在指定的时间间隔内生成数据库的快照，并保存到磁盘上。后续Redis一旦重启，内存数据就没了，但是可以根据定期生成的快照把内存中的数据给恢复回来。</p>
+<h2 id="1、手动触发">1、手动触发</h2>
+<p>通过Redis客户端，执行特定命令<code>save</code>和<code>bgsave</code>来触发快照生成。</p>
+<p><code>save</code>：执行<code>save</code>的时候，Redis就会全力以赴的进行“快照生成”操作，此时就会阻塞Redis的其他命令。这可能会导致类似：<code>keys *</code>的后果。</p>
+<p><code>bgsave</code>：<code>bgsave</code> 命令是非阻塞的。它会 fork 一个子进程，由子进程来生成快照，而父进程（主进程）仍然可以继续处理客户端请求。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406131446956.png" title="RDB机制" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406131446956.png" alt="RDB机制"></a></p>
+<p>（1）判断当前是否已经存在其他正在工作的子进程，比如现在已经有一个子线程正在执行bgsave，那么就直接把当前的bgsave返回。</p>
+<p>（2）如果没有其他的工作子进程，通过fork系统调用创建一个子线程。fork创建子线程，直接是把当前的父进程复制一份，作为子线程。一旦完成复制，子父线程就完全独立了，各自执行各自的任务了。</p>
+<p>（3）子进程负责写文件、生成快照的过程；父进程继续接受客户端的请求，继续正常提供服务。</p>
+<p>（4）子进程完成整体持久化过程之后，就会通知父进程已经工作完毕，父进程就会更新一些统计信息，随后销毁子进程。</p>
+<h2 id="2、RDB镜像文件">2、RDB镜像文件</h2>
+<p><code>cd /etc/redis</code>进入redis目录，<code>vim redis.conf</code>打开配置文件。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406131514334.png" title="配置文件" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406131514334.png" alt="配置文件"></a></p>
+<p>可以看见redis的工作目录在<code>/var/lib/redis</code>，这样对于生成的镜像文件也在这里。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406131516324.png" title="配置文件" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406131516324.png" alt="配置文件"></a></p>
+<p>Redis内存中的数据，以压缩（消耗CPU资源，但是节省空间）的方式保存到了这个二进制文件中。当执行生成rdb镜像的时候，此时就会要把生成的快照数据先存放到一个临时文件中，当这个快照生成完毕之后，再放到<code>.rdb</code>文件中，随后删除临时文件。</p>
+<h1>三、AOF</h1>
+<p>AOF 是通过将每个写操作追加到日志文件（appendonly.aof）中的方式来实现持久化。这个有点类似于MySQL的binlog，会把用户的每个操作，都记录到文件中。Redis 可以在服务器重启时重新执行这些操作，从而恢复数据。当开启AOF的时候，RDB就不生效了。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406151657005.png" title="image-20240615165727710" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406151657005.png" alt="image-20240615165727710"></a></p>
+<p><code>cd /etc/redis</code>进入redis目录，<code>vim redis.conf</code>打开配置文件，找到如图配置，将no改为yes开启AOF。</p>
+<p>AOF工作机制并非直接让工作线程把数据写入硬盘，而是先写入一个内存中的缓存区，积累到一定内容后再统一写入硬盘。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406151712420.png" title="AOF机制" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406151712420.png" alt="AOF机制"></a></p>
+<h2 id="1、缓存刷新策略">1、缓存刷新策略</h2>
+<p>当数据被写入到缓存区时，数据实际上还在内存中。如果在写入缓存区后但未写入硬盘前，进程挂掉或主机断电，那么缓存区中的数据就会丢失。</p>
+<p>Redis提供了appendfsync 配置项，让我们根据实际情况决定如何平衡数据可靠性和系统性能。</p>
+<ul>
+<li>刷新频率越高，性能影响越大，但数据可靠性也越高。</li>
+<li>刷新频率越低，性能影响越小，但数据可靠性也越低。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406151725164.png" title="image-20240615172540526" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406151725164.png" alt="image-20240615172540526"></a></p>
+<p><code>appendfsync</code> 有三个主要选项，每个选项对应不同的性能和数据可靠性权衡：</p>
+<ol>
+<li><strong>always</strong>：
+<ul>
+<li>Redis 在每次写操作后都会调用 <code>fsync()</code>，将数据立即写入磁盘。</li>
+<li><strong>优点</strong>：最大程度地保证数据的安全性，因为每次写操作都确保数据被写入磁盘。</li>
+<li><strong>缺点</strong>：性能影响较大，因为频繁的磁盘写入会增加 I/O 负载，导致响应时间变慢。</li>
+</ul>
+</li>
+<li><strong>everysec</strong>（默认选项）：
+<ul>
+<li>Redis 每秒调用一次 <code>fsync()</code>，将数据写入磁盘。</li>
+<li><strong>优点</strong>：在性能和数据安全性之间取得平衡。大部分情况下，一秒内的数据丢失可以接受。</li>
+<li><strong>缺点</strong>：在极少数情况下，服务器崩溃时可能会丢失最近一秒的数据。</li>
+</ul>
+</li>
+<li><strong>no</strong>：
+<ul>
+<li>由操作系统决定何时将数据从缓冲区刷新到磁盘。通常操作系统会每 30 秒进行一次刷盘操作。</li>
+<li><strong>优点</strong>：性能最好，因为 Redis 不需要频繁进行磁盘 I/O 操作。</li>
+<li><strong>缺点</strong>：数据安全性最低，服务器崩溃时可能会丢失较多数据。</li>
+</ul>
+</li>
+</ol>
+<h2 id="2、重写机制">2、重写机制</h2>
+<p>Redis 的 AOF重写机制是为了优化 AOF 文件的大小和性能而设计的。但是，随着时间的推移，AOF 文件会不断增长，如果不加以控制，文件可能会变得非常大，影响服务器的启动时间和性能。AOF 重写机制可以将现有的数据集写入一个新的 AOF 文件，从而压缩文件大小。</p>
+<p>举例：我当前已经进行了如下操作：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lpush key 111</span><br><span class="line">lpush key 222</span><br><span class="line">lpush key 333</span><br></pre></td></tr></table></figure>
+<p>但是，其实上面三条指令其实等价于：<code>lpush key 111 222 333</code></p>
+<p>原始 AOF 文件每次 <code>LPUSH</code> 操作都被单独记录，导致文件内容冗余。重写后的 AOF 文件将多次 <code>LPUSH</code> 操作合并为一次操作，极大地减少了文件大小。</p>
+<h2 id="3、启动重写">3、启动重写</h2>
+<p>手动触发 AOF 重写：<code>bgrewiteaof</code></p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202406151749630.png" title="image-20240615174943342" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202406151749630.png" alt="image-20240615174943342"></a></p>
+<p>自动触发：可以设置AOF 文件在达到一定大小或比例后自动进行重写，可以在 Redis 配置文件 <code>redis.conf</code> 中设置以下参数：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">auto-aof-rewrite-percentage 100  <span class="comment"># 当 AOF 文件大小超过上次重写后的 100% 时触发重写</span></span><br><span class="line">auto-aof-rewrite-min-size 64mb   <span class="comment"># 当 AOF 文件大小至少达到 64MB 时触发重写</span></span><br></pre></td></tr></table></figure>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-09-22</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/Redis/'>
+                            Redis
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+<!-- 在这里添加 MathJax 配置 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof MathJax !== "undefined") {
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']],
+                    processEscapes: true
+                }
+            });
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+    });
+</script>
+
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+</html>
