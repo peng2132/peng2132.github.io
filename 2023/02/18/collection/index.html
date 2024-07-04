@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Java：集合框架" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | 个人Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <head>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+    </ul>
+</div> 
+                    
+                    
+                    
+                    
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            Java：集合框架
+        </div>
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1>一、集合框架</h1>
+<p>Java集合框架，通常被称为容器，是一系列定义在<code>java.util</code>包中的接口和实现类。它的核心功能是将多个元素组织到一个单元里，以便用户能够对这些元素进行高效且方便的存储、检索和管理。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407031737864.png" title="集合框架" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407031737864.png" alt="集合框架"></a></p>
+<p>这张图是Java集合框架的结构图，展示了Java中不同集合类型的层次和关系。在最顶层是<code>Iterable</code>接口，它是所有集合类的根接口，提供了遍历集合元素的能力。下一级是<code>Collection</code>接口，它继承自<code>Iterable</code>，并提供了集合的基本功能，如添加、删除和遍历元素。</p>
+<p><code>Collection</code>接口有下面几个子接口：</p>
+<ul>
+<li><code>List</code>：一个有序集合，可以包含重复的元素。<code>ArrayList</code>和<code>LinkedList</code>都是实现了<code>List</code>接口的类，其中<code>ArrayList</code>基于数组，<code>LinkedList</code>基于链表结构。</li>
+<li><code>Queue</code>：一个用于保持元素先进先出（FIFO）顺序的集合。<code>LinkedList</code>也实现了<code>Queue</code>接口。</li>
+<li><code>Deque</code>：双端队列接口，扩展了<code>Queue</code>接口，元素可以从两端插入或移除。<code>LinkedList</code>实现了这个接口。</li>
+<li><code>Set</code>：一个不允许重复元素的集合。<code>HashSet</code>和<code>TreeSet</code>都是实现了<code>Set</code>接口的类，其中<code>HashSet</code>基于哈希表，<code>TreeSet</code>基于红黑树，能自动排序。</li>
+</ul>
+<p><code>Map</code>不是<code>Collection</code>的子接口，但它也是集合框架的一部分。<code>Map</code>接口定义了键值对的存储和访问，<code>HashMap</code>和<code>TreeMap</code>是其两个主要实现。</p>
+<ul>
+<li><code>HashMap</code>：底层为哈希桶，查询时间复杂度为O(1)</li>
+<li><code>TreeMap</code>：底层为红黑树，查询的时间复杂度为O(<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.464ex;" xmlns="http://www.w3.org/2000/svg" width="5.847ex" height="2.034ex" role="img" focusable="false" viewBox="0 -694 2584.6 899"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(298,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="msub" transform="translate(783,0)"><g data-mml-node="mi"><path data-c="1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></g><g data-mml-node="mn" transform="translate(510,-150) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mi" transform="translate(1696.6,0)"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"></path></g></g></g></svg></mjx-container> )，关于key有序</li>
+</ul>
+<p>辅助类和接口：</p>
+<ul>
+<li><code>Arrays</code>和<code>Collections</code>是包含静态方法的工具类，用于操作数组和集合。</li>
+<li><code>Iterator</code>和<code>ListIterator</code>是接口，用于遍历集合元素。</li>
+<li><code>Comparable</code>和<code>Comparator</code>是接口，用于定义对象的比较规则，通常用于排序。</li>
+</ul>
+<h1>二、List 接口</h1>
+<h2 id="1、继承关系">1、继承关系</h2>
+<p>在Java的集合框架中，<code>List</code>是一个接口，继承自<code>Collection</code>，它定义了可以存储一系列有序元素的操作和方法。这些元素可以通过整数索引进行访问和操作。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407031740234.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407031740234.png" alt="在这里插入图片描述"></a></p>
+<p>任何<code>List</code>对象也是一个<code>Collection</code>，它继承了<code>Collection</code>接口的所有方法。同时，因为<code>Collection</code>接口扩展了<code>Iterable</code>接口，这代表所有的<code>List</code>对象也都是<code>Iterable</code>的，可以使用迭代器进行元素遍历。</p>
+<h2 id="2、常见方法">2、常见方法</h2>
+<p><code>List</code>官方文档：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List官方文档</a></p>
+<p>其中较为常用的方法如下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法签名</th>
+<th style="text-align:center">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>boolean add(E e)</code></td>
+<td style="text-align:center">尾插元素 <code>e</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>void add(int index, E element)</code></td>
+<td style="text-align:center">将元素 <code>e</code> 插入到下标 <code>index</code> 位置</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean addAll(Collection&lt;? extends E&gt; c)</code></td>
+<td style="text-align:center">尾插集合 <code>c</code> 中的所有元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E remove(int index)</code></td>
+<td style="text-align:center">删除下标 <code>index</code> 位置的元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean remove(Object o)</code></td>
+<td style="text-align:center">删除遇到的第一个元素 <code>o</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E get(int index)</code></td>
+<td style="text-align:center">获取下标 <code>index</code> 位置的元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E set(int index, E element)</code></td>
+<td style="text-align:center">将下标 <code>index</code> 位置的元素设置为 <code>element</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>void clear()</code></td>
+<td style="text-align:center">清空列表</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean contains(Object o)</code></td>
+<td style="text-align:center">判断元素 <code>o</code> 是否在列表中</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int indexOf(Object o)</code></td>
+<td style="text-align:center">返回元素 <code>o</code> 第一次出现的下标</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int lastIndexOf(Object o)</code></td>
+<td style="text-align:center">返回元素 <code>o</code> 最后一次出现的下标</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>List&lt;E&gt; subList(int fromIndex, int toIndex)</code></td>
+<td style="text-align:center">截取从下标 <code>fromIndex</code> 到 <code>toIndex</code>（不包括）的部分列表</td>
+</tr>
+</tbody>
+</table>
+<p>注意：<code>List</code>是个接口，并不能直接用来实例化。</p>
+<p>如果要使用<code>List</code>，必须去实例化<code>List</code>的实现类。在集合框架中，<code>ArrayList</code>和<code>LinkedList</code>都实现了<code>List</code>接口。</p>
+<h2 id="3、ArrayList">3、ArrayList</h2>
+<p>在集合框架中，<code>ArrayList</code>是一个普通的类，实现了List接口，具体框架图如下：</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407031742012.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407031742012.png" alt="在这里插入图片描述"></a></p>
+<p><code>ArrayList</code> 在 Java 中是一种顺序表的实现。它底层是使用数组来存储元素的，因此它能够提供快速的随机访问能力。<code>ArrayList</code> 的数组是动态扩容的，当数组达到其容量极限时，会创建一个新的更大的数组，并将旧数组的内容复制到新数组中。</p>
+<h3 id="3-1、注意事项">3.1、注意事项</h3>
+<ol>
+<li><code>ArrayList</code>是以泛型方式实现的，使用时必须要先实例化。</li>
+<li><code>ArrayList</code>实现了<code>RandomAccess</code>接口，表明<code>ArrayList</code>支持随机访问。</li>
+<li><code>ArrayList</code>实现了<code>Cloneable</code>接口，表明<code>ArrayList</code>是可以<code>clone</code>的。</li>
+<li><code>ArrayList</code>实现了<code>Serializable</code>接口，表明<code>ArrayList</code>是支持序列化的。</li>
+<li><code>ArrayList</code>不是线程安全的，在单线程下可以使用，在多线程中最好选择<code>CopyOnWriteArrayList</code> 。</li>
+<li><code>ArrayList</code>底层是一段连续的空间，并且可以动态扩容，是一个动态类型的顺序表。</li>
+</ol>
+<h3 id="3-2、常用方法">3.2、常用方法</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法签名</th>
+<th style="text-align:center">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>boolean add(E e)</code></td>
+<td style="text-align:center">在列表尾部添加元素 <code>e</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>void add(int index, E element)</code></td>
+<td style="text-align:center">在列表的指定 <code>index</code> 位置插入元素 <code>e</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean addAll(Collection&lt;? extends E&gt; c)</code></td>
+<td style="text-align:center">将集合 <code>c</code> 中的所有元素添加到列表的尾部。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E remove(int index)</code></td>
+<td style="text-align:center">移除列表中指定 <code>index</code> 位置的元素，并返回该元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean remove(Object o)</code></td>
+<td style="text-align:center">移除列表中遇到的第一个元素 <code>o</code>，如果列表包含指定的元素，则返回 <code>true</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E get(int index)</code></td>
+<td style="text-align:center">返回列表中指定 <code>index</code> 位置的元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E set(int index, E element)</code></td>
+<td style="text-align:center">替换列表中指定 <code>index</code> 位置的元素为 <code>element</code>，并返回原来的元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>void clear()</code></td>
+<td style="text-align:center">移除列表中的所有元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean contains(Object o)</code></td>
+<td style="text-align:center">如果列表包含指定的元素 <code>o</code>，则返回 <code>true</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int indexOf(Object o)</code></td>
+<td style="text-align:center">返回列表中第一次出现元素 <code>o</code> 的 <code>index</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int lastIndexOf(Object o)</code></td>
+<td style="text-align:center">返回列表中最后出现元素 <code>o</code> 的 <code>index</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>List&lt;E&gt; subList(int fromIndex, int toIndex)</code></td>
+<td style="text-align:center">返回列表中从 <code>fromIndex</code>（包含）到 <code>toIndex</code>（不包含）的部分视图。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-3、ArrayList的遍历">3.3、ArrayList的遍历</h3>
+<p><code>ArrayList</code> 可以使用三种方式进行遍历：<code>for</code>循环+下标、<code>for-each</code>、迭代器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">demo1</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        ArrayList&lt;Integer&gt; arrayList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        arrayList.add(<span class="number">1</span>);</span><br><span class="line">        arrayList.add(<span class="number">2</span>);</span><br><span class="line">        arrayList.add(<span class="number">3</span>);</span><br><span class="line">        arrayList.add(<span class="number">4</span>);</span><br><span class="line">        arrayList.add(<span class="number">5</span>);</span><br><span class="line">        <span class="comment">// 使用for循环和下标遍历ArrayList</span></span><br><span class="line">        System.out.println(<span class="string">"for循环:"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arrayList.size(); i++) {</span><br><span class="line">            System.out.println(arrayList.get(i));</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用增强的for循环（foreach）遍历ArrayList</span></span><br><span class="line">        System.out.println(<span class="string">"\n增强for循环:"</span>);</span><br><span class="line">        <span class="keyword">for</span> (Integer number : arrayList) {</span><br><span class="line">            System.out.println(number);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用迭代器遍历ArrayList</span></span><br><span class="line">        System.out.println(<span class="string">"\nIterator:"</span>);</span><br><span class="line">        Iterator&lt;Integer&gt; iterator = arrayList.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext()) {</span><br><span class="line">            System.out.println(iterator.next());</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这三种方法都有其适用场景：</p>
+<ul>
+<li><strong>for循环和下标</strong>：当你需要访问元素的索引时，这种方法很有用。</li>
+<li><strong>for-each</strong>：这是遍历元素最简洁的方式，但是你无法在遍历中修改列表结构，例如添加或删除元素。</li>
+<li><strong>迭代器</strong>：当你需要在遍历过程中安全地删除元素时，应该使用迭代器。因为如果在使用<code>for-each</code>循环时修改集合，将会抛出 <code>ConcurrentModificationException</code> 异常。使用迭代器的 <code>remove()</code> 方法可以避免这个问题。</li>
+</ul>
+<h3 id="3-4、ArrayList-的扩容机制">3.4、ArrayList 的扩容机制</h3>
+<p>以无参数构造方法创建 ArrayList 时，实际上初始化赋值的是一个空数组。当真正对数组进行添加元素操作时，才真正分配容量。即向数组中添加第一个元素时，数组容量扩为 10。</p>
+<p><code>int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1)</code> 所以， ArrayList 每次扩容之后容量都会变为原来的 1.5 倍左右（oldCapacity 为偶数就是 1.5 倍，否则是 1.5 倍左右）奇偶不同，比如：10+10/2 = 15, 33+33/2=49，如果是奇数的话会丢掉小数。ArrayList 的扩容操作涉及创建一个新的数组并将旧数组的内容复制到新数组中，但是这个操作非常的昂贵，会导致性能变的很低。</p>
+<p><code>ArrayList</code>源码中扩容方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加一个新的元素 'e' 到列表中</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">add</span><span class="params">(E e)</span> {</span><br><span class="line">    <span class="comment">// 确保数组有足够的容量来容纳新元素</span></span><br><span class="line">    <span class="comment">// 'size + 1' 传递给 ensureCapacityInternal 方法，检查是否有空间添加一个新元素</span></span><br><span class="line">    ensureCapacityInternal(size + <span class="number">1</span>);  <span class="comment">// 增加 modCount 的值</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 将元素添加到当前 'size' 位置，然后将 'size' 加 1</span></span><br><span class="line">    elementData[size++] = e;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 返回 true 表示元素添加成功</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 确保内部数组的容量至少为 'minCapacity'</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">ensureCapacityInternal</span><span class="params">(<span class="type">int</span> minCapacity)</span> {</span><br><span class="line">    <span class="comment">// 计算所需的容量，并确保数组具有这种容量</span></span><br><span class="line">    ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算基于当前元素和所需最小容量的实际需要的容量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">calculateCapacity</span><span class="params">(Object[] elementData, <span class="type">int</span> minCapacity)</span> {</span><br><span class="line">    <span class="comment">// 如果当前的 elementData 数组是默认的空数组，确保有一个最小初始容量</span></span><br><span class="line">    <span class="keyword">if</span> (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {</span><br><span class="line">        <span class="comment">// 返回默认容量和所需最小容量中的较大者</span></span><br><span class="line">        <span class="keyword">return</span> Math.max(DEFAULT_CAPACITY, minCapacity);</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// 否则，直接返回所需的最小容量</span></span><br><span class="line">    <span class="keyword">return</span> minCapacity;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 确保数组具有指定的明确容量 'minCapacity'</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">ensureExplicitCapacity</span><span class="params">(<span class="type">int</span> minCapacity)</span> {</span><br><span class="line">    <span class="comment">// 每次进行容量检查或扩展时，修改计数 modCount 增加</span></span><br><span class="line">    modCount++;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 溢出意识的代码</span></span><br><span class="line">    <span class="comment">// 如果所需的最小容量大于当前数组长度，执行扩容</span></span><br><span class="line">    <span class="keyword">if</span> (minCapacity - elementData.length &gt; <span class="number">0</span>)</span><br><span class="line">        grow(minCapacity);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 扩展数组的容量以容纳至少 'minCapacity' 个元素</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">grow</span><span class="params">(<span class="type">int</span> minCapacity)</span> {</span><br><span class="line">    <span class="comment">// 获取旧的容量大小</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">oldCapacity</span> <span class="operator">=</span> elementData.length;</span><br><span class="line">    <span class="comment">// 新容量扩展到原容量的约 1.5 倍，右移一位相当于除以 2</span></span><br><span class="line">    <span class="comment">// 扩容并不是严格的 1.5 倍，而是大约的倍数</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">newCapacity</span> <span class="operator">=</span> oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果新容量仍然小于所需的最小容量，则直接使用所需的最小容量</span></span><br><span class="line">    <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = minCapacity;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果新容量超出了最大数组大小，调用 hugeCapacity 方法获取最终容量</span></span><br><span class="line">    <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 调用 Arrays.copyOf 扩展数组到新容量</span></span><br><span class="line">    elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><code>ArrayList</code> 扩容机制的详细步骤总结：</p>
+<p><strong>检测扩容需求</strong>：当尝试向 <code>ArrayList</code> 添加一个元素，且内部数组已满时（即当前元素数量等于数组的容量），<code>ArrayList</code> 需要进行扩容以容纳更多的元素。</p>
+<p><strong>预估扩容大小</strong>：</p>
+<ul>
+<li><strong>初步预估</strong>：通常，新的容量大小是旧容量的 1.5 倍。这是通过将旧容量右移一位（即除以 2）然后加上旧容量来实现的。所以，新的容量大致是 <code>newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1)</code>。</li>
+<li><strong>按需调整</strong>：如果添加元素时指定的所需容量大于预估的 1.5 倍大小，<code>ArrayList</code> 将会按照这个更大的所需容量来进行扩容。</li>
+<li><strong>扩容前检测</strong>：在真正扩容之前，会检测新的容量是否会导致内存分配失败（比如，因为容量过大而超出了 <code>int</code> 的最大值）。如果新容量大于 <code>ArrayList</code> 允许的最大容量，则会抛出 <code>OutOfMemoryError</code>。</li>
+</ul>
+<p><strong>使用 <code>Arrays.copyOf</code> 进行扩容</strong>：</p>
+<ul>
+<li>扩容操作涉及创建一个新的更大的数组，并将旧数组的内容复制到新数组中。</li>
+<li>在 Java 中，这通常是通过 <code>Arrays.copyOf</code> 方法实现的，它会在内部分配新的数组空间，并将旧数组的内容复制到新数组中。</li>
+</ul>
+<h2 id="4、LinkedList">4、LinkedList</h2>
+<p>在集合框架中，<code>LinkedList</code>也实现了<code>List</code>接口，具体如下：</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407031752158.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407031752158.png" alt="在这里插入图片描述"></a><br>
+<code>LinkedList</code> 在Java中是链表的实现，它不像 <code>ArrayList</code> 那样使用数组来存储元素，而是使用节点来构建一个链表。每个节点都包含一个数据元素和一个指向下一个节点的引用。这种数据结构允许动态添加和删除元素而无需像 <code>ArrayList</code> 那样频繁地进行数组的扩容和复制操作。<br>
+<a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407031752857.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407031752857.png" alt="在这里插入图片描述"></a></p>
+<h3 id="4-1、注意事项">4.1、注意事项</h3>
+<ol>
+<li><code>LinkedList</code> 实现了List接口。</li>
+<li><code>LinkedList</code> 的底层使用了双向链表。</li>
+<li><code>LinkedList</code> 没有实现<code>RandomAccess</code>接口，因此<code>LinkedList</code>不支持随机访问。</li>
+<li><code>LinkedList</code> 的任意位置插入和删除元素时效率比较高，时间复杂度为<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.618ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2041 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mn" transform="translate(1152,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(1652,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container>。</li>
+<li><code>LinkedList</code> 比较适合任意位置插入的场景。</li>
+</ol>
+<h3 id="4-2、常用方法">4.2、常用方法</h3>
+<p><code>LinkedList</code> 官方文档：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html">LinkedList官方文档</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法签名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>boolean add(E e)</code></td>
+<td style="text-align:center">在列表尾部插入元素 <code>e</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>void add(int index, E element)</code></td>
+<td style="text-align:center">在指定索引位置 <code>index</code> 插入元素 <code>element</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean addAll(Collection&lt;? extends E&gt; c)</code></td>
+<td style="text-align:center">将集合 <code>c</code> 中的元素依次添加到列表的尾部。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E remove(int index)</code></td>
+<td style="text-align:center">删除指定索引位置 <code>index</code> 的元素并返回它。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean remove(Object o)</code></td>
+<td style="text-align:center">删除遇到的第一个等于 <code>o</code> 的元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E get(int index)</code></td>
+<td style="text-align:center">获取指定索引位置 <code>index</code> 的元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E set(int index, E element)</code></td>
+<td style="text-align:center">将指定索引位置 <code>index</code> 的元素设置为 <code>element</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>void clear()</code></td>
+<td style="text-align:center">清空列表，移除所有元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean contains(Object o)</code></td>
+<td style="text-align:center">判断列表是否包含元素 <code>o</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int indexOf(Object o)</code></td>
+<td style="text-align:center">返回第一个等于 <code>o</code> 的元素的索引位置。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int lastIndexOf(Object o)</code></td>
+<td style="text-align:center">返回最后一个等于 <code>o</code> 的元素的索引位置。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>List&lt;E&gt; subList(int fromIndex, int toIndex)</code></td>
+<td style="text-align:center">截取部分列表，从 <code>fromIndex</code> 到 <code>toIndex</code>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-3、LinkedList的遍历">4.3、LinkedList的遍历</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">demo2</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        LinkedList&lt;Integer&gt; list = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="number">1</span>); <span class="comment">// add(elem): 表示尾插</span></span><br><span class="line">        list.add(<span class="number">2</span>);</span><br><span class="line">        list.add(<span class="number">3</span>);</span><br><span class="line">        list.add(<span class="number">4</span>);</span><br><span class="line">        list.add(<span class="number">5</span>);</span><br><span class="line">        list.add(<span class="number">6</span>);</span><br><span class="line">        list.add(<span class="number">7</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">        <span class="comment">// for-each遍历</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> e:list) {</span><br><span class="line">            System.out.print(e + <span class="string">" "</span>);</span><br><span class="line">        }</span><br><span class="line">        System.out.println();</span><br><span class="line">        <span class="comment">// 使用迭代器遍历---正向遍历</span></span><br><span class="line">        ListIterator&lt;Integer&gt; it = list.listIterator();</span><br><span class="line">        <span class="keyword">while</span>(it.hasNext()){</span><br><span class="line">            System.out.print(it.next()+ <span class="string">" "</span>);</span><br><span class="line">        }</span><br><span class="line">        System.out.println();</span><br><span class="line">        <span class="comment">// 使用反向迭代器---反向遍历</span></span><br><span class="line">        ListIterator&lt;Integer&gt; rit = list.listIterator(list.size());</span><br><span class="line">        <span class="keyword">while</span> (rit.hasPrevious()){</span><br><span class="line">            System.out.print(rit.previous() +<span class="string">" "</span>);</span><br><span class="line">        }</span><br><span class="line">        System.out.println();</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>LinkedList</code> 的三种遍历方式：</p>
+<ul>
+<li><code>for-each</code> 循环适用于正向遍历，并且简单易用。</li>
+<li>正向迭代器 适用于正向遍历，允许在遍历过程中执行更多操作，如插入、删除等。</li>
+<li>反向迭代器 适用于反向遍历，允许在遍历过程中执行反向操作。</li>
+</ul>
+<h3 id="4-4、和-ArrayList-的区别">4.4、和 ArrayList 的区别</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方面</th>
+<th style="text-align:center">ArrayList</th>
+<th style="text-align:center">LinkedList</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">存储空间上</td>
+<td style="text-align:center">物理上一定连续，逻辑上也连续</td>
+<td style="text-align:center">逻辑上连续，但物理上不一定连续</td>
+</tr>
+<tr>
+<td style="text-align:center">随机访问</td>
+<td style="text-align:center">支持 O(1) 时间复杂度</td>
+<td style="text-align:center">不支持 O(1) 随机访问，平均为 O(N) 时间复杂度</td>
+</tr>
+<tr>
+<td style="text-align:center">头插</td>
+<td style="text-align:center">需要搬移元素，效率低，时间复杂度为 O(N)</td>
+<td style="text-align:center">只需修改引用的指向，时间复杂度为 O(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">插入</td>
+<td style="text-align:center">空间不够时需要扩容</td>
+<td style="text-align:center">没有容量的概念，不需要扩容</td>
+</tr>
+<tr>
+<td style="text-align:center">应用场景</td>
+<td style="text-align:center">元素高效存储和频繁访问</td>
+<td style="text-align:center">任意位置插入和删除频繁，顺序访问时效率较低</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5、Stack">5、Stack</h2>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407031758863.png" title="image-20240703175854477" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407031758863.png" alt="image-20240703175854477"></a></p>
+<p>Stack 继承了 Vector，Vector 和 ArrayList 类似，都是动态的顺序表，不同的是Vector是线程安全的。</p>
+<p><a href="https://www.zxhy.xyz/img/s/s10.gif" title="栈" class="gallery-item" style="box-shadow: none;"> <img src="https://www.zxhy.xyz/img/s/s10.gif" alt="栈"></a></p>
+<h3 id="5-1、常用方法">5.1、常用方法</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>push(E item)</code></td>
+<td style="text-align:center">将元素压入栈顶。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>pop()</code></td>
+<td style="text-align:center">移除并返回栈顶的元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>peek()</code></td>
+<td style="text-align:center">返回栈顶的元素，但不移除它。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>isEmpty()</code></td>
+<td style="text-align:center">检查栈是否为空。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>search(Object o)</code></td>
+<td style="text-align:center">返回对象在栈中的位置（基于 1），找不到返回 -1。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>size()</code></td>
+<td style="text-align:center">返回栈中元素的数量。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>clear()</code></td>
+<td style="text-align:center">清空栈中的所有元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>contains(Object o)</code></td>
+<td style="text-align:center">判断栈是否包含指定的元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>iterator()</code></td>
+<td style="text-align:center">返回一个用于遍历栈的迭代器。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>toString()</code></td>
+<td style="text-align:center">返回栈的字符串表示形式。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-2、Stack的遍历">5.2、Stack的遍历</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo3</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 添加元素到栈</span></span><br><span class="line">        stack.push(<span class="number">1</span>);</span><br><span class="line">        stack.push(<span class="number">2</span>);</span><br><span class="line">        stack.push(<span class="number">3</span>);</span><br><span class="line">        stack.push(<span class="number">4</span>);</span><br><span class="line">        stack.push(<span class="number">5</span>);</span><br><span class="line">        stack.push(<span class="number">6</span>);</span><br><span class="line">        stack.push(<span class="number">7</span>);</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">"栈的大小: "</span> + stack.size());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1. 使用 for-each 循环遍历</span></span><br><span class="line">        System.out.print(<span class="string">"for-each 循环遍历: "</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> element : stack) {</span><br><span class="line">            System.out.print(element + <span class="string">" "</span>);</span><br><span class="line">        }</span><br><span class="line">        System.out.println();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 2. 使用正向迭代器遍历</span></span><br><span class="line">        System.out.print(<span class="string">"正向迭代器遍历: "</span>);</span><br><span class="line">        Iterator&lt;Integer&gt; iterator = stack.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext()) {</span><br><span class="line">            System.out.print(iterator.next() + <span class="string">" "</span>);</span><br><span class="line">        }</span><br><span class="line">        System.out.println();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 3. 使用反向迭代器遍历</span></span><br><span class="line">        System.out.print(<span class="string">"反向迭代器遍历: "</span>);</span><br><span class="line">        ListIterator&lt;Integer&gt; reverseIterator = stack.listIterator(stack.size());</span><br><span class="line">        <span class="keyword">while</span> (reverseIterator.hasPrevious()) {</span><br><span class="line">            System.out.print(reverseIterator.previous() + <span class="string">" "</span>);</span><br><span class="line">        }</span><br><span class="line">        System.out.println();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>**<code>for-each</code> 循环遍历：**直接使用 <code>for-each</code> 语法遍历 <code>Stack</code>。适用于简单的正向遍历操作。</p>
+<p>**正向迭代器遍历：**使用 <code>Iterator</code> 进行正向遍历。适用于需要在遍历过程中进行更复杂操作的场景，如插入、删除。</p>
+<p>**反向迭代器遍历：**使用 <code>ListIterator</code> 进行反向遍历。<code>ListIterator</code> 可以在栈的任意位置开始遍历，这里我们从栈的末尾开始（即栈顶）。</p>
+<h1>三、Queue 接口</h1>
+<h2 id="1、继承关系-2">1、继承关系</h2>
+<p>在 Java 中，<code>Stack</code> 是一个具体的类，而 <code>Queue</code> 只是一个接口。虽然 <code>Stack</code> 类存在，但现在通常使用 <code>Deque</code> 接口及其实现类（如 <code>ArrayDeque</code>）来替代 <code>Stack</code> 的功能。这因为 <code>Stack</code> 的很多特性并不完全适合于栈操作（如线程安全和同步机制的开销）。</p>
+<p><code>Queue</code>接口继承自Collection接口，继承了Collection中的所有方法。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407031814917.png" title="image-20240703181453570" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407031814917.png" alt="image-20240703181453570"></a></p>
+<h2 id="2、常用方法">2、常用方法</h2>
+<p>Queue官方文档：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html">队列Queue</a></p>
+<p>注意：Queue是个接口，在实例化时必须实例化LinkedList的对象，因为LinkedList实现了Queue接口</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>boolean add(E e)</code></td>
+<td style="text-align:center">将指定的元素插入到队列的尾部。如果成功则返回 <code>true</code>，如果队列已满则抛出 <code>IllegalStateException</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean offer(E e)</code></td>
+<td style="text-align:center">尝试将元素插入到队列的尾部，如果成功则返回 <code>true</code>，如果队列已满则返回 <code>false</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E remove()</code></td>
+<td style="text-align:center">移除并返回队列头部的元素。如果队列为空则抛出 <code>NoSuchElementException</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E poll()</code></td>
+<td style="text-align:center">移除并返回队列头部的元素。如果队列为空则返回 <code>null</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E element()</code></td>
+<td style="text-align:center">返回队列头部的元素，但不移除它。如果队列为空则抛出 <code>NoSuchElementException</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E peek()</code></td>
+<td style="text-align:center">返回队列头部的元素，但不移除它。如果队列为空则返回 <code>null</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="3、Deque">3、Deque</h2>
+<p>双端队列（Deque）是指允许两端都可以进行入队和出队操作的队列，元素可以从队头出队和入队，也可以从队尾出队和入队。</p>
+<p>注意：Deque也是一个接口，使用时必须创建LinkedList的对象。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407031826255.png" title="image-20240703182621999" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407031826255.png" alt="image-20240703182621999"></a></p>
+<p>栈和队列均可以使用该接口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Deque&lt;Integer&gt; stack = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();	<span class="comment">//双端队列的线性实现</span></span><br><span class="line">Deque&lt;Integer&gt; queue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();	<span class="comment">//双端队列的链式实现</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-1、常用方法">3.1、常用方法</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>void addFirst(E e)</code></td>
+<td style="text-align:center">在双端队列的头部插入指定的元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>void addLast(E e)</code></td>
+<td style="text-align:center">在双端队列的尾部插入指定的元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean offerFirst(E e)</code></td>
+<td style="text-align:center">尝试在双端队列的头部插入指定的元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean offerLast(E e)</code></td>
+<td style="text-align:center">尝试在双端队列的尾部插入指定的元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E removeFirst()</code></td>
+<td style="text-align:center">移除并返回双端队列头部的元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E removeLast()</code></td>
+<td style="text-align:center">移除并返回双端队列尾部的元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E pollFirst()</code></td>
+<td style="text-align:center">移除并返回双端队列头部的元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E pollLast()</code></td>
+<td style="text-align:center">移除并返回双端队列尾部的元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E getFirst()</code></td>
+<td style="text-align:center">返回双端队列头部的元素，但不移除它</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E getLast()</code></td>
+<td style="text-align:center">返回双端队列尾部的元素，但不移除它</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E peekFirst()</code></td>
+<td style="text-align:center">返回双端队列头部的元素，但不移除它</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E peekLast()</code></td>
+<td style="text-align:center">返回双端队列尾部的元素，但不移除它</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean removeFirstOccurrence(Object o)</code></td>
+<td style="text-align:center">移除第一次出现的指定元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean removeLastOccurrence(Object o)</code></td>
+<td style="text-align:center">移除最后一次出现的指定元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>void push(E e)</code></td>
+<td style="text-align:center">将元素推入到栈的顶部（双端队列的头部）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E pop()</code></td>
+<td style="text-align:center">移除并返回栈顶的元素（双端队列的头部）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-2、Deque的遍历">3.2、Deque的遍历</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo4</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        Deque&lt;Integer&gt; deque = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加元素到双端队列</span></span><br><span class="line">        deque.add(<span class="number">1</span>);  <span class="comment">// add 方法默认添加到尾部</span></span><br><span class="line">        deque.add(<span class="number">2</span>);</span><br><span class="line">        deque.add(<span class="number">3</span>);</span><br><span class="line">        deque.add(<span class="number">4</span>);</span><br><span class="line">        deque.add(<span class="number">5</span>);</span><br><span class="line">        deque.add(<span class="number">6</span>);</span><br><span class="line">        deque.add(<span class="number">7</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"双端队列的大小: "</span> + deque.size());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1. 使用 for-each 循环遍历</span></span><br><span class="line">        System.out.print(<span class="string">"for-each 循环遍历: "</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> element : deque) {</span><br><span class="line">            System.out.print(element + <span class="string">" "</span>);</span><br><span class="line">        }</span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 使用正向迭代器遍历</span></span><br><span class="line">        System.out.print(<span class="string">"正向迭代器遍历: "</span>);</span><br><span class="line">        Iterator&lt;Integer&gt; iterator = deque.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext()) {</span><br><span class="line">            System.out.print(iterator.next() + <span class="string">" "</span>);</span><br><span class="line">        }</span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. 使用反向迭代器遍历</span></span><br><span class="line">        System.out.print(<span class="string">"反向迭代器遍历: "</span>);</span><br><span class="line">        Iterator&lt;Integer&gt; reverseIterator = deque.descendingIterator();</span><br><span class="line">        <span class="keyword">while</span> (reverseIterator.hasNext()) {</span><br><span class="line">            System.out.print(reverseIterator.next() + <span class="string">" "</span>);</span><br><span class="line">        }</span><br><span class="line">        System.out.println();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h2 id="4、PriorityQueue">4、PriorityQueue</h2>
+<p><code>PriorityQueue</code> 用于实现基于优先级的队列。继承自 <code>AbstractQueue&lt;E&gt;</code> 类，并实现了Queue 接口。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407031844335.png" title="image-20240703184411217" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407031844335.png" alt="image-20240703184411217"></a></p>
+<h3 id="4-1、常用方法">4.1、常用方法</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>boolean add(E e)</code></td>
+<td style="text-align:center">插入指定元素到优先队列中</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean offer(E e)</code></td>
+<td style="text-align:center">插入指定元素到优先队列中</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E peek()</code></td>
+<td style="text-align:center">获取但不移除队列的头部元素；如果队列为空，返回 <code>null</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>E poll()</code></td>
+<td style="text-align:center">获取并移除队列的头部元素；如果队列为空，返回 <code>null</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean isEmpty()</code></td>
+<td style="text-align:center">如果队列为空，则返回 <code>true</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int size()</code></td>
+<td style="text-align:center">返回队列中的元素个数</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>void clear()</code></td>
+<td style="text-align:center">移除队列中的所有元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean contains(Object o)</code></td>
+<td style="text-align:center">如果队列中包含指定元素，则返回 <code>true</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>Iterator&lt;E&gt; iterator()</code></td>
+<td style="text-align:center">返回队列中元素的迭代器</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>boolean remove(Object o)</code></td>
+<td style="text-align:center">从队列中移除指定元素</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-2、注意事项">4.2、注意事项</h3>
+<ol>
+<li><code>PriorityQueue</code> 默认使用自然排序（元素必须实现 <code>Comparable</code> 接口），也可以在构造时传入一个 <code>Comparator</code> 进行自定义排序。</li>
+<li><code>PriorityQueue</code> 的遍历不会按照优先级顺序进行。如果需要按优先级顺序处理元素，应使用 <code>poll</code> 方法逐个移除元素。</li>
+</ol>
+<h1>四、Set 接口</h1>
+<h2 id="1、继承关系-3">1、继承关系</h2>
+<p>Java 集合框架中的 <code>Set</code> 接口是一个不包含重复元素的集合。它继承自 <code>Collection</code> 接口。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407031917226.png" title="image-20240703191722807" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407031917226.png" alt="image-20240703191722807"></a></p>
+<h2 id="2、常用方法-2">2、常用方法</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>add(E e)</code></td>
+<td style="text-align:center">向集合中添加指定元素，如果集合中已经包含该元素，则返回 <code>false</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>remove(Object o)</code></td>
+<td style="text-align:center">从集合中移除指定元素，如果该元素存在，则返回 <code>true</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>clear()</code></td>
+<td style="text-align:center">移除集合中的所有元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>contains(Object o)</code></td>
+<td style="text-align:center">如果集合中包含指定元素，则返回 <code>true</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>isEmpty()</code></td>
+<td style="text-align:center">如果集合为空，则返回 <code>true</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>size()</code></td>
+<td style="text-align:center">返回集合中元素的数量</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>iterator()</code></td>
+<td style="text-align:center">返回集合中元素的迭代器</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>addAll(Collection&lt;? extends E&gt; c)</code></td>
+<td style="text-align:center">将指定集合中的所有元素添加到此集合中（如果尚未存在）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>containsAll(Collection&lt;?&gt; c)</code></td>
+<td style="text-align:center">如果此集合包含指定集合中的所有元素，则返回 <code>true</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>removeAll(Collection&lt;?&gt; c)</code></td>
+<td style="text-align:center">从此集合中移除指定集合中包含的所有元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>retainAll(Collection&lt;?&gt; c)</code></td>
+<td style="text-align:center">仅保留此集合中那些包含在指定集合中的元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>toArray()</code></td>
+<td style="text-align:center">返回包含此集合中所有元素的数组</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&lt;T&gt; toArray(T[] a)</code></td>
+<td style="text-align:center">返回包含此集合中所有元素的数组；返回数组的运行时类型与指定数组的类型相同</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3、遍历方式">3、遍历方式</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SetDemo</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        Set&lt;String&gt; s = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        s.add(<span class="string">"张三"</span>);</span><br><span class="line">        s.add(<span class="string">"李四"</span>);</span><br><span class="line">        s.add(<span class="string">"王五"</span>);</span><br><span class="line">        <span class="comment">//增强for循环</span></span><br><span class="line">        <span class="keyword">for</span> (String s1 : s) {</span><br><span class="line">            System.out.println(s1);</span><br><span class="line">        }</span><br><span class="line">        System.out.println(<span class="string">"--------------"</span>);</span><br><span class="line">        <span class="comment">//迭代器</span></span><br><span class="line">        Iterator&lt;String&gt; iterator = s.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext()) {</span><br><span class="line">            System.out.println(iterator.next());</span><br><span class="line">        }</span><br><span class="line">        System.out.println(<span class="string">"--------------"</span>);</span><br><span class="line">        <span class="comment">//Lambda表达式</span></span><br><span class="line">        s.forEach(str -&gt; System.out.println(str));</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>Set系列集合的特点：无序、不重复、没有索引，所以，Set集合没办法用普通的for循环遍历。</p>
+<h2 id="4、SortedSet">4、SortedSet</h2>
+<p><code>SortedSet</code>是Java集合框架中的一个接口，表示一个元素保持特定顺序的集合。该接口保证集合中的元素按照自然顺序（例如数字按大小顺序，字符串按字典顺序）或通过指定的比较器进行排序。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407041632402.png" title="image-20240704163241439" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407041632402.png" alt="image-20240704163241439"></a></p>
+<h3 id="4-1、常用方法-2">4.1、常用方法</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>comparator()</code></td>
+<td style="text-align:center">返回此集合中使用的比较器，如果没有使用比较器，则返回 <code>null</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>first()</code></td>
+<td style="text-align:center">返回此集合中的第一个（最低）元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>last()</code></td>
+<td style="text-align:center">返回此集合中的最后一个（最高）元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>headSet(E toElement)</code></td>
+<td style="text-align:center">返回此集合中从第一个元素到 <code>toElement</code> 之前的部分视图</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>tailSet(E fromElement)</code></td>
+<td style="text-align:center">返回此集合中从 <code>fromElement</code>（包含）到最后的部分视图</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>subSet(E fromElement, E toElement)</code></td>
+<td style="text-align:center">返回此集合中从 <code>fromElement</code>（包含）到 <code>toElement</code> 之前的部分视图</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spliterator()</code></td>
+<td style="text-align:center">创建一个 <code>Spliterator</code>，用来遍历集合中的元素</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-2、主要实现类">4.2、主要实现类</h3>
+<p>TreeSet 是SortedSet接口的常用实现类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo6</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        <span class="comment">// 创建一个TreeSet实例</span></span><br><span class="line">        SortedSet&lt;Integer&gt; sortedSet = <span class="keyword">new</span> <span class="title class_">TreeSet</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加元素</span></span><br><span class="line">        sortedSet.add(<span class="number">5</span>);</span><br><span class="line">        sortedSet.add(<span class="number">1</span>);</span><br><span class="line">        sortedSet.add(<span class="number">3</span>);</span><br><span class="line">        sortedSet.add(<span class="number">2</span>);</span><br><span class="line">        sortedSet.add(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出集合</span></span><br><span class="line">        System.out.println(<span class="string">"SortedSet: "</span> + sortedSet);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取第一个和最后一个元素</span></span><br><span class="line">        System.out.println(<span class="string">"First: "</span> + sortedSet.first());</span><br><span class="line">        System.out.println(<span class="string">"Last: "</span> + sortedSet.last());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取子集</span></span><br><span class="line">        SortedSet&lt;Integer&gt; headSet = sortedSet.headSet(<span class="number">3</span>);</span><br><span class="line">        System.out.println(<span class="string">"HeadSet (less than 3): "</span> + headSet);</span><br><span class="line"></span><br><span class="line">        SortedSet&lt;Integer&gt; tailSet = sortedSet.tailSet(<span class="number">3</span>);</span><br><span class="line">        System.out.println(<span class="string">"TailSet (3 or more): "</span> + tailSet);</span><br><span class="line"></span><br><span class="line">        SortedSet&lt;Integer&gt; subSet = sortedSet.subSet(<span class="number">2</span>, <span class="number">4</span>);</span><br><span class="line">        System.out.println(<span class="string">"SubSet (2 inclusive, 4 exclusive): "</span> + subSet);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="4-3、注意事项">4.3、注意事项</h3>
+<ol>
+<li>
+<p>SortedSet不允许存储<code>null</code>元素。</p>
+</li>
+<li>
+<p>操作<code>SortedSet</code>时要确保提供的元素实现了<code>Comparable</code>接口，或者在构造集合时提供了<code>Comparator</code>。</p>
+</li>
+<li>
+<p>由于<code>TreeSet</code>是基于树的数据结构实现的，因此其基本操作（如添加、删除、查找）的时间复杂度为<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="7.695ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 3401 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(1450,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="mi" transform="translate(1935,0)"><path data-c="1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></g><g data-mml-node="mi" transform="translate(2412,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(3012,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container>。</p>
+</li>
+</ol>
+<h2 id="5、TreeSet">5、TreeSet</h2>
+<p><code>TreeSet</code>实现了<code>NavigableSet</code>接口，并间接实现了<code>SortedSet</code>接口。<code>TreeSet</code>基于红黑树数据结构实现，能够保证元素有序且无重复。</p>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407041647172.png" title="image-20240704164720616" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407041647172.png" alt="image-20240704164720616"></a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>add(E e)</code></td>
+<td style="text-align:center">将指定的元素添加到此 set 中（如果该元素尚未存在）。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>clear()</code></td>
+<td style="text-align:center">从此 set 中移除所有元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>contains(Object o)</code></td>
+<td style="text-align:center">如果此 set 包含指定的元素，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>isEmpty()</code></td>
+<td style="text-align:center">如果此 set 不包含元素，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>remove(Object o)</code></td>
+<td style="text-align:center">如果指定元素存在于此 set 中，则将其移除。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>size()</code></td>
+<td style="text-align:center">返回此 set 中的元素数量（其容量）。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>iterator()</code></td>
+<td style="text-align:center">返回在此 set 中的元素上进行迭代的迭代器。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>first()</code></td>
+<td style="text-align:center">返回此 set 中当前第一个（最低）元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>last()</code></td>
+<td style="text-align:center">返回此 set 中当前最后一个（最高）元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>subSet(E fromElement, E toElement)</code></td>
+<td style="text-align:center">返回此 set 的部分视图，其元素范围从 <code>fromElement</code>（包括）到 <code>toElement</code>（不包括）。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>headSet(E toElement)</code></td>
+<td style="text-align:center">返回此 set 的部分视图，其元素严格小于 <code>toElement</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>tailSet(E fromElement)</code></td>
+<td style="text-align:center">返回此 set 的部分视图，其元素大于或等于 <code>fromElement</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>descendingSet()</code></td>
+<td style="text-align:center">返回此 set 中所包含元素的逆序视图。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6、HashSet">6、HashSet</h2>
+<h3 id="6-1、底层原理">6.1、底层原理</h3>
+<p>HashSet 集合底层采用哈希表存储数据。哈希表中最重要的值叫：<strong>哈希值</strong></p>
+<p><strong>哈希值：对象的整数表现形式</strong></p>
+<ul>
+<li>根据hashCode方法算出来的int类型的整数</li>
+<li>该方法定义在Object类中，所有对象都可以调用，默认使用地址值进行计算</li>
+<li>一般情况下，会重写hashCode方法，利用对象内部的属性值计算哈希值</li>
+</ul>
+<h3 id="6-2、常用方法">6.2、常用方法</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>add(E e)</code></td>
+<td style="text-align:center">将指定的元素添加到此 set 中（如果该元素尚未存在）。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>clear()</code></td>
+<td style="text-align:center">从此 set 中移除所有元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>contains(Object o)</code></td>
+<td style="text-align:center">如果此 set 包含指定的元素，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>isEmpty()</code></td>
+<td style="text-align:center">如果此 set 不包含元素，则返回 true。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>remove(Object o)</code></td>
+<td style="text-align:center">如果指定元素存在于此 set 中，则将其移除。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>size()</code></td>
+<td style="text-align:center">返回此 set 中的元素数量（其容量）。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>iterator()</code></td>
+<td style="text-align:center">返回在此 set 中的元素上进行迭代的迭代器。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>clone()</code></td>
+<td style="text-align:center">返回此 HashSet 实例的浅表副本：并不复制这些元素本身。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>toArray()</code></td>
+<td style="text-align:center">返回包含此 set 中所有元素的数组。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>toArray(T[] a)</code></td>
+<td style="text-align:center">返回包含此 set 中所有元素的数组；返回数组的运行时类型是指定数组的类型。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>retainAll(Collection&lt;?&gt; c)</code></td>
+<td style="text-align:center">仅保留此 set 中那些包含在指定集合中的元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>removeAll(Collection&lt;?&gt; c)</code></td>
+<td style="text-align:center">移除此 set 中那些包含在指定集合中的元素。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>addAll(Collection&lt;? extends E&gt; c)</code></td>
+<td style="text-align:center">将指定集合中的所有元素添加到此 set 中。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>equals(Object o)</code></td>
+<td style="text-align:center">比较指定对象与此 set 的相等性。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>hashCode()</code></td>
+<td style="text-align:center">返回此 set 的哈希码值。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>spliterator()</code></td>
+<td style="text-align:center">创建一个 late-binding 和 fail-fast 的 Spliterator。</td>
+</tr>
+</tbody>
+</table>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-02-18</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/Java/'>
+                            Java
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+<!-- 在这里添加 MathJax 配置 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof MathJax !== "undefined") {
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']],
+                    processEscapes: true
+                }
+            });
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+    });
+</script>
+
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+</html>
