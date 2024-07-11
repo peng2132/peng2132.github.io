@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <style>
+        body
+        {
+            font-family: "Times New Roman", Helvetica, Tahoma, Arial,   LXGW WenKai   "notoserifsc-medium", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
+
+        }
+    </style>
+
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Java：多线程基础" />
+    <meta name="hexo-theme-A4" content="v1.8.5" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.png">
+    <title>子夜的星 | 个人Blog</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+    
+    <link href="
+https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css
+" rel="stylesheet">
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+    
+    <style>
+        :root {
+            --waline-theme-color: #9e5345; 
+            --waline-color: #9e5345; 
+            --waline-border-color: #9e5345; 
+            --waline-white: #9e5345; 
+            --waline-bgcolor-light: #FAF5E3;  
+        }
+        body {
+            color: #9e5345;
+            background: #E9DEC8;
+        }
+        .post-md code {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        .post-md pre, .post-md .highlight {
+            background: #e8e0c9;
+            color: #2e5041; 
+        }
+        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+            color: #9e5345;
+        }
+        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+            color: #9e5345;
+        }
+        .year-font-color {
+            color: #9e5345 !important;
+        }
+        .wl-card span.wl-nick {
+            color: #9e5345; 
+        }
+        .wl-card .wl-badge {
+            border: 1px solid #9e5345;
+            color: #9e5345; 
+        }
+        .wl-btn {
+            border: 1px solid #9e5345; 
+            color:  #9e5345;  
+        }
+        .wl-btn.primary {
+            color: #FAF5E3; 
+        }
+        .wl-header label {
+            color: #9e5345;
+        }
+        a {
+            color: #C58E04;
+        }
+
+        .post-md a {
+            color: #C58E04;
+        }
+
+        .nav li a {
+            color: #C58E04;
+        }
+
+        .archive-main a:link {
+            color: #C58E04;
+        }
+        .archive-main a:visited {
+            color: #9c9caf; 
+        }
+
+        .archive li span {
+            color: #9e5345;
+        }
+
+        .post-main-title {
+            color: #9e5345;
+        }
+
+        .post-md h1,
+        .post-md h2,
+        .post-md h3,
+        .post-md h4,
+        .post-md h5,
+        .post-md h6 {
+            color: #9e5345;
+        }
+
+        [data-waline] p {
+            color: #9e5345;
+        }
+        [data-waline] a {
+            color: #9e5345;
+        } 
+        .wl-sort li.active {
+            color: #9e5345;
+        }
+
+        .wl-card .wl-meta>span {
+            background: #FAF5E3;
+        }
+
+        .paper {
+            background: #E9DEC8;
+        }
+
+        .index-main {
+            background: #FAF5E3;
+        }
+
+        .paper-main {
+            background: #FAF5E3;
+        }
+
+        .wl-panel {
+            background: #FAF5E3;
+        }
+
+        .archive li:nth-child(odd) {
+            background: #FAF5E3;
+            ;
+        }
+
+        .archive li:nth-child(even) {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(odd) td {
+            background: #FAF5E3;
+        }
+
+        .post-md>table tr:nth-child(even) td {
+            background: #FAF5E3;
+        }
+
+    
+        .progress-wrap::after {
+            color: #9e5345; /* 箭头的颜色 */
+        }
+        .progress-wrap svg.progress-circle path {
+	        stroke: #9e5345; /* 边框的颜色 */
+        }
+        .progress-wrap::before {
+	        background-image: linear-gradient(298deg, #C58E04, #C58E04); /* 鼠标滑过的箭头颜色 */
+         }
+
+         .left-toc-container::-webkit-scrollbar-thumb {
+            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
+        }
+
+        .bs-docs-sidebar .nav>.active>a,
+        .bs-docs-sidebar .nav>li>a:hover,
+        .bs-docs-sidebar .nav>li>a:focus {
+            color: #C58E04;
+            border-left-color: #C58E04;
+        }
+        .bs-docs-sidebar .nav>li>a {
+            color:  #9e5345;
+        }
+    </style>
+
+    
+    <head>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.png" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">子夜的星</a> 
+            <span class="description">终生学习者｜阅读爱好者</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+    </ul>
+</div> 
+                    
+                    
+                    
+                    
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            Java：多线程基础
+        </div>
+    
+
+    <div class="post-md">
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="一、线程与进程"><a href="#一、线程与进程" class="headerlink" title="一、线程与进程"></a>一、线程与进程</h1><p>进程是计算机中执行中的程序的实例。它是操作系统进行管理和调度的<strong>基本单位</strong>。</p>
+<p>线程，有时被称为轻量级进程，是程序中的一个单独的执行流。它是操作系统调度的<strong>最小单位</strong>。与进程相比，线程之间的上下文切换通常更为迅速和高效。一个线程就是一个 “执行流”。每个线程之间都可以按照顺讯执行自己的代码、多个线程之间 “同时” 执行着多份代码。</p>
+<ul>
+<li><strong>进程是操作系统能独立调度的最小单位，而线程是进程中可并发执行的单元；</strong></li>
+<li><strong>一个应用程序至少包括1个进程，而1个进程包括1个或多个线程；</strong></li>
+<li><strong>每个进程在执行过程中拥有独立的内存单元，而一个进程的多个线程在执行过程中共享内存。</strong></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407111437605.png" title="image-20230818164204908" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407111437605.png" alt="image-20230818164204908"></a><br>做一个简单的内比：计算机的<strong>CPU</strong>就像一个<strong>工厂</strong>，而<strong>进程</strong>就是工厂里面的<strong>车间</strong>，<strong>线程</strong>就是车间里面的<strong>工人</strong>。</p>
+<p>我们能够发现，多核CPU对应多个工厂，这些工厂可以从事不同的生产任务。比如有炼铁的、炼油的、食品加工等等。在一个工厂中，又可以包含一个或多个车间（进程），但是由于电力资源有限，同一时间就只能有一个车间在运行。换句话说，对于单核CPU，同一时间只能处理一个进程，其他进程处在等待状态。而一个车间中，可以有一个或多个工人（线程）协同工作，他们共享内部资源，共同完成任务。</p>
+<blockquote>
+<p>同一个进程中，这些线程共用同一份资源（内存 + 硬盘…），但是每个线程独立去CPU上调度（状态、上下文、优先级、记账信息…..）各自有各自的一份</p>
+</blockquote>
+<p><strong>所以，进程是操作系统进行分配的基本单位。而线程是操作系统进行调度执行的基本单位。</strong></p>
+<p><strong>【面试题】谈谈进程和线程的区别和联系</strong></p>
+<ul>
+<li>进程是包含线程的，都是实现并发编程的方式，但是线程比进程更轻量。</li>
+<li>进程是系统分配资源的基本单位，线程是系统调度的基本单位。创建进程的时候，把分配资源（虚拟地址空间、文件描述符表）的工作给做了，后面创建线程，直接共用资源即可。</li>
+<li><p>进程有独立的地址空间，彼此之间不会相互影响到，进程的独立性。多个线程共用这份地址空间，一个线程一旦抛出异常，就可能会导致进程异常结束。</p>
+</li>
+<li><p>进程和进程之间不共享内存空间，同一个进程的线程之间共享同一个内存空间。</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407111437132.png" title="image-20230818211422931" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407111437132.png" alt="image-20230818211422931"></a></p>
+<h1 id="二、创建线程方法"><a href="#二、创建线程方法" class="headerlink" title="二、创建线程方法"></a>二、创建线程方法</h1><p>在 Java 中，有两种创建多线程的方式，分别是继承 <code>Thread</code> 类和实现 <code>Runnable</code> 接口。下面让我们一起来学习下这两种创建多线程的方法吧。</p>
+<h2 id="1、继承Thread类"><a href="#1、继承Thread类" class="headerlink" title="1、继承Thread类"></a>1、继承<code>Thread</code>类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Mythread</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> {</span><br><span class="line">        System.out.println(<span class="string">"这是线程运行代码!"</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">    </span><br><span class="line">        <span class="type">Mythread</span> <span class="variable">mythread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Mythread</span>();</span><br><span class="line">        mythread.start();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>创建一个类，继承 <code>Thread</code> ，重写<code>run</code>方法，该方法包含线程的实际执行逻辑。</p>
+<p><code>start()</code>方法：<code>start()</code> 方法是<code>Thread</code>类的一个方法，它用于启动线程并调用线程的<code>run()</code>方法。<br>在这个例子中，<code>myThread.start()</code> 会启动一个新的线程，并在新线程中执行 <code>run()</code> 方法中定义的代码。</p>
+<p>如果把<code>myThread.start();</code>改成<code>myThread.run();</code>后，运行的结果也是hello world。这两个有什么不一样呢？</p>
+<p><code>run</code>只是上面的入口方法，并没有调用系统api也没有创建真正的线程来。</p>
+<h2 id="2、实现Runnable接口"><a href="#2、实现Runnable接口" class="headerlink" title="2、实现Runnable接口"></a>2、实现<code>Runnable</code>接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Myrunnable</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> {</span><br><span class="line">        System.out.println(<span class="string">"这是线程运行代码!"</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line"></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Myrunnable</span>());</span><br><span class="line">        thread.start();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>该方法主要是创建一个类，实现 <code>Runnable</code> 接口，重写<code>run</code>方法。</p>
+<h2 id="3、两者区别"><a href="#3、两者区别" class="headerlink" title="3、两者区别"></a>3、两者区别</h2><p><code>Thread</code>这里是直接把要完成的工作，放到了<code>Thread</code>的<code>Run</code>方法中</p>
+<p><code>Runnable</code>这里，则是分开了，把要完成的工作放到了<code>Runnable</code>中，再让<code>Runnable</code>和<code>Thread</code>配合。</p>
+<blockquote>
+<p>把线程要执行的任务和线程本身进一步解耦合了。并发编程中，来完成某个工作，使用<code>Runnable</code>描述这个工作的具体细节。这样使用多线程的方式，就可以使用Runnable来搭配线程使用。使用线程池的方式，就可以使用Runnable来搭配线程池使用，使用协议的方式，也可以使用Runnable搭配协程。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">特征</th>
+<th style="text-align:center">继承 <code>Thread</code> 类</th>
+<th style="text-align:center">实现 <code>Runnable</code> 接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>类的继承关系</strong></td>
+<td style="text-align:center">直接继承 <code>Thread</code> 类。</td>
+<td style="text-align:center">类实现 <code>Runnable</code> 接口，可以继承其他类。</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>创建方式</strong></td>
+<td style="text-align:center">创建类的子类，重写 <code>run()</code> 方法。</td>
+<td style="text-align:center">创建类，实现 <code>Runnable</code> 接口，实现 <code>run()</code> 方法。</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>多线程对象创建</strong></td>
+<td style="text-align:center">直接创建线程对象的实例。</td>
+<td style="text-align:center">先创建 <code>Runnable</code> 对象，再通过 <code>Runnable</code> 对象创建 <code>Thread</code> 对象。</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>启动线程</strong></td>
+<td style="text-align:center">直接调用 <code>start()</code> 方法。</td>
+<td style="text-align:center">调用 <code>Thread</code> 类的构造方法，传递 <code>Runnable</code> 对象，然后调用 <code>start()</code> 方法。</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>资源共享</strong></td>
+<td style="text-align:center">较难实现资源共享。</td>
+<td style="text-align:center">更容易实现资源共享，因为可以共享同一个 <code>Runnable</code> 对象。</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>多态使用</strong></td>
+<td style="text-align:center">难以使用多态，因为已经继承了 <code>Thread</code> 类。</td>
+<td style="text-align:center">更容易使用多态，因为类可以继续实现其他接口或继承其他类。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="4、举个栗子"><a href="#4、举个栗子" class="headerlink" title="4、举个栗子"></a>4、举个栗子</h2><p>回到上面的问题。把<code>myThread.start();</code>改成<code>myThread.run();</code>后，运行的结果也是hello world。这两个有什么不一样呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyThread</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>{</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> {</span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>){</span><br><span class="line">            System.out.println(<span class="string">"hello thread"</span>);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo1</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        <span class="type">MyThread</span> <span class="variable">myThread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyThread</span>();</span><br><span class="line">        myThread.start();</span><br><span class="line">        <span class="comment">//myThread.run();</span></span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>){</span><br><span class="line">            System.out.println(<span class="string">"hello main"</span>);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407111437720.png" title="image-20230818223628990" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407111437720.png" alt="image-20230818223628990"></a><br>使用<code>myThread.start();</code>运行的程序，会同时打印hello thread 和 hello main</p>
+<blockquote>
+<p>两个循环都在执行，两个线程分别执行自己的循环，并发性的执行。</p>
+</blockquote>
+<p>而使用<code>myThread.run();</code>运行的程序，只会打印hello main</p>
+<blockquote>
+<p>只执行了一个循环。</p>
+</blockquote>
+<h2 id="5、简洁写法"><a href="#5、简洁写法" class="headerlink" title="5、简洁写法"></a>5、简洁写法</h2><p>我们可以通过匿名内部类来<code>Thread</code>和<code>Runnable</code>这两种写法。<br>什么是匿名内部类？</p>
+<blockquote>
+<p>匿名内部类是一种在声明和创建类的对象同时进行的特殊形式，它没有显式的类名称。这种方式通常用于在使用类的地方定义类的实例，尤其是在创建接口的实现或继承抽象类的实例时。</p>
+</blockquote>
+<h3 id="Ⅰ、Thread匿名内部类写法"><a href="#Ⅰ、Thread匿名内部类写法" class="headerlink" title="Ⅰ、Thread匿名内部类写法"></a>Ⅰ、<code>Thread</code>匿名内部类写法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">    <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(){</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> {</span><br><span class="line">            System.out.println(<span class="string">"这是线程运行代码!"</span>);</span><br><span class="line">        }</span><br><span class="line">    };</span><br><span class="line">    thread.start();</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407111438029.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407111438029.png" alt="在这里插入图片描述"></a></p>
+<h3 id="Ⅱ、Runnable匿名内部类写法"><a href="#Ⅱ、Runnable匿名内部类写法" class="headerlink" title="Ⅱ、Runnable匿名内部类写法"></a>Ⅱ、<code>Runnable</code>匿名内部类写法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">    <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() {</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> {</span><br><span class="line">        System.out.println(<span class="string">"这是线程运行代码!"</span>);</span><br><span class="line">        }</span><br><span class="line">    });</span><br><span class="line">    thread.start();</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://img.zxhy.xyz/zxhy/202407111438578.png" title="在这里插入图片描述" class="gallery-item" style="box-shadow: none;"> <img src="https://img.zxhy.xyz/zxhy/202407111438578.png" alt="在这里插入图片描述"></a></p>
+<h3 id="Ⅲ、使用Lambda表达式"><a href="#Ⅲ、使用Lambda表达式" class="headerlink" title="Ⅲ、使用Lambda表达式"></a>Ⅲ、使用<code>Lambda</code>表达式</h3><p><code>Lambda</code>表达式主要用于实现函数式接口，<code>Lambda</code>表达式本质上就是一个匿名函数，像这样的匿名函数可以做回调函数来使用。</p>
+<p>匿名函数，就是没有命名的函数。它具有传递函数体的能力，却无需提前声明整个函数的结构。</p>
+<p>回调函数则是在程序执行中，不需要程序员主动调用的函数。相反，它会在特定的时机或条件下，由系统或其他代码自动触发执行。程序员通过将函数传递给其他代码，实现了一种回调机制，使得在适当的时候，这个函数会被调用，完成特定的操作。</p>
+<p>好了，废话不多说，先用<code>Lambda</code>表达式写一下吧。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">    <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; {</span><br><span class="line">        System.out.println(<span class="string">"这是线程运行代码!"</span>);</span><br><span class="line">    });</span><br><span class="line">    thread.start();</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><code>Thread thread = new Thread(() -&gt; {</code><br>这里使用<code>Lambda</code>表达式创建了一个新的<code>Thread</code>对象，构造方法接受一个<code>Runnable</code>接口的实现作为参数。<code>Lambda</code>表达式的内容在大括号中，用于定义线程运行时执行的代码块。</p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-03-13</span>
+            
+                <span>该篇文章被 子夜</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/Java/'>
+                            Java
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    
+        
+
+     
+</div>
+
+<!-- 在这里添加 MathJax 配置 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof MathJax !== "undefined") {
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']],
+                    processEscapes: true
+                }
+            });
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        }
+    });
+</script>
+
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2022-2024 Blog 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌦️景雨初过爽气清，玉波荡漾画桥平。</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+    
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+
+                </div>
+            
+            
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+</html>
